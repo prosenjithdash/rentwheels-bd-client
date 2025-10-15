@@ -1,6 +1,6 @@
 // Navbar Page
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -21,15 +21,29 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">RentWheels-BD</a>
+                <Link to='/'>
+                    <button>
+                        <p
+                            className="
+                            font-extrabold 
+                            text-green-500
+                            text-[24px]
+                            hover:text-[#22c55e]
+                            hover:text-[30px]
+                            hover:
+                            ">
+                            RentWheels-BD
+                        </p>
+                    </button>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal  px-1">
                     {navLinks}
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get Started</a>
+                <a className="btn text-green-500 font-extrabold">Get Started</a>
             </div>
         </div>
     );
