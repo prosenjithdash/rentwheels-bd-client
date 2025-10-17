@@ -1,4 +1,5 @@
 import Categories from "../../components/Categories/Categories";
+import Vehicles from "../../components/Home/Vehicles";
 
 // It's a Home page, Have to here many components .
 const Home = () => {
@@ -24,6 +25,7 @@ const Home = () => {
             
             <Vehicles/>
              */}
+            <Vehicles/>
         </div>
     );
 };

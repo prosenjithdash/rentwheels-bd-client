@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "671f2b3e9c0a1b101",
+    "location": "Sreemangal, Moulvibazar",
+    "category": "Bike",
+    "title": "Honda Hornet 2.0 – Power & Comfort Ride",
+    "from": "2025-10-16T08:00:00.000Z",
+    "to": "2025-10-18T08:00:00.000Z",
+    "price": "2200",
+    "guests": "1",
+    "type": "Manual",
+    "host": {
+      "name": "Prosenjit Dash",
+      "image": "https://i.ibb.co/hyyvMhW/jeep-host.jpg",
+      "email": "prosenjit.rentwheels@gmail.com"
+    },
+    "description": "The Hornet 2.0 offers a smooth, powerful, and sporty experience — ideal for Sreemangal tea garden rides and local tours.",
+    "image": "https://i.ibb.co/dB6c9yS/hornet-2-0.jpg"
+  },
+  {
+    "_id": "671f2b3e9c0a1b102",
+    "location": "Sylhet, Bangladesh",
+    "category": "Scooter",
+    "title": "Yamaha RayZR 125 – Stylish Urban Ride",
+    "from": "2025-10-17T08:00:00.000Z",
+    "to": "2025-10-20T08:00:00.000Z",
+    "price": "1500",
+    "guests": "2",
+    "type": "Automatic",
+    "host": {
+      "name": "Shakil Ahmed",
+      "image": "https://i.ibb.co/vXfSPzH/scooter-host.jpg",
+      "email": "shakil.ridesylhet@gmail.com"
+    },
+    "description": "Perfect scooter for quick and easy city travel in Sylhet. Fuel efficient and comfortable for daily use.",
+    "image": "https://i.ibb.co/3FRm4Jb/yamaha-rayzr.jpg"
+  },
+  {
+    "_id": "671f2b3e9c0a1b103",
+    "location": "Dhaka, Bangladesh",
+    "category": "Car",
+    "title": "Toyota Axio Hybrid 2019 – Smart Sedan",
+    "from": "2025-10-19T08:00:00.000Z",
+    "to": "2025-10-23T08:00:00.000Z",
+    "price": "4800",
+    "guests": "4",
+    "type": "Automatic",
+    "host": {
+      "name": "Nayeem Rahman",
+      "image": "https://i.ibb.co/Z6P4cLk/car-host.jpg",
+      "email": "nayeem.carrent@gmail.com"
+    },
+    "description": "Hybrid sedan with full comfort and low fuel cost. Best for family or business travel in Dhaka city.",
+    "image": "https://i.ibb.co/N66bK4M/toyota-axio.jpg"
+  },
+  {
+    "_id": "671f2b3e9c0a1b104",
+    "location": "Sylhet, Bangladesh",
+    "category": "Bus",
+    "title": "Ena Mini Bus – 20 Seater Group Travel",
+    "from": "2025-10-25T08:00:00.000Z",
+    "to": "2025-10-30T08:00:00.000Z",
+    "price": "11500",
+    "guests": "20",
+    "type": "Manual",
+    "host": {
+      "name": "Rafiul Islam",
+      "image": "https://i.ibb.co/7Jj5hSf/bus-host.jpg",
+      "email": "rafiul.tourbd@gmail.com"
+    },
+    "description": "Spacious 20-seater mini bus for long group trips. Ideal for Sylhet to Dhaka or Moulvibazar routes.",
+    "image": "https://i.ibb.co/Y0rFLbD/greenline-minibus.jpg"
+  },
+  {
+    "_id": "671f2b3e9c0a1b105",
+    "location": "Moulvibazar, Bangladesh",
+    "category": "Jeep",
+    "title": "Suzuki Jimny 4x4 – Tea Garden Adventure",
+    "from": "2025-10-20T08:00:00.000Z",
+    "to": "2025-10-24T08:00:00.000Z",
+    "price": "7000",
+    "guests": "4",
+    "type": "Manual",
+    "host": {
+      "name": "Tapan Kumar",
+      "image": "https://i.ibb.co/8XgWRLJ/jeep-driver.jpg",
+      "email": "tapan.rentmoulvibazar@gmail.com"
+    },
+    "description": "Strong off-road 4x4 jeep for exploring Moulvibazar and Sreemangal’s natural beauty with full safety and power.",
+    "image": "https://i.ibb.co/FgNQ7X8/suzuki-jimny.jpg"
+  },
+  {
+    "_id": "671f2b3e9c0a1b106",
+    "location": "Dhaka, Bangladesh",
+    "category": "Truck",
+    "title": "Tata LPT 1615 – Heavy Cargo Truck",
+    "from": "2025-10-22T08:00:00.000Z",
+    "to": "2025-10-29T08:00:00.000Z",
+    "price": "9000",
+    "guests": "2",
+    "type": "Manual",
+    "host": {
+      "name": "Biplob Hossain",
+      "image": "https://i.ibb.co/0fPR5Zk/truck-host.jpg",
+      "email": "biplob.truckdhaka@gmail.com"
+    },
+    "description": "Trusted truck for business cargo delivery across Bangladesh. Available with driver and full-day fuel support.",
+    "image": "https://i.ibb.co/3MMbZqq/tata-truck.jpg"
+  }
+]
