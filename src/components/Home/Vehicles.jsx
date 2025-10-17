@@ -10,9 +10,11 @@ const Vehicles = () => {
 
     // Load fake data from vehicles.json file
     useEffect(() => {
-        fetch('vehicles.json')
+        // fetch('vehicles.json')
+        fetch('http://localhost:8000/vehicles')
             .then(res => res.json())
-            .then(data => setVehicles(data));
+        .then(data => setVehicles(data));
+            // .then(data => console.log(data));
     },[])
     return (
         <div>
