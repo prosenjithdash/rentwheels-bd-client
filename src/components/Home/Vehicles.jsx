@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import Vehicle_card from "./ Vehicle_card";
 import { useQuery } from '@tanstack/react-query';
 
-// Show all vehicles
+// 🚗 Vehicles Component — show all vehicle data
 const Vehicles = () => {
 
 
@@ -21,11 +20,15 @@ const Vehicles = () => {
     // }, [])
     /////
 
+    // But now using Better way for data fetch
 
-    // Using TanStack Query for data fetching
-    const { data, isLoading, isError } = useQuery(
+    // 🚀 Using TanStack Query to load data
+    const { data: vehicles = [], isLoading, isError } = useQuery(
         {
+            // unique key for caching & refetching
             queryKey: ['vehicles'],
+
+            // define function for fetching data
             queryFn: async () => {
                 const res = await fetch('http://localhost:8000/vehicles');
                 return res.json();
@@ -45,12 +48,13 @@ const Vehicles = () => {
         return <p className="text-center text-red-500 mt-10">Failed to load vehicles. Please try again later.</p>;
     }
 
+    // ✅ Render all vehicle cards
     return (
         <div>
             <h2 className="text-3xl font-extrabold text-center mt-[50px]">All vehicles.</h2>
             <div className="grid grid-cols-3 py-[20px] gap-4">
                 {
-                    data.map((vehicle,idx) =>
+                    vehicles.map((vehicle,idx) =>
                         <Vehicle_card
                             key={idx}
                             vehicle={vehicle}
@@ -64,4 +68,14 @@ const Vehicles = () => {
 
 export default Vehicles;
 
-// VITE_API_URL
+
+// 🧠 Why use TanStack Query instead of useEffect + useState ?
+
+// ✅ Auto - caching — saves fetched data, no need to refetch every time.
+// ✅ Auto - refetch — refetches when internet reconnects or tab becomes active.
+// ✅ Built -in loading & error states — no need for extra state variables.
+// ✅ Cleaner code — no useEffect and setState mess.
+// ✅ Centralized data management — same data can be shared across components easily.
+
+// 🧩 Remember: Must wrap your app with
+// <QueryClientProvider client={queryClient}> in main.jsx.

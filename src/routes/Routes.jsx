@@ -19,9 +19,10 @@ export const router = createBrowserRouter([
                 element:<Home/>
             },
             {
-                path: '/vehicles/:id',
-                element:<VehiclesDetails/>
+                path: '/vehicle/:id',
+                element: <VehiclesDetails />
             }
+
         ]
     },
     // Look like use for Common use also do not need Navbar and Footer.
