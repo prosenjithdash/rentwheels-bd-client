@@ -5,10 +5,10 @@ import { useSearchParams } from "react-router-dom";
 // 🚗 Vehicles Component — show all vehicle data
 const Vehicles = () => {
 
-    const { params, setParams } = useSearchParams()
+    const [ params, setParams ] = useSearchParams()
 
     const category = params.get('category')
-    
+    console.log(category)
 
 
     // COMMON PROCESS FOR LOAD DATA.
@@ -32,11 +32,11 @@ const Vehicles = () => {
     const { data: vehicles = [], isLoading, isError } = useQuery(
         {
             // unique key for caching & refetching
-            queryKey: ['vehicles'],
+            queryKey: ['vehicles',category],
 
             // define function for fetching data
             queryFn: async () => {
-                const res = await fetch('http://localhost:8000/vehicles');
+                const res = await fetch(`http://localhost:8000/vehicles?category=${category}`);
                 return res.json();
             }
 

@@ -12,7 +12,7 @@ const CategoryBox = ({ category }) => {
             query: currentQuery,
             
         })
-        console.log(url)
+        // console.log(url)
         navigate(url)
     }
 
