@@ -1,26 +1,14 @@
 import { categories } from "./CategoriesData";
+import CategoryBox from "./CategoryBox";
 // categories part
 const Categories = () => {
     return (
-        <div className="grid grid-cols-8 gap-5">
+        <div className=" grid grid-cols-8 gap-5 overflow-x-auto">
             {
-                categories.map(category =>
-                    <div
-                        className="border-4 border-green-500 rounded-r-full p-5 space-y-2">
-                        <p
-                            className="font-extrabold text-center">
-                            {category.name}
-                        </p>
-                        <p
-                            className="border rounded-full p-2 text-[10px] font-semibold text-green-500">
-                            {category.icon} 
-                        </p>
-                        <p
-                            className="text-[8px]">
-                            {category.description}
-                        </p>
-
-                    </div>
+                categories.map((category,idx) =>
+                    <CategoryBox
+                        key={idx} category={category}
+                    ></CategoryBox>
                 )
             }
         </div>

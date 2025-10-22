@@ -1,8 +1,14 @@
 import Vehicle_card from "./ Vehicle_card";
 import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from "react-router-dom";
 
 // 🚗 Vehicles Component — show all vehicle data
 const Vehicles = () => {
+
+    const { params, setParams } = useSearchParams()
+
+    const category = params.get('category')
+    
 
 
     // COMMON PROCESS FOR LOAD DATA.
