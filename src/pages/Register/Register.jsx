@@ -3,8 +3,10 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { toast } from 'react-toastify';
+import { ImSpinner9 } from "react-icons/im";
+
 const Register = () => {
-    const { createUser,updateUserProfile,loading } = useAuth()
+    const { createUser, updateUserProfile, loading, setLoading, signInWithGoogle } = useAuth()
     const navigate = useNavigate();
 
     const handleRegister = async (e) => {
@@ -20,6 +22,7 @@ const Register = () => {
 
         try
         {
+            setLoading(true)
             // 1. user registration
             const result = await createUser(email, password)
             console.log(result)
@@ -34,8 +37,22 @@ const Register = () => {
         catch (error) {
             console.log(error.message)
             toast.error(error.message)
-       }
+        }
+    }
+    // handle Google Signin
+    const handleGoogleSignIn = async () => {
+        try {
 
+            await signInWithGoogle()
+
+            toast.success('Registration Successful.')
+           
+            navigate('/')
+        }
+        catch (error) {
+            // console.log(error.message)
+            toast.error(error.message)
+        }
     }
     return (
         <div
@@ -66,11 +83,22 @@ const Register = () => {
                         type="submit"
                         className="border-2 bg-green-400 text-white font-bold border-black p-2 rounded-lg w-full mb-4"
                     >
-                        {loading ? 'Loading...' : 'Register'}
+                        {loading ? <ImSpinner9 className="animate-spin m-auto"/> : 'Register'}
 
                     </button>
                 </div>
             </form>
+            <hr />
+            <div>
+                <button
+                    onClick={handleGoogleSignIn}
+                    disabled={loading}
+                    className="disabled:cursor-not-allowed cursor-pointer border-2  font-extrabold border-green-400 p-2 rounded-full w-full mb-4"
+                >
+                    Continue With Google
+
+                </button>
+            </div>
         </div>
 
     );
