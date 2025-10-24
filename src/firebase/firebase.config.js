@@ -50,4 +50,6 @@ const firebaseConfig = {
  * This function sets up the connection between your project
  * and Firebase services (Auth, FireStore, Storage, etc.)
  */
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+export default app;

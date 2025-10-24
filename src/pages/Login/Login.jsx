@@ -30,7 +30,7 @@ const Login = () => {
                     <br />
 
                 </div>
-                <input type="submit" value="Register" className='border-2 bg-green-400 text-white font-bold border-black p-2 rounded-lg w-full mb-4' />
+                <input type="submit" value="Login" className='border-2 bg-green-400 text-white font-bold border-black p-2 rounded-lg w-full mb-4' />
             </form>
         </div>
 
