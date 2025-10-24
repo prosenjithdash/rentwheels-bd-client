@@ -1,15 +1,51 @@
 // It's a Login Page.
 
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { toast } from 'react-toastify';
+
 const Login = () => {
 
+    const { signIn,loading,setLoading, signInWithGoogle } = useAuth()
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+
+      // handle Google Signin
+        const handleGoogleSignIn = async () => {
+            try {
+    
+                await signInWithGoogle()
+    
+                toast.success('Login Successful.')
+               
+                navigate('/')
+            }
+            catch (error) {
+                // console.log(error.message)
+                toast.error(error.message)
+            }
+        }
+
+
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log('Name', name, 'Email: ', email, 'Password: ', password)
+        console.log('Email: ', email, 'Password: ', password)
+
+        try {
+            setLoading(true)
+            await signIn(email, password)
+        
+            toast.success('Login Successful')
+            navigate('/')
+            
+        } catch (error) {
+            console.log(error.message)
+            toast.error(error.message)
+            
+        }
 
     }
     return (
@@ -32,6 +68,22 @@ const Login = () => {
                 </div>
                 <input type="submit" value="Login" className='border-2 bg-green-400 text-white font-bold border-black p-2 rounded-lg w-full mb-4' />
             </form>
+            <hr />
+            <div>
+                <button
+                    onClick={handleGoogleSignIn}
+                    disabled={loading}
+                    className="disabled:cursor-not-allowed cursor-pointer border-2  font-extrabold border-green-400 p-2 rounded-full w-full mb-4"
+                >
+                    Continue With Google
+
+                </button>
+            </div>
+            <div>
+                <p className="text-xs text-center sm:px-6 text-gray-600 dark:text-gray-600">Do not have an account?
+                    <Link to='/register' className="underline text-green-600 font-extrabold "> Registration</Link>
+                </p>
+            </div>
         </div>
 
     );

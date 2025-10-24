@@ -1,6 +1,6 @@
 // It's Register page.
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { toast } from 'react-toastify';
 import { ImSpinner9 } from "react-icons/im";
@@ -98,6 +98,13 @@ const Register = () => {
                     Continue With Google
 
                 </button>
+            </div>
+            <div>
+                <p className="text-xs text-center sm:px-6 text-gray-600 dark:text-gray-600"> Already have an account? Please
+
+                    <Link to='/logIn' className="underline text-green-600 dark:text-gray-800 font-extrabold"> LogIn</Link>
+                </p>
+            
             </div>
         </div>
 

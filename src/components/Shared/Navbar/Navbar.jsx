@@ -32,7 +32,7 @@ const Navbar = () => {
 
                 <div className="flex items-center">
                     <img className="w-[40px] h-[40px]" src="https://m.media-amazon.com/images/I/71cAl0LbHgL._AC_SL1500_.jpg" alt="" />
-                    <a className="btn btn-ghost lg:text-[23px] text-[12px] font-extrabold "><span className=" text-[#404040]  ">RentWheels</span><span className="text-green-700"> _BD</span>  </a>
+                    <a className="btn btn-ghost lg:text-[23px] text-[12px] font-extrabold "><span className=" text-[#404040]  ">RentWheels</span><span className="text-green-500"> _BD</span>  </a>
                 </div>
 
             </div>
@@ -41,7 +41,7 @@ const Navbar = () => {
                     {navLinks}
                 </ul>
             </div>
-            <div className="navbar-end bg-green-200 border-2 rounded-full">
+            <div className="navbar-end ">
                 {
                     user ? <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar ">
@@ -70,7 +70,7 @@ const Navbar = () => {
                                 <li><a>SigOut</a></li>
                             </div>
                         </ul>
-                    </div> : <li><NavLink to='/logIn'>LogIn</NavLink></li>
+                    </div> : <div className="bg-green-200  rounded-md px-7 py-2"><li ><NavLink to='/logIn'>LogIn</NavLink></li></div>
 
                 }
             </div>
