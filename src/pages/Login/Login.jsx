@@ -1,6 +1,6 @@
 // It's a Login Page.
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { toast } from 'react-toastify';
 
@@ -8,6 +8,8 @@ const Login = () => {
 
     const { signIn,loading,setLoading, signInWithGoogle } = useAuth()
     const navigate = useNavigate();
+    const location = useLocation()
+    const from = location?.state || '/'
 
 
       // handle Google Signin
@@ -18,7 +20,7 @@ const Login = () => {
     
                 toast.success('Login Successful.')
                
-                navigate('/')
+                navigate(from)
             }
             catch (error) {
                 // console.log(error.message)
@@ -39,7 +41,7 @@ const Login = () => {
             await signIn(email, password)
         
             toast.success('Login Successful')
-            navigate('/')
+             navigate(from)
             
         } catch (error) {
             console.log(error.message)

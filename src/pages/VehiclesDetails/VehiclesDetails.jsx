@@ -1,6 +1,7 @@
 // Vehicles details page
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import VehicleDetails_Card from '../../components/VehiclesDetails/VehicleDetails_Card';
 
 const VehiclesDetails = () => {
 
@@ -33,13 +34,7 @@ const VehiclesDetails = () => {
         return <p className="text-center text-red-500 mt-10">Failed to load vehicles. Please try again later.</p>;
     }
     return (
-        <div className="max-w-xl mx-auto bg-green-50 p-5 rounded-lg shadow">
-            <h2 className="text-2xl font-bold mb-2">{vehicle.title}</h2>
-            <p className="text-gray-600 mb-2">Category: {vehicle.category}</p>
-            <p className="text-gray-600 mb-2">Location: {vehicle.location}</p>
-            <p className="text-gray-700 mb-4">Price: {vehicle.price} Tk/day</p>
-
-        </div>
+        <VehicleDetails_Card/>
     );
 };
 

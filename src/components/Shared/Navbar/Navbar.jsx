@@ -30,10 +30,12 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                <div className="flex items-center">
-                    <img className="w-[40px] h-[40px]" src="https://m.media-amazon.com/images/I/71cAl0LbHgL._AC_SL1500_.jpg" alt="" />
-                    <a className="btn btn-ghost lg:text-[23px] text-[12px] font-extrabold "><span className=" text-[#404040]  ">RentWheels</span><span className="text-green-500"> _BD</span>  </a>
-                </div>
+                <Link to='/'>
+                    <div className="flex items-center">
+                        <img className="w-[40px] h-[40px]" src="https://m.media-amazon.com/images/I/71cAl0LbHgL._AC_SL1500_.jpg" alt="" />
+                        <p className="btn btn-ghost lg:text-[23px] text-[12px] font-extrabold "><span className=" text-[#404040]  ">RentWheels</span><span className="text-green-500"> _BD</span>  </p>
+                    </div>
+                </Link>
 
             </div>
             <div className="navbar-center hidden lg:flex z-10">

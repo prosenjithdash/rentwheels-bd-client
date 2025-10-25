@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home";
 import VehiclesDetails from "../pages/VehiclesDetails/VehiclesDetails";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/vehicle/:id',
-                element: <VehiclesDetails />
+                element: <PrivateRoutes><VehiclesDetails /></PrivateRoutes>
             }
 
         ]
