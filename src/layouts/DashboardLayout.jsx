@@ -4,20 +4,16 @@ import Sidebar from '../components/Dashboard/Sidebar/Sidebar';
 
 const DashboardLayout = () => {
     return (
-       
-        <div className='relative min-h-screen md:flex'>
-            {/* Sidebar */}
-            <div className=''>
-               <Sidebar/>
+        <div className="flex min-h-screen bg-gray-50">
+            {/* Sidebar (fixed width) */}
+            <div className="w-64 bg-white border-r shadow-sm">
+                <Sidebar />
             </div>
 
-            {/* Outlet --> Dynamic Content*/}
-            <div className='flex-1 md:ml-64'>
-                <div className='p-5'>
-                    <Outlet />
-                </div>
+            {/* Main Content */}
+            <div className="flex-1 p-6 overflow-y-auto">
+                <Outlet />
             </div>
-           
         </div>
     );
 };

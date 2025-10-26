@@ -1,6 +1,5 @@
 import {
     createBrowserRouter,
-    Outlet
 } from "react-router-dom";
 import Main from "../layouts/Main";
 import ErrorPage from "../pages/ErrorPage";
@@ -10,6 +9,9 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Statistics from "../pages/Dashboard/Common/Statistics";
+import MyListings from "../pages/Dashboard/Host/MyListings";
+import AddVehicle from "../pages/Dashboard/Host/AddVehicle";
 
 export const router = createBrowserRouter([
 
@@ -48,8 +50,16 @@ export const router = createBrowserRouter([
 
         children: [
             {
-                path: '/dashboard/booking',
-                element:<p>Hello B</p>
+                index: true,
+                element:<Statistics/>
+            },
+            {
+                path: 'add_vehicle',
+                element:<AddVehicle/>
+            },
+            {
+                path: 'my_listings',
+                element: <MyListings/>
             }
         ]
     }
