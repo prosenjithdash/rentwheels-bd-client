@@ -3,20 +3,43 @@ import { categories } from "../../../components/Categories/CategoriesData";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import useAuth from "../../../hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import axios from 'axios'; 
 
 const AddVehicle = () => {
-    const [state, setState] = useState([
-        {
-            startDate: new Date(),
-            endDate: null,
-            key: "selection",
+    const { user } = useAuth();
+
+    const [dates, setDates] = useState({
+        startDate: new Date(),
+        endDate: null,
+        key: "selection",
+    })
+
+    // Date range handler
+    const handleDates = item => {
+        console.log(item.selection.startDate)
+        setDates(item.selection)
+    }
+
+    const { mutateAsync} = useMutation({
+        mutationFn: async (vehicleData) => {
+            const { data } = await axios.post('http://localhost:8000/vehicle', vehicleData);
+            return data;
         },
-    ]);
+        onSuccess: () => {
+            console.log('Data Saved Successfully')
+        }
+    });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
 
-        const vehicleTitle = e.target.vehicleTitle.value;
+
+    
+    // Form handler
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const title = e.target.vehicleTitle.value;
         const category = e.target.category.value;
         const location = e.target.location.value;
         const imageURL = e.target.imageURL.value;
@@ -25,18 +48,42 @@ const AddVehicle = () => {
         const engineCC = e.target.engineCC.value;
         const mileage = e.target.mileage.value;
         const description = e.target.description.value;
+        const to = dates.endDate
+        const from = dates.startDate
+        const host = {
+            name: user?.displayName,
+            image: user?.photoURL,
+            email: user?.email
 
-        console.log("✅ Submitted Vehicle Data:", {
-            vehicleTitle,
-            category,
-            location,
-            imageURL,
-            price,
-            type,
-            engineCC,
-            mileage,
-            description,
-        });
+        }
+
+        try {
+            const vehicleData = {
+                title,
+                category,
+                location,
+                imageURL,
+                price,
+                type,
+                engineCC,
+                mileage,
+                description,
+                to,
+                from,
+                host
+            }
+            console.table(vehicleData)
+            
+            // console.log(vehicleData)
+
+            // Post request to server
+            await mutateAsync(vehicleData)
+
+
+        } catch (error) {
+            console.log(error.message)
+        }
+     
     };
 
     return (
@@ -189,9 +236,9 @@ const AddVehicle = () => {
                         <DateRange
                             rangeColors={['#16A34A']}
                             editableDateInputs={true}
-                            onChange={item => setState([item.selection])}
+                            onChange={item => handleDates(item)}
                             moveRangeOnFirstSelection={false}
-                            ranges={state}
+                            ranges={[dates]}
                         />
                     </div>
                 </div>
