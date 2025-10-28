@@ -1,20 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useAuth from "../../../hooks/useAuth";
 
 const My_Listings = () => {
 
-
+    const { user } = useAuth();
 
 
     // 🚀 Using TanStack Query to load data
     const { data: vehicles = [], isLoading, isError } = useQuery(
         {
             // unique key for caching & refetching
-            queryKey: ['vehicles'],
+            queryKey: ['my_listings',user?.email],
 
             // define function for fetching data
             queryFn: async () => {
-                const {data} = await axios.get(`http://localhost:8000/vehicles`);
+                const {data} = await axios.get(`http://localhost:8000/my_listings/${user?.email}`);
                 return data
             },
 
@@ -56,6 +57,18 @@ const My_Listings = () => {
             <div className="mt-3 text-center text-gray-500">
                 <p>No vehicle added yet!</p>
             </div>
+
+            {/* <div className="mt-4 space-y-3">
+                {vehicles.map((vehicle) => (
+                    <HostListVehicleCard key={vehicle._id} vehicle={vehicle} />
+                ))}
+            </div> */}
+
+            {
+                vehicles.map((vehicle,idx) => (
+                    <p key={idx}> {vehicle.title}</p>
+                ))
+            }
         </section>
     );
 };
