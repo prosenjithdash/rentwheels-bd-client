@@ -2,6 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import VehicleDetails_Card from '../../components/VehiclesDetails/VehicleDetails_Card';
+import axios from 'axios';
 
 const VehiclesDetails = () => {
 
@@ -16,12 +17,13 @@ const VehiclesDetails = () => {
 
             // define function for fetching data
             queryFn: async () => {
-                const res = await fetch(`http://localhost:8000/vehicle/${id}`);
-                return res.json();
+                const {data} = await axios.get(`http://localhost:8000/vehicle/${id}`);
+                return data
             }
 
         }
     )
+    console.log('Details of Vehicle data:', vehicle)
 
 
     // Handle loading state

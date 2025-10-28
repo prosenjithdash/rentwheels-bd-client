@@ -6,13 +6,17 @@ import "react-date-range/dist/theme/default.css";
 import useAuth from "../../../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import axios from 'axios'; 
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddVehicle = () => {
-    const { user } = useAuth();
+
+    const navigate = useNavigate()
+    const { user,loading } = useAuth();
 
     const [dates, setDates] = useState({
         startDate: new Date(),
-        endDate: null,
+        endDate: new Date(),
         key: "selection",
     })
 
@@ -20,6 +24,7 @@ const AddVehicle = () => {
     const handleDates = item => {
         console.log(item.selection.startDate)
         setDates(item.selection)
+        
     }
 
     const { mutateAsync} = useMutation({
@@ -29,6 +34,8 @@ const AddVehicle = () => {
         },
         onSuccess: () => {
             console.log('Data Saved Successfully')
+            toast.success('Vehicle added successfully!');
+            navigate('/dashboard/my_listings');
         }
     });
 
@@ -82,6 +89,7 @@ const AddVehicle = () => {
 
         } catch (error) {
             console.log(error.message)
+            toast.error(error.message)
         }
      
     };
@@ -252,10 +260,15 @@ const AddVehicle = () => {
                         Cancel
                     </button>
                     <button
+                        disabled={loading}
                         type="submit"
                         className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
                     >
-                        Publish Listing
+                        {
+                            loading ? (<p className="animate-spin m-auto">Loading...</p>) : (
+                                'Save & Continue'
+                            )
+                       }
                     </button>
                 </div>
             </form>

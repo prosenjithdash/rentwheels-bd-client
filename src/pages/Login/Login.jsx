@@ -69,6 +69,17 @@ const Login = () => {
 
                 </div>
                 <input type="submit" value="Login" className='border-2 bg-green-400 text-white font-bold border-black p-2 rounded-lg w-full mb-4' />
+                {/* <button
+                    disabled={loading}
+                    type="submit"
+                    className='border-2 bg-green-400 text-white font-bold border-black p-2 rounded-lg w-full mb-4'
+                >
+                    {
+                        loading ? (<p className="animate-spin m-auto">Loading...</p>) : (
+                            Login
+                        )
+                    }
+                </button> */}
             </form>
             <hr />
             <div>
