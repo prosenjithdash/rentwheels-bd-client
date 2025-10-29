@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from "react";
 import { Pencil, Trash2 } from "lucide-react";
-import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Dialog, Transition } from "@headlessui/react";
 
-// ✅ helper to shorten title to first 3 words
-const shortenTitle = (title = "", wordLimit = 3) => {
+// ✅ helper to shorten title
+const shortenTitle = (title = "", wordLimit = 4) => {
     const words = title.trim().split(/\s+/);
     if (words.length <= wordLimit) return title;
     return words.slice(0, wordLimit).join(" ") + "...";
 };
 
-const My_List_Card = ({ vehicle, handleDelete }) => {
-    // const { title, location, price, from, to, image } = vehicle;
-    let [isOpen, setIsOpen] = useState(false)
+const My_List_Card = ({ vehicle, handleDelete  }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const closeModal = () => setIsOpen(false);
+    const openModal = () => setIsOpen(true);
 
     return (
-        <div
-            className="grid grid-cols-7 items-center bg-white shadow-sm rounded-xl px-4 py-3 hover:shadow-md transition-all duration-200"
-        >
+        <div className="grid grid-cols-7 items-center bg-white shadow-sm rounded-xl px-4 py-3 hover:shadow-md transition-all duration-200">
             {/* 🖼️ Title + Image */}
             <div className="flex items-center gap-4">
                 <img
@@ -24,10 +24,7 @@ const My_List_Card = ({ vehicle, handleDelete }) => {
                     alt={vehicle.title}
                     className="w-12 h-10 rounded-lg object-cover border border-gray-200 flex-shrink-0"
                 />
-                <h3
-                    className="font-medium text-gray-800 truncate"
-                    title={vehicle.title}
-                >
+                <h3 className="font-medium text-gray-800 truncate" title={vehicle.title}>
                     {shortenTitle(vehicle.title || "")}
                 </h3>
             </div>
@@ -59,27 +56,79 @@ const My_List_Card = ({ vehicle, handleDelete }) => {
 
             {/* Delete Button */}
             <div className="flex justify-center">
-                <button onClick={() => setIsOpen(true)} className="bg-red-50 hover:bg-red-100 p-2 rounded-xl transition">
+                <button
+                    onClick={openModal}
+                    className="bg-red-50 hover:bg-red-100 p-2 rounded-xl transition"
+                >
                     <Trash2 className="text-red-600 w-4 h-4" />
                 </button>
-                {/* Delete Modal */}
-                <div>
-                  
-                    <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
-                        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-                            <DialogPanel className="max-w-lg space-y-4 border bg-white p-12">
-                                <DialogTitle className="font-bold">Deactivate account</DialogTitle>
-                                <Description>This will permanently deactivate your account</Description>
-                                <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p>
-                                <div className="flex gap-4">
-                                    <button onClick={() => setIsOpen(false)}>Cancel</button>
-                                    <button onClick={() => setIsOpen(false)}>Deactivate</button>
-                                </div>
-                            </DialogPanel>
+
+                {/* 🧱 Delete Confirmation Modal */}
+                <Transition appear show={isOpen} as={Fragment}>
+                    <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                        {/* Overlay */}
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                        >
+                            <div className="fixed inset-0 bg-black/30" />
+                        </Transition.Child>
+
+                        {/* Modal Content */}
+                        <div className="fixed inset-0 flex items-center justify-center p-4">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel className="w-full max-w-md bg-white rounded-2xl p-6 text-left shadow-xl">
+                                    <Dialog.Title
+                                        as="h3"
+                                        className="text-lg font-semibold text-gray-900"
+                                    >
+                                        Delete Vehicle
+                                    </Dialog.Title>
+                                    <div className="mt-2">
+                                        <p className="text-sm text-gray-600">
+                                            Are you sure you want to delete{" "}
+                                            <span className="font-medium text-gray-800">
+                                                {vehicle.title}
+                                            </span>
+                                            ? This action cannot be undone.
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-4 flex justify-end gap-3">
+                                        <button
+                                            onClick={closeModal}
+                                            className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                handleDelete(vehicle._id);
+                                                closeModal();
+                                            }}
+                                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
                         </div>
                     </Dialog>
-                </div>
-
+                </Transition>
             </div>
         </div>
     );
