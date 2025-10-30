@@ -1,65 +1,84 @@
-import { useState } from "react";
-import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main css file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import { differenceInCalendarDays } from "date-fns";
+import { useState, useEffect } from "react";
+import { DateRange } from "react-date-range";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
 
-const VehicleDetails_Card = () => {
+const VehicleDetails_Card = ({ vehicle }) => {
+    if (!vehicle) return <p>Loading vehicle details...</p>;
 
+    const {
+        imageURL,
+        title,
+        description,
+        location,
+        category,
+        price,
+        type,
+        engineCC,
+        mileage,
+        from,
+        to,
+        host,
+    } = vehicle;
 
     const [state, setState] = useState([
         {
-            startDate: new Date(),
-            endDate: null,
-            key: 'selection'
-        }
+            startDate: new Date(from),
+            endDate: new Date(to),
+            key: "selection",
+        },
     ]);
-    // const [pickupDate, setPickupDate] = useState("");
-    // const [returnDate, setReturnDate] = useState("");
+
+    // ✅ inclusive days calculation: add 1 to differenceInCalendarDays
+    const rawDiff = differenceInCalendarDays(state[0].endDate, state[0].startDate);
+    const days = Math.max(1, rawDiff + 1); // inclusive of both start and end
+    const totalPrice = days * Number(price || 0);
+
+    useEffect(() => {
+        console.log("Selected Days:", days, "Total Price:", totalPrice);
+    }, [state, days, totalPrice]);
+
+    const formatCurrency = (value) => {
+        return `${value.toLocaleString(undefined, { maximumFractionDigits: 0 })} /=`;
+    };
+
+    // Basic validation: ensure selected range is inside host's availability
+    const isSelectionValid =
+        state[0].startDate >= new Date(from) &&
+        state[0].endDate <= new Date(to) &&
+        state[0].startDate <= state[0].endDate;
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-10">
             {/* Title & Subtitle */}
             <div className="mb-8">
-                <h1 className="text-3xl font-extrabold text-gray-900">
-                    Yamaha FZ-S FI V3
-                </h1>
+                <h1 className="text-3xl font-extrabold text-gray-900">{title}</h1>
                 <p className="text-gray-600">
-                    A popular choice for its sporty look and reliable performance.
+                    Happy ride or driving. Make sure to have a safe journey!
                 </p>
             </div>
 
             {/* Top Image Grid */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
                 <div className="md:col-span-2">
                     <img
-                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+                        src={imageURL}
                         alt="Main Vehicle"
-                        className="rounded-xl w-full h-[400px] object-cover"
+                        className="hover:scale-105 transition-transform duration-500 rounded-xl w-full h-[400px] object-cover"
                     />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                    <img
-                        src="https://images.unsplash.com/photo-1502877338535-766e1452684a"
-                        alt="Vehicle Side"
-                        className="rounded-xl h-[190px] w-full object-cover"
-                    />
-                    <img
-                        src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d"
-                        alt="Vehicle Front"
-                        className="rounded-xl h-[190px] w-full object-cover"
-                    />
-                    <img
-                        src="https://images.unsplash.com/photo-1517142089942-ba376ce32a2e"
-                        alt="Vehicle Interior"
-                        className="rounded-xl h-[190px] w-full object-cover"
-                    />
-                    <img
-                        src="https://images.unsplash.com/photo-1511910849309-0e2a1f84a3e7"
-                        alt="Vehicle Dashboard"
-                        className="rounded-xl h-[190px] w-full object-cover"
-                    />
+                    {[...Array(4)].map((_, idx) => (
+                        <img
+                            key={idx}
+                            src={imageURL}
+                            alt={`Vehicle View ${idx + 1}`}
+                            className="rounded-xl h-[190px] w-full object-cover hover:scale-105 transition-transform duration-500"
+                        />
+                    ))}
                 </div>
-            </div> */}
+            </div>
 
             {/* Vehicle Specs + Booking Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -73,15 +92,15 @@ const VehicleDetails_Card = () => {
                         <div className="grid grid-cols-3 gap-4 text-gray-700">
                             <div>
                                 <p className="font-semibold">Engine</p>
-                                <p>149 cc</p>
+                                <p>{engineCC}</p>
                             </div>
                             <div>
                                 <p className="font-semibold">Mileage</p>
-                                <p>45 kmpl</p>
+                                <p>{mileage}</p>
                             </div>
                             <div>
                                 <p className="font-semibold">Type</p>
-                                <p>Motorbike</p>
+                                <p>{type}</p>
                             </div>
                         </div>
                     </div>
@@ -89,30 +108,21 @@ const VehicleDetails_Card = () => {
                     {/* Description */}
                     <div className="bg-white shadow-md rounded-xl p-6">
                         <h2 className="text-xl font-semibold mb-3">Description</h2>
-                        <p className="text-gray-700 leading-relaxed">
-                            Experience the thrill of riding through the beautiful tea gardens
-                            of Sreemangal with our Yamaha FZ-S FI V3. This vehicle is
-                            perfectly maintained and offers a comfortable ride, making it
-                            ideal for both short city trips and longer explorations of the
-                            countryside. Its fuel-efficient engine ensures you can travel far
-                            without worrying about frequent stops.
-                        </p>
+                        <p className="text-gray-700 leading-relaxed">{description}</p>
                     </div>
 
                     {/* Host Details */}
                     <div className="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
                         <img
-                            src="https://randomuser.me/api/portraits/men/75.jpg"
+                            src={host?.image}
                             alt="Host"
                             className="w-14 h-14 rounded-full object-cover"
                         />
                         <div>
-                            <h3 className="font-semibold text-gray-900">
-                                Mr. Karim Chowdhury
-                            </h3>
-                            <p className="text-gray-600 text-sm">Joined in 2022</p>
+                            <h3 className="font-semibold text-gray-900">{host?.name}</h3>
+                            <p className="text-gray-600 text-sm">Joined in 2025</p>
                             <p className="text-sm text-yellow-500 font-medium">
-                                ★ 4.9 (12 reviews)
+                                ★ 4.9 (530 reviews)
                             </p>
                         </div>
                     </div>
@@ -122,30 +132,42 @@ const VehicleDetails_Card = () => {
                 <div className="bg-white shadow-md rounded-xl p-6 h-fit">
                     <h2 className="text-lg font-semibold mb-4">Book This Vehicle</h2>
                     <div className="space-y-4">
-                        <p className="text-sm text-gray-500">Please Select Pick up date and Return date from calender</p>
-
-                        
-                        {/* Add Calender for pickup and return date */}
-                        <div>
-                            <DateRange
-                                rangeColors={['#16A34A']}
-                                editableDateInputs={true}
-                                onChange={item => setState([item.selection])}
-                                moveRangeOnFirstSelection={false}
-                                ranges={state}
-                            />
-                        </div>
-
-                        <div className="flex justify-between mt-3">
-                            <p className="font-semibold text-gray-700">Total Price</p>
-                            <p className="font-bold text-green-600">৳500/day</p>
-                        </div>
-
                         <p className="text-sm text-gray-500">
-                            Final price will be calculated based on the number of days.
+                            Please select pickup and return dates within the available range:
                         </p>
 
-                        <button className="w-full bg-green-500 text-white font-semibold py-2 rounded-lg hover:bg-green-600 transition-all">
+                        {/* Date Picker */}
+                        <DateRange
+                            rangeColors={["#16A34A"]}
+                            editableDateInputs={true}
+                            onChange={(item) => setState([item.selection])}
+                            moveRangeOnFirstSelection={false}
+                            minDate={new Date(from)} // Earliest host-available date
+                            maxDate={new Date(to)} // Latest host-available date
+                            ranges={state}
+                        />
+
+                        {/* Price Calculation */}
+                        <div className="flex justify-between mt-3">
+                            <p className="font-semibold text-gray-700">Total Price</p>
+                            <p className="font-bold text-green-600">{formatCurrency(totalPrice)}</p>
+                        </div>
+
+                        {!isSelectionValid && (
+                            <p className="text-sm text-red-500">
+                                Selected dates must be inside the host's available range.
+                            </p>
+                        )}
+
+                        <p className="text-sm text-gray-500">
+                            You’ll only be charged for the days you select.
+                        </p>
+
+                        <button
+                            disabled={!isSelectionValid}
+                            className={`w-full text-white font-semibold py-2 rounded-lg transition-all ${isSelectionValid ? "bg-green-500 hover:bg-green-600" : "bg-gray-300 cursor-not-allowed"
+                                }`}
+                        >
                             Book Now
                         </button>
                     </div>

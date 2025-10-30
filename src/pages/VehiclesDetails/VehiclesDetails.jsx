@@ -36,7 +36,7 @@ const VehiclesDetails = () => {
         return <p className="text-center text-red-500 mt-10">Failed to load vehicles. Please try again later.</p>;
     }
     return (
-        <VehicleDetails_Card/>
+        <VehicleDetails_Card vehicle={vehicle} />
     );
 };
 

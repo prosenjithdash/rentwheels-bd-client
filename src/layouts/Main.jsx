@@ -11,7 +11,7 @@ const Main = () => {
             <Navbar/>
 
             {/* Outlet use for Showing all children routes. */}
-            <div className="pt-24 min-h-[calc(100vh-68px)] max-w-[1250px] mx-auto">
+            <div className="min-h-[calc(100vh-68px)] max-w-[1250px] mx-auto">
                 <Outlet />
             </div>
 

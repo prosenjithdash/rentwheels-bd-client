@@ -5,7 +5,7 @@ const Vehicle_card = ({ vehicle }) => {
 
     return (
         <Link to={`/vehicle/${_id}`}>
-            <div className="p-6 bg-green-50 rounded-lg hover:shadow-md hover:scale-[1.02] transition-transform">
+            <div className="p-6 bg-green-50 rounded-lg hover:shadow-md hover:scale-[1.02] transition-transform hover:border hover:border-green-500 hover:rounded-xl">
                 <img
                     src={imageURL}
                     alt={title}
