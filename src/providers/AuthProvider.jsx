@@ -31,6 +31,7 @@ import {
     updateProfile,
 } from 'firebase/auth'
 import app from '../firebase/firebase.config'
+import axios from 'axios'
 
 // 🔑 Create Firebase Auth instance and Google provider
 const auth = getAuth(app)
@@ -94,6 +95,17 @@ const AuthProvider = ({ children }) => {
         })
     };
 
+    // save user 
+    const saveUser = async (user) => {
+        const currentUser = {
+            email: user?.email,
+            role: 'render',
+            status: 'verified',
+        }
+        const { data } = await axios.put(`http://localhost:8000/user`, currentUser)
+        return data
+    }
+
     /**
   * 🔍 Track user authentication state:
   * Runs once when the app starts and keeps watching Firebase Auth.
@@ -104,6 +116,9 @@ const AuthProvider = ({ children }) => {
 
             console.log(' User in the state auth changed', currentUser)
             setUser(currentUser)
+            if (currentUser) {
+                saveUser(currentUser)
+            }
             //loading
             setLoading(false)
 
