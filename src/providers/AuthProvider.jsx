@@ -100,7 +100,7 @@ const AuthProvider = ({ children }) => {
         const currentUser = {
             email: user?.email,
             role: 'render',
-            status: 'verified',
+            status: 'Verified',
         }
         const { data } = await axios.put(`http://localhost:8000/user`, currentUser)
         return data

@@ -4,14 +4,13 @@ import Vehicles from "../../components/Home/Vehicles";
 // It's a Home page, Have to here many components .
 const Home = () => {
     return (
-        <div>
+        <div className="mt-[50px]">
             {/* Should be add here helmet for dynamic title name. */}
             {/* 
             <Helmet>
                 <title>RentWheels-BD</title>
             </Helmet>
              */}
-            <h1>Welcome to RentWheels_BD Home Page.</h1>
 
             {/* 
             Now to add category sections
