@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -16,7 +17,7 @@ const Navbar = () => {
         try {
             const currentUser = {
                 email: user?.email,
-                role: 'host',
+                role: 'render',
                 status: 'Requested',
             }
             const { data } = await axios.put(`http://localhost:8000/user`, currentUser)
