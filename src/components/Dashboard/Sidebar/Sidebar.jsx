@@ -1,111 +1,109 @@
 import { useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
-import { BsFingerprint, BsFillHouseAddFill } from 'react-icons/bs'
-import { GrUserAdmin } from 'react-icons/gr'
+import { BsFillHouseAddFill, BsGraphUp } from 'react-icons/bs'
 import { MdHomeWork } from 'react-icons/md'
 import { AiOutlineBars } from 'react-icons/ai'
-import { BsGraphUp } from 'react-icons/bs'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
-import { Link } from 'react-router-dom'
 import MenuItem from './Menu/MenuItem'
 
 const Sidebar = () => {
     const { logOut } = useAuth()
-    const [isActive, setActive] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
 
-    // Sidebar Responsive Handler
-    const handleToggle = () => {
-        setActive(!isActive)
-    }
+    // Toggle sidebar visibility on small screens
+    const handleToggle = () => setIsOpen(!isOpen)
 
+    // Close sidebar when link clicked (mobile)
+    const handleClose = () => setIsOpen(false)
 
     return (
         <>
-            {/* Small Screen Navbar */}
-            <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
-                <div>
-                    <div className='block cursor-pointer p-4 font-bold'>
-                        <Link to='/'>
-                            <p>RentWheels_BD</p>
-                        </Link>
-                    </div>
-                </div>
-
+            {/* ✅ Small Screen Top Navbar */}
+            <div className='bg-gray-100 text-gray-800 flex justify-between items-center md:hidden shadow-sm'>
+                <Link to='/' className='p-4 hidden font-bold text-green-600 text-lg'>
+                    RentWheels_BD
+                </Link>
                 <button
                     onClick={handleToggle}
-                    className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+                    className='p-4 focus:outline-none hover:bg-gray-200 rounded-md'
+                    aria-label='Toggle sidebar'
                 >
-                    <AiOutlineBars className='h-5 w-5' />
+                    <AiOutlineBars className='h-6 w-6' />
                 </button>
             </div>
 
-            {/* Sidebar */}
+            {/* ✅ Sidebar */}
             <div
-                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
-                    }  md:translate-x-0  transition duration-200 ease-in-out`}
+                className={`z-20 fixed flex flex-col justify-between bg-gray-100 w-64 space-y-6 px-2 py-4 inset-y-0 left-0 transform 
+                    ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
+                    md:translate-x-0 transition-transform duration-300 ease-in-out shadow-lg`}
             >
                 <div>
-                    <div>
-                        <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-green-50 mx-auto'>
-                            <Link to='/'>
-                                <p className='text-2xl text-green-500 font-bold'>RentWheels_BD</p>
-
-                            </Link>
-                        </div>
+                    {/* Logo */}
+                    <div className='hidden md:flex justify-center items-center px-4 py-2 shadow rounded-lg bg-green-50'>
+                        <Link to='/'>
+                            <p className='text-2xl text-green-600 font-bold'>
+                                RentWheels_BD
+                            </p>
+                        </Link>
                     </div>
 
                     {/* Nav Items */}
-                    <div className='flex flex-col justify-between flex-1 mt-6'>
-                        {/* Conditional toggle button here.. */}
-
-                        {/*  Menu Items */}
-                        <nav>
-                            {/* Statistics */}
-                            <MenuItem
-                                label='Statistics'
-                                address='/dashboard'
-                                icon={BsGraphUp}
-                            />
-
-                            {/* Add Vehicle */}
-                            <MenuItem
-                                label='Add Vehicle' address='add_vehicle'
-                                icon={BsFillHouseAddFill}
-                            />
-
-                        
-                            {/* My Listing */}
-                            <MenuItem
-                                label='My Listings' address='my_listings'
-                                icon={MdHomeWork}
-                            />
-                           
-                        </nav>
-                    </div>
+                    <nav className='flex flex-col mt-6'>
+                        <MenuItem
+                            label='Statistics'
+                            address='/dashboard'
+                            icon={BsGraphUp}
+                            onClick={handleClose}
+                        />
+                        <MenuItem
+                            label='Add Vehicle'
+                            address='add_vehicle'
+                            icon={BsFillHouseAddFill}
+                            onClick={handleClose}
+                        />
+                        <MenuItem
+                            label='My Listings'
+                            address='my_listings'
+                            icon={MdHomeWork}
+                            onClick={handleClose}
+                        />
+                    </nav>
                 </div>
 
+                {/* Bottom Section */}
                 <div>
-                    <hr />
+                    <hr className='mb-2' />
 
-                    {/* Profile Menu */}
                     <MenuItem
                         label='Profile'
                         address='/dashboard/profile'
                         icon={FcSettings}
+                        onClick={handleClose}
                     />
-                   
+
                     <button
-                        onClick={logOut}
-                        className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
+                        onClick={() => {
+                            logOut()
+                            handleClose()
+                        }}
+                        className='flex items-center w-full px-4 py-2 mt-4 text-gray-700 hover:bg-gray-300 hover:text-gray-800 rounded-md transition-colors'
                     >
                         <GrLogout className='w-5 h-5' />
-
                         <span className='mx-4 font-medium'>Logout</span>
                     </button>
                 </div>
             </div>
+
+            {/* ✅ Background overlay when sidebar open on mobile */}
+            {isOpen && (
+                <div
+                    className='fixed inset-0 bg-black bg-opacity-40 z-10 md:hidden'
+                    onClick={handleClose}
+                />
+            )}
         </>
     )
 }
