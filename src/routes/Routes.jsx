@@ -13,6 +13,7 @@ import Statistics from "../pages/Dashboard/Common/Statistics";
 import MyListings from "../pages/Dashboard/Host/MyListings";
 import AddVehicle from "../pages/Dashboard/Host/AddVehicle";
 import Profile from "../pages/Dashboard/Common/Profile";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 
 export const router = createBrowserRouter([
 
@@ -50,10 +51,13 @@ export const router = createBrowserRouter([
         element: <DashboardLayout/>,
 
         children: [
+            // Common Pages
             {
                 index: true,
                 element:<Statistics/>
             },
+
+            // Host Pages
             {
                 path: 'add_vehicle',
                 element:<AddVehicle/>
@@ -62,9 +66,17 @@ export const router = createBrowserRouter([
                 path: 'my_listings',
                 element: <MyListings/>
             },
+
+            // Common Pages
             {
                 path: 'profile',
                 element: <Profile />
+            },
+            
+            // Admin Pages
+            {
+                path: 'manage_users',
+                element:<ManageUsers/>
             }
         ]
     }

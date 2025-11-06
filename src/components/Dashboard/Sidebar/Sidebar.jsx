@@ -7,9 +7,14 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { NavLink, Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import MenuItem from './Menu/MenuItem'
+import HostMenu from './Menu/HostMenu'
+import useRole from '../../../hooks/useRole'
+import RenderMenu from './Menu/RenderMenu'
+import AdminMenu from './Menu/AdminMenu'
 
 const Sidebar = () => {
     const { logOut } = useAuth()
+    const[role,loading] = useRole()
     const [isOpen, setIsOpen] = useState(false)
 
     // Toggle sidebar visibility on small screens
@@ -58,18 +63,19 @@ const Sidebar = () => {
                             icon={BsGraphUp}
                             onClick={handleClose}
                         />
-                        <MenuItem
-                            label='Add Vehicle'
-                            address='add_vehicle'
-                            icon={BsFillHouseAddFill}
-                            onClick={handleClose}
-                        />
-                        <MenuItem
-                            label='My Listings'
-                            address='my_listings'
-                            icon={MdHomeWork}
-                            onClick={handleClose}
-                        />
+
+                        {/* Render Menu Items */}
+                        {
+                            role === 'render' && <RenderMenu/>
+                        }
+                        {/* Host Menu Items */}
+                        {
+                            role === 'host' && <HostMenu />
+                        }
+                        {/* Admin Menu Items */}
+                        {
+                            role === 'admin' && <AdminMenu/>
+                        }
                     </nav>
                 </div>
 
