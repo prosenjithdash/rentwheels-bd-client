@@ -1,103 +1,113 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
-import { useState } from "react";
+import { useState } from 'react'
+import { GrLogout } from 'react-icons/gr'
+import { FcSettings } from 'react-icons/fc'
+import { BsFingerprint, BsFillHouseAddFill } from 'react-icons/bs'
+import { GrUserAdmin } from 'react-icons/gr'
+import { MdHomeWork } from 'react-icons/md'
+import { AiOutlineBars } from 'react-icons/ai'
+import { BsGraphUp } from 'react-icons/bs'
+import { NavLink } from 'react-router-dom'
+import useAuth from '../../../hooks/useAuth'
+import { Link } from 'react-router-dom'
+import MenuItem from './Menu/MenuItem'
 
 const Sidebar = () => {
-    const navigate = useNavigate();
-    const { logOut } = useAuth();
-    const [isOpen, setIsOpen] = useState(false);
+    const { logOut } = useAuth()
+    const [isActive, setActive] = useState(false)
 
-    const toggleSidebar = () => setIsOpen(!isOpen);
+    // Sidebar Responsive Handler
+    const handleToggle = () => {
+        setActive(!isActive)
+    }
+
 
     return (
-        <div className="flex min-h-screen">
-            {/* Mobile Toggle Button */}
-            <button
-                onClick={toggleSidebar}
-                className="md:hidden fixed top-4 left-4 z-50 bg-green-500 text-white px-3 py-2 rounded-md shadow-md hover:bg-green-600"
-            >
-                {isOpen ? "✕" : "☰"}
-            </button>
+        <>
+            {/* Small Screen Navbar */}
+            <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+                <div>
+                    <div className='block cursor-pointer p-4 font-bold'>
+                        <Link to='/'>
+                            <p>RentWheels_BD</p>
+                        </Link>
+                    </div>
+                </div>
+
+                <button
+                    onClick={handleToggle}
+                    className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+                >
+                    <AiOutlineBars className='h-5 w-5' />
+                </button>
+            </div>
 
             {/* Sidebar */}
             <div
-                className={`fixed md:static top-0 left-0 h-screen w-64 bg-white border-r border-gray-200 flex flex-col justify-between transform transition-transform duration-300 ease-in-out z-40
-        ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-      `}
+                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
+                    }  md:translate-x-0  transition duration-200 ease-in-out`}
             >
-                {/* Top Section */}
                 <div>
-                    <div className="p-6 mt-10 md:mt-0">
-                        <NavLink to="/" onClick={() => setIsOpen(false)}>
-                            <h1 className="text-xl font-extrabold bg-green-100 text-green-600 hover:bg-green-50 hover:text-green-700 p-4 rounded-xl text-center transition-all duration-200">
-                                RentWheels_BD
-                            </h1>
-                        </NavLink>
+                    <div>
+                        <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-green-50 mx-auto'>
+                            <Link to='/'>
+                                <p className='text-2xl text-green-500 font-bold'>RentWheels_BD</p>
+
+                            </Link>
+                        </div>
                     </div>
 
-                    {/* Navigation Links */}
-                    <nav className="mt-6 space-y-1">
-                        {[
-                            { to: "/dashboard", label: "Dashboard" },
-                            { to: "/dashboard/add_vehicle", label: "Add Vehicle" },
-                            { to: "/dashboard/my_listings", label: "My Listings" },
-                            { to: "/dashboard/payouts", label: "Payouts" },
-                        ].map(({ to, label }) => (
-                            <NavLink
-                                key={to}
-                                to={to}
-                                end
-                                className={({ isActive }) =>
-                                    `block px-6 py-2 rounded-r-full transition-all duration-200 ${isActive
-                                        ? "bg-green-50 text-green-600 font-semibold"
-                                        : "text-gray-700 hover:bg-green-50 hover:text-green-600"
-                                    }`
-                                }
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {label}
-                            </NavLink>
-                        ))}
-                    </nav>
+                    {/* Nav Items */}
+                    <div className='flex flex-col justify-between flex-1 mt-6'>
+                        {/* Conditional toggle button here.. */}
+
+                        {/*  Menu Items */}
+                        <nav>
+                            {/* Statistics */}
+                            <MenuItem
+                                label='Statistics'
+                                address='/dashboard'
+                                icon={BsGraphUp}
+                            />
+
+                            {/* Add Vehicle */}
+                            <MenuItem
+                                label='Add Vehicle' address='add_vehicle'
+                                icon={BsFillHouseAddFill}
+                            />
+
+                        
+                            {/* My Listing */}
+                            <MenuItem
+                                label='My Listings' address='my_listings'
+                                icon={MdHomeWork}
+                            />
+                           
+                        </nav>
+                    </div>
                 </div>
 
-                {/* Bottom Section */}
-                <div className="mb-6 space-y-1 border-t border-gray-100 pt-4">
-                    <NavLink
-                        to="/dashboard/profile"
-                        className={({ isActive }) =>
-                            `block px-6 py-2 rounded-r-full transition-all duration-200 ${isActive
-                                ? "bg-green-50 text-green-600 font-semibold"
-                                : "text-gray-700 hover:bg-green-50 hover:text-green-600"
-                            }`
-                        }
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Profile
-                    </NavLink>
+                <div>
+                    <hr />
 
+                    {/* Profile Menu */}
+                    <MenuItem
+                        label='Profile'
+                        address='/dashboard/profile'
+                        icon={FcSettings}
+                    />
+                   
                     <button
-                        onClick={() => {
-                            logOut();
-                            navigate("/");
-                            setIsOpen(false);
-                        }}
-                        className="w-full text-left px-6 py-2 text-gray-700 hover:bg-green-50 hover:text-green-600 rounded-r-full transition-all duration-200"
+                        onClick={logOut}
+                        className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
                     >
-                        Logout
+                        <GrLogout className='w-5 h-5' />
+
+                        <span className='mx-4 font-medium'>Logout</span>
                     </button>
                 </div>
             </div>
+        </>
+    )
+}
 
-            {/* Mobile Overlay */}
-            {isOpen && (
-                <div
-                    onClick={toggleSidebar}
-                    className="fixed inset-0 bg-black bg-opacity-30 z-30 md:hidden"
-                ></div>
-            )}
-        </div>
-    );
-};
-
-export default Sidebar;
+export default Sidebar
