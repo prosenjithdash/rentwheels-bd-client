@@ -14,6 +14,8 @@ import MyListings from "../pages/Dashboard/Host/MyListings";
 import AddVehicle from "../pages/Dashboard/Host/AddVehicle";
 import Profile from "../pages/Dashboard/Common/Profile";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import AdminRoute from "./AdminRoute";
+import HostRoute from "./HostRoute";
 
 export const router = createBrowserRouter([
 
@@ -48,36 +50,67 @@ export const router = createBrowserRouter([
     ,
     {
         path: '/dashboard',
-        element: <DashboardLayout/>,
-
+        element: (
+            <PrivateRoutes>
+                <DashboardLayout />
+            </PrivateRoutes>
+        ),
         children: [
             // Common Pages
             {
                 index: true,
-                element:<Statistics/>
+                element: (
+                    <PrivateRoutes>
+                        <Statistics />
+                    </PrivateRoutes>
+                ),
             },
 
             // Host Pages
             {
                 path: 'add_vehicle',
-                element:<AddVehicle/>
+                element: (
+                    <PrivateRoutes>
+                        <HostRoute>
+                            <AddVehicle />
+                        </HostRoute>
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'my_listings',
-                element: <MyListings/>
+                element: (
+                    <PrivateRoutes>
+                        <HostRoute>
+                            <MyListings />
+                        </HostRoute>
+                    </PrivateRoutes>
+                ),
             },
 
-            // Common Pages
-            {
-                path: 'profile',
-                element: <Profile />
-            },
-            
             // Admin Pages
             {
                 path: 'manage_users',
-                element:<ManageUsers/>
-            }
+                element: (
+                    <PrivateRoutes>
+                        <AdminRoute>
+                            <ManageUsers />
+                        </AdminRoute>
+                    </PrivateRoutes>
+                ),
+             
+            },
+
+             // Common Pages
+            {
+                path: 'profile',
+                element: (
+                    <PrivateRoutes>
+                        <Profile />
+                    </PrivateRoutes>
+                ),
+
+            },
         ]
     }
 ]);
