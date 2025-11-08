@@ -6,7 +6,7 @@ const HostRoute = ({ children }) => {
     const location = useLocation()
 
     if (isLoading) return <p>Loading...</p>
-    if (role === 'admin') return children
+    if (role === 'host') return children
     return <Navigate to='/dashboard' state={location.pathname} replace='true' />
 }
 

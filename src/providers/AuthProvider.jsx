@@ -1,23 +1,3 @@
-/**
- * AuthProvider.jsx
- * --------------------------------------------------
- * 🔐 Purpose:
- * This file creates and provides authentication context
- * for the entire React app using Firebase Authentication.
- *
- * ✅ Handles:
- * - User registration (Email/Password)
- * - User login (Email/Password)
- * - Google sign-in
- * - Password reset
- * - Logout
- * - Auto user state tracking (onAuthStateChanged)
- *
- * 📦 Technologies:
- * - React Context API
- * - Firebase Auth SDK
- */
-
 import { createContext, useEffect, useState } from 'react'
 import {
     GoogleAuthProvider,
@@ -30,107 +10,89 @@ import {
     signOut,
     updateProfile,
 } from 'firebase/auth'
-import app from '../firebase/firebase.config'
+import { app } from '../firebase/firebase.config'
 import axios from 'axios'
-
-// 🔑 Create Firebase Auth instance and Google provider
+export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 
-// 🌍 Create Context (so other components can access Auth data)
-export const AuthContext = createContext(null)
-
-/**
- * 🧠 AuthProvider Component
- * This component wraps the entire app and provides all authentication-related
- * states and functions via React Context.
- */
 const AuthProvider = ({ children }) => {
-
-    // 👤 State to store currently logged-in user
     const [user, setUser] = useState(null)
-
-    // ⏳ State to handle loading status (used for spinners/loaders)
     const [loading, setLoading] = useState(true)
 
-    // 🆕 Register user with email and password
     const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
-    };
+    }
 
-    // 🔑 Login existing user with email and password
     const signIn = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
-    };
+    }
 
-    // 🌐 Sign in using Google popup
     const signInWithGoogle = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
-    };
+    }
 
-    // 🔄 Reset password using registered email
     const resetPassword = email => {
         setLoading(true)
         return sendPasswordResetEmail(auth, email)
-    };
+    }
 
-    // 🚪 Log out the current user
     const logOut = async () => {
         setLoading(true)
-        // 💬 If using JWT in future:
-        // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-        //   withCredentials: true,
-        // });
+        await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+            withCredentials: true,
+        })
         return signOut(auth)
-    };
+    }
 
-    // 🧾 Update user display name and profile photo
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
             displayName: name,
             photoURL: photo,
         })
-    };
-
-    // save user 
-    const saveUser = async (user) => {
-        const currentUser = {
-            email: user?.email,
-            role: 'render',
-            status: 'Verified',
-        }
-        const { data } = await axios.put(`http://localhost:8000/user`, currentUser)
+    }
+    // Get token from server
+    const getToken = async email => {
+        const { data } = await axios.post(
+            `${import.meta.env.VITE_API_URL}/jwt`,
+            { email },
+            { withCredentials: true }
+        )
         return data
     }
 
-    /**
-  * 🔍 Track user authentication state:
-  * Runs once when the app starts and keeps watching Firebase Auth.
-  * Automatically updates `user` when login/logout occurs.
-  */
-    useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+    // save user
+    const saveUser = async user => {
+        const currentUser = {
+            email: user?.email,
+            role: 'guest',
+            status: 'Verified',
+        }
+        const { data } = await axios.put(
+            `${import.meta.env.VITE_API_URL}/user`,
+            currentUser
+        )
+        return data
+    }
 
-            console.log(' User in the state auth changed', currentUser)
+    // onAuthStateChange
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
             if (currentUser) {
+                getToken(currentUser.email)
                 saveUser(currentUser)
             }
-            //loading
             setLoading(false)
-
-        });
-
-        // 🧹 Cleanup when component unmounts
+        })
         return () => {
-            unSubscribe();
+            return unsubscribe()
         }
-    }, []);
+    }, [])
 
-    // 📤 All authentication data & functions shared through Context
     const authInfo = {
         user,
         loading,
@@ -141,14 +103,13 @@ const AuthProvider = ({ children }) => {
         resetPassword,
         logOut,
         updateUserProfile,
-    };
+    }
 
-    // 🌈 Provide Auth Context to all children components
     return (
-        <AuthContext.Provider value={authInfo}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+        <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    )
+}
 
-export default AuthProvider;
+
+
+export default AuthProvider
