@@ -1,12 +1,14 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import UserDataRows from "../../../components/Dashboard/TableRows/UserDataRows";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
+    const axiosSecure = useAxiosSecure(); // ✅ use secure axios instance
+
     const { data: users = [], isLoading, isError, refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const { data } = await axios.get(`http://localhost:8000/users`);
+            const { data } = await axiosSecure.get(`/users`); // ✅ secure request
             return data;
         },
     });

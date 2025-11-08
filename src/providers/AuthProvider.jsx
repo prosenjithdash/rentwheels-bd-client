@@ -10,8 +10,9 @@ import {
     signOut,
     updateProfile,
 } from 'firebase/auth'
-import { app } from '../firebase/firebase.config'
 import axios from 'axios'
+import app from '../firebase/firebase.config'
+
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
@@ -54,6 +55,7 @@ const AuthProvider = ({ children }) => {
             photoURL: photo,
         })
     }
+
     // Get token from server
     const getToken = async email => {
         const { data } = await axios.post(
@@ -64,8 +66,8 @@ const AuthProvider = ({ children }) => {
         return data
     }
 
-    // save user
-    const saveUser = async user => {
+    // Save user (use plain axios, not useAxiosSecure)
+    const saveUser = async (user) => {
         const currentUser = {
             email: user?.email,
             role: 'guest',
@@ -73,24 +75,23 @@ const AuthProvider = ({ children }) => {
         }
         const { data } = await axios.put(
             `${import.meta.env.VITE_API_URL}/user`,
-            currentUser
+            currentUser,
+            { withCredentials: true }
         )
         return data
     }
 
     // onAuthStateChange
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, async currentUser => {
             setUser(currentUser)
             if (currentUser) {
-                getToken(currentUser.email)
-                saveUser(currentUser)
+                await getToken(currentUser.email)
+                await saveUser(currentUser)
             }
             setLoading(false)
         })
-        return () => {
-            return unsubscribe()
-        }
+        return () => unsubscribe()
     }, [])
 
     const authInfo = {
@@ -109,7 +110,5 @@ const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     )
 }
-
-
 
 export default AuthProvider
