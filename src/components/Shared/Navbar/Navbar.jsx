@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { axiosSecure } from "../../../hooks/useAxiosSecure";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -20,7 +21,8 @@ const Navbar = () => {
                 role: 'render',
                 status: 'Requested',
             }
-            const { data } = await axios.put(`http://localhost:8000/user`, currentUser)
+            const { data } = await axiosSecure.put(`/user`, currentUser);
+
             console.log(data)
             if (data.modifiedCount > 0) {
                 toast.success('Success ! Please wait for admin approval.')
