@@ -16,6 +16,8 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import HostRoute from "./HostRoute";
+import MyBookings from "../pages/Dashboard/Renter/MyBookings";
+import ManageBookings from "../pages/Dashboard/Host/ManageBookings";
 
 export const router = createBrowserRouter([
 
@@ -65,6 +67,16 @@ export const router = createBrowserRouter([
                     </PrivateRoutes>
                 ),
             },
+            // Render Pages
+            {
+                path: 'my_bookings',
+                element: (
+                    <PrivateRoutes>
+                        <MyBookings/>
+                    </PrivateRoutes>
+                ),
+
+            },
 
             // Host Pages
             {
@@ -76,6 +88,17 @@ export const router = createBrowserRouter([
                         </HostRoute>
                     </PrivateRoutes>
                 ),
+            },
+            {
+                path: 'manage_bookings',
+                element: (
+                    <PrivateRoutes>
+                        <HostRoute>
+                            <ManageBookings />
+                        </HostRoute>
+                    </PrivateRoutes>
+                ),
+
             },
             {
                 path: 'my_listings',

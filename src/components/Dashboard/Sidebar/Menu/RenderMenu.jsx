@@ -42,7 +42,7 @@ const RenderMenu = () => {
 
     return (
         <>
-            <MenuItem icon={BsFingerprint} label="My Bookings" address="my-bookings" />
+            <MenuItem icon={BsFingerprint} label="My Bookings" address="my_bookings" />
 
             {role === 'render' && (
                 <div
