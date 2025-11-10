@@ -8,7 +8,7 @@ const ManageUsers = () => {
     const { data: users = [], isLoading, isError, refetch } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/users`); // ✅ secure request
+            const { data } = await axiosSecure?.get(`/users`); // ✅ secure request
             return data;
         },
     });

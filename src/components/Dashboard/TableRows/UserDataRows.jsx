@@ -12,11 +12,18 @@ const UserDataRows = ({ user, refetch }) => {
     const [isOpen, setIsOpen] = useState(false); // Update Modal
     const [isDeleteOpen, setIsDeleteOpen] = useState(false); // Delete Modal
 
+    // ⚡ Always include credentials (JWT cookie)
+    const axiosSecure = axios.create({
+        baseURL: import.meta.env.VITE_API_URL,
+        withCredentials: true,
+    });
+
+ 
     // 🧩 Update user role mutation
     const { mutateAsync: updateUser } = useMutation({
         mutationFn: async (updatedUser) => {
-            const { data } = await axios.patch(
-                `http://localhost:8000/users/update/${user?.email}`,
+            const { data } = await axiosSecure.patch(
+                `/users/update/${user?.email}`,
                 updatedUser
             );
             return data;
@@ -32,9 +39,7 @@ const UserDataRows = ({ user, refetch }) => {
     // 🧩 Delete user mutation
     const { mutateAsync: deleteUser } = useMutation({
         mutationFn: async () => {
-            const { data } = await axios.delete(
-                `http://localhost:8000/users/${user?.email}`
-            );
+            const { data } = await axiosSecure.delete(`/users/${user?.email}`);
             return data;
         },
         onSuccess: () => {

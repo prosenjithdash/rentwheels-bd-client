@@ -3,8 +3,13 @@ import { useState, useEffect } from "react";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import BookingModal from "../Dashboard/Modal/BookingModal";
+import useAuth from "../../hooks/useAuth";
 
 const VehicleDetails_Card = ({ vehicle }) => {
+    const{user}= useAuth()
+
+    const[isOpen, setIsOpen] = useState(false)
     if (!vehicle) return <p>Loading vehicle details...</p>;
 
     const {
@@ -29,6 +34,12 @@ const VehicleDetails_Card = ({ vehicle }) => {
             key: "selection",
         },
     ]);
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+
 
     // ✅ inclusive days calculation: add 1 to differenceInCalendarDays
     const rawDiff = differenceInCalendarDays(state[0].endDate, state[0].startDate);
@@ -164,12 +175,19 @@ const VehicleDetails_Card = ({ vehicle }) => {
                         </p>
 
                         <button
+                            onClick={()=> setIsOpen(true)}
                             disabled={!isSelectionValid}
                             className={`w-full text-white font-semibold py-2 rounded-lg transition-all ${isSelectionValid ? "bg-green-500 hover:bg-green-600" : "bg-gray-300 cursor-not-allowed"
                                 }`}
                         >
                             Book Now
                         </button>
+                        {/* Modal */}
+                        <BookingModal
+                            closeModal={closeModal}
+                            isOpen={isOpen}
+                            bookingInfo={{ ...vehicle, price: totalPrice, render: {name: user?.displayName}}}
+                        />
                     </div>
                 </div>
             </div>

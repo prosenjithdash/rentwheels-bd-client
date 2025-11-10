@@ -5,27 +5,29 @@ import useAuth from './useAuth'
 
 export const axiosSecure = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
-    withCredentials: true,
+    withCredentials: true, // 🔥 important
 })
+
 const useAxiosSecure = () => {
     const { logOut } = useAuth()
     const navigate = useNavigate()
+
     useEffect(() => {
-        axiosSecure.interceptors.response.use(
+        const interceptor = axiosSecure.interceptors.response.use(
             res => res,
             async error => {
-                console.log('error tracked in the interceptor', error?.response);
-
-                const status = error?.response?.status;
+                const status = error?.response?.status
+                console.log('Interceptor error:', status)
 
                 if (status === 401 || status === 403) {
-                    await logOut();
-                    navigate('/login');
+                    await logOut()
+                    navigate('/login')
                 }
-
-                return Promise.reject(error);
+                return Promise.reject(error)
             }
-        );
+        )
+
+        return () => axiosSecure.interceptors.response.eject(interceptor)
     }, [logOut, navigate])
 
     return axiosSecure
