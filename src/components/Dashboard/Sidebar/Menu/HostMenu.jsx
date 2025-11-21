@@ -9,10 +9,11 @@ const HostMenu = () => {
             <MenuItem
                 icon={MdOutlineManageHistory}
                 label='Manage Bookings'
-                
+
                 address='manage_bookings'
             />
         </>
+        
 
 
     )
