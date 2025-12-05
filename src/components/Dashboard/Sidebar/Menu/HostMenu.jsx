@@ -11,6 +11,7 @@ const HostMenu = () => {
                 label='Manage Bookings'
 
                 address='manage_bookings'
+                
             />
         </>
         
