@@ -7,7 +7,12 @@ import {
 } from "@headlessui/react";
 import { format, differenceInCalendarDays } from "date-fns";
 import { Fragment } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Import } from "lucide-react";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from "../../Form/CheckoutForm";
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
 
 const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
     const totalDays = Math.max(
@@ -110,9 +115,17 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                                 <p className="text-base font-medium text-gray-800 mb-2 text-center sm:text-left">
                                     Payment Information
                                 </p>
+                                {/* ADD PAYMENT SYSTEM */}
+
+                                <Elements stripe={stripePromise}>
+
+                                    {/* Checkout form */}
+                                    <CheckoutForm/>
+
+                                </Elements>
 
                                 {/* Card number */}
-                                <div>
+                                {/* <div>
                                     <label className="text-xs text-gray-500">Card Number</label>
                                     <input
                                         type="text"
@@ -121,10 +134,10 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                                         maxLength={23}
                                         className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
                                     />
-                                </div>
+                                </div> */}
 
                                 {/* MM/YY + CVC */}
-                                <div className="mt-3">
+                                {/* <div className="mt-3">
                                     <label className="text-xs text-gray-500">
                                         Expiry (MM/YY) & CVC
                                     </label>
@@ -134,7 +147,7 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                                         maxLength={10}
                                         className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-500"
                                     />
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* Buttons */}
