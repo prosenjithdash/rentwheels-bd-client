@@ -2,8 +2,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import './CheckoutForm.css';
+import { CheckCircle } from 'lucide-react';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ closeModal, bookingInfo }) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -57,9 +58,25 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button type="submit" disabled={!stripe}>
-                Pay
-            </button>
+          
+            {/* Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <button
+                    disabled={!stripe}
+                    onClick={closeModal}
+                    type='submit'
+                    className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
+                >
+                    <CheckCircle size={18} />
+                    Pay {bookingInfo?.price} /=
+                </button>
+                <button
+                    onClick={closeModal}
+                    className="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-100 transition-all"
+                >
+                    Cancel
+                </button>
+            </div>
         </form>
     );
 };

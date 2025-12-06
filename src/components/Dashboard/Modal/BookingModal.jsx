@@ -120,7 +120,7 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                                 <Elements stripe={stripePromise}>
 
                                     {/* Checkout form */}
-                                    <CheckoutForm/>
+                                    <CheckoutForm closeModal={closeModal} bookingInfo={bookingInfo} />
 
                                 </Elements>
 
@@ -150,22 +150,8 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                                 </div> */}
                             </div>
 
-                            {/* Buttons */}
-                            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                                <button
-                                    onClick={closeModal}
-                                    className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
-                                >
-                                    <CheckCircle size={18} />
-                                    Confirm Booking
-                                </button>
-                                <button
-                                    onClick={closeModal}
-                                    className="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-100 transition-all"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
+                            
+
                         </DialogPanel>
                     </TransitionChild>
                 </div>
