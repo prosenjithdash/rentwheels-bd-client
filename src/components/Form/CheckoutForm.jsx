@@ -2,11 +2,11 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 
 import './CheckoutForm.css';
-import { CheckCircle } from 'lucide-react';
+import { BookKey, CheckCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
-
+import {ImSpinner9} from'react-icons/im'
 const CheckoutForm = ({ closeModal, bookingInfo }) => {
     const stripe = useStripe();
     const elements = useElements();
@@ -15,7 +15,7 @@ const CheckoutForm = ({ closeModal, bookingInfo }) => {
 
     const [clientSecret, setClientSecret] = useState()
     const [cardError, setCardError] = useState('')
-    const [processing, setProcessing] = useState('')
+    const [processing, setProcessing] = useState(false)
 
     useEffect(() => {
         //fetch client secret
@@ -87,9 +87,20 @@ const CheckoutForm = ({ closeModal, bookingInfo }) => {
         }
 
         if (paymentIntent.status === 'succeeded') {
+            console.log(paymentIntent)
             // 1. Create payment info object
+            const paymentInfo = {
+                ...bookingInfo,
+                transactionId: paymentIntent.id,
+                date: new Date()
+
+            }
+            console.log(paymentInfo)
             // 2. Save payment info in booking collection (db)
+            // 3. Change room status to booked in db
         }
+        setProcessing(false)
+
     };
 
     return (
@@ -113,23 +124,34 @@ const CheckoutForm = ({ closeModal, bookingInfo }) => {
                 />
 
                 {/* Buttons */}
+                {/* Buttons */}
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
+
+                    {/* PAY BUTTON */}
                     <button
                         disabled={!stripe || !clientSecret || processing}
-                        onClick={closeModal}
+                        onClick={(e) => e.stopPropagation()}   // prevent modal from closing
                         type='submit'
                         className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
                     >
-                        <CheckCircle size={18} />
-                        Pay {bookingInfo?.price} /=
+                        {processing ? (
+                            <ImSpinner9 className="animate-spin m-auto" size={24} />
+                        ) : (
+                            `Pay ${bookingInfo?.price}`
+                        )}
                     </button>
+
+                    {/* CANCEL BUTTON */}
                     <button
                         onClick={closeModal}
                         className="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-100 transition-all"
                     >
                         Cancel
                     </button>
+
                 </div>
+
+
             </form>
 
             {cardError && <p  className='text-red-600 ml-8'>{cardError}</p>}
