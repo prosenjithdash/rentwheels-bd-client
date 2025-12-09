@@ -10,7 +10,7 @@ const VehiclesDetails = () => {
     
 
     // 🚀 Using TanStack Query to load data
-    const { data: vehicle = {}, isLoading, isError } = useQuery(
+    const { data: vehicle = {}, isLoading, isError,refetch } = useQuery(
         {
             // unique key for caching & refetching
             queryKey: ['vehicle',id],
@@ -36,7 +36,7 @@ const VehiclesDetails = () => {
         return <p className="text-center text-red-500 mt-10">Failed to load vehicles. Please try again later.</p>;
     }
     return (
-        <VehicleDetails_Card vehicle={vehicle} />
+        <VehicleDetails_Card refetch={refetch} vehicle={vehicle} />
     );
 };
 

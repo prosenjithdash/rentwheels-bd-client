@@ -14,7 +14,7 @@ import CheckoutForm from "../../Form/CheckoutForm";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 
-const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
+const BookingModal = ({ closeModal, isOpen, bookingInfo,refetch }) => {
     const totalDays = Math.max(
         1,
         differenceInCalendarDays(
@@ -120,7 +120,10 @@ const BookingModal = ({ closeModal, isOpen, bookingInfo }) => {
                                 <Elements stripe={stripePromise}>
 
                                     {/* Checkout form */}
-                                    <CheckoutForm closeModal={closeModal} bookingInfo={bookingInfo} />
+                                    <CheckoutForm
+                                        closeModal={closeModal} bookingInfo={bookingInfo}
+                                        refetch={refetch}
+                                    />
 
                                 </Elements>
 

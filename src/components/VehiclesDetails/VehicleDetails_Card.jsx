@@ -6,7 +6,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import BookingModal from "../Dashboard/Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
 
-const VehicleDetails_Card = ({ vehicle }) => {
+const VehicleDetails_Card = ({ vehicle, refetch }) => {
     const{user}= useAuth()
 
     const[isOpen, setIsOpen] = useState(false)
@@ -174,18 +174,29 @@ const VehicleDetails_Card = ({ vehicle }) => {
                             You’ll only be charged for the days you select.
                         </p>
 
-                        <button
-                            onClick={()=> setIsOpen(true)}
-                            disabled={!isSelectionValid}
-                            className={`w-full text-white font-semibold py-2 rounded-lg transition-all ${isSelectionValid ? "bg-green-500 hover:bg-green-600" : "bg-gray-300 cursor-not-allowed"
-                                }`}
-                        >
-                            Book Now
-                        </button>
+                        {vehicle?.booked ? (
+                            <p className="text-red-500 font-semibold text-center py-2">
+                                Vehicle is booked
+                            </p>
+                        ) : (
+                            <button
+                                onClick={() => setIsOpen(true)}
+                                disabled={!isSelectionValid}
+                                className={`w-full text-white font-semibold py-2 rounded-lg transition-all ${isSelectionValid
+                                        ? "bg-green-500 hover:bg-green-600"
+                                        : "bg-gray-300 cursor-not-allowed"
+                                    }`}
+                            >
+                                Book Now
+                            </button>
+                        )}
+
+
                         {/* Modal */}
                         <BookingModal
                             closeModal={closeModal}
                             isOpen={isOpen}
+                            refetch={refetch}
                             bookingInfo={{ ...vehicle, price: totalPrice, render: {name: user?.displayName}}}
                         />
                     </div>

@@ -7,10 +7,13 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
 import {ImSpinner9} from'react-icons/im'
-const CheckoutForm = ({ closeModal, bookingInfo }) => {
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+const CheckoutForm = ({ closeModal, bookingInfo, refetch }) => {
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
     const {user} = useAuth()
 
     const [clientSecret, setClientSecret] = useState()
@@ -91,24 +94,36 @@ const CheckoutForm = ({ closeModal, bookingInfo }) => {
             // 1. Create payment info object
             const paymentInfo = {
                 ...bookingInfo,
+                vehicleId: bookingInfo._id,
                 transactionId: paymentIntent.id,
                 date: new Date()
 
             }
+            delete paymentInfo._id
             console.log(paymentInfo)
 
             try {
                 // 2. Save payment info in booking collection (db)
-                await axiosSecure.post('/booking',paymentInfo)
+                const { data } = await axiosSecure.post('/booking', paymentInfo)
+                console.log(data)
+
+
+
                 // 3. Change room status to booked in db
+
+                // update ui
+                refetch()
+                closeModal()
+                toast.success('Vehicle Booked Successfully')
+                navigate('/dashboard/my_bookings')
             } catch (error) {
                 console.log(error)
             
-        }
-        setProcessing(false)
+            }
+            setProcessing(false)
 
-    };
-
+        };
+    }
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -167,6 +182,4 @@ const CheckoutForm = ({ closeModal, bookingInfo }) => {
 };
 
 
-export default CheckoutForm
-
-
+    export default CheckoutForm
