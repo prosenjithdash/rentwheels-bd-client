@@ -96,8 +96,14 @@ const CheckoutForm = ({ closeModal, bookingInfo }) => {
 
             }
             console.log(paymentInfo)
-            // 2. Save payment info in booking collection (db)
-            // 3. Change room status to booked in db
+
+            try {
+                // 2. Save payment info in booking collection (db)
+                await axiosSecure.post('/booking',paymentInfo)
+                // 3. Change room status to booked in db
+            } catch (error) {
+                console.log(error)
+            
         }
         setProcessing(false)
 
