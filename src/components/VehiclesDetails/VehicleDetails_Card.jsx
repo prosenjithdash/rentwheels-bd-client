@@ -197,7 +197,15 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                             closeModal={closeModal}
                             isOpen={isOpen}
                             refetch={refetch}
-                            bookingInfo={{ ...vehicle, price: totalPrice, render: {name: user?.displayName}}}
+                            bookingInfo={{
+                                ...vehicle,
+                                price: totalPrice,
+                                render: {
+                                    name: user?.displayName,
+                                    email: user?.email,
+                                    image: user?.photoURL,
+                                }
+                            }}
                         />
                     </div>
                 </div>
