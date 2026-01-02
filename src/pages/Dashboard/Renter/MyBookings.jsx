@@ -1,11 +1,14 @@
 
 const MyBookings = () => {
+
+    // fetch all the bookings for this logged in user
     return (
         <>
+            
             {/* <Helmet>
                 <title>My Bookings</title>
             </Helmet> */}
-
+            
             <div className='container mx-auto px-4 sm:px-8'>
                 <div className='py-8'>
                     <div className='-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto'>
