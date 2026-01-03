@@ -1,7 +1,30 @@
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MyBookings = () => {
 
-    // fetch all the bookings for this logged in user
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
+
+
+    // fetch all the bookings for this logged in user data
+
+    const {
+        data: bookings = [],
+        isLoading,
+        isError,
+        refetch,
+    } = useQuery({
+        queryKey: ["my_bookings", user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(
+                `http://localhost:8000/my_bookings/${user.email}`
+            );
+            return data;
+        },
+    });
+    console.log("Bookings Data:", bookings)
     return (
         <>
             

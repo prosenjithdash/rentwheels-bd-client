@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
 import My_List_Card from "../../../components/Dashboard/My_Listings/My_List_Card/My_List_Card";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const My_Listings = () => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
 
     // ✅ 1️⃣ Load user's listed vehicles
     const {
@@ -15,9 +16,8 @@ const My_Listings = () => {
         refetch,
     } = useQuery({
         queryKey: ["my_listings", user?.email],
-        enabled: !!user?.email,
         queryFn: async () => {
-            const { data } = await axios.get(
+            const { data } = await axiosSecure.get(
                 `http://localhost:8000/my_listings/${user.email}`
             );
             return data;
@@ -27,7 +27,7 @@ const My_Listings = () => {
     // ✅ 2️⃣ Define mutation before any return
     const { mutateAsync } = useMutation({
         mutationFn: async (id) => {
-            const { data } = await axios.delete(`http://localhost:8000/vehicle/${id}`);
+            const { data } = await axiosSecure.delete(`http://localhost:8000/vehicle/${id}`);
             return data;
         },
         onSuccess: () => {
