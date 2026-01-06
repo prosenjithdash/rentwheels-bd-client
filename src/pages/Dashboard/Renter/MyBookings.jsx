@@ -1,9 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import BookingDataRow from "../../../components/Dashboard/TableRows/BookingDataRow";
 import { key } from "localforage";
 import { id } from "date-fns/locale";
+import { toast } from "react-toastify";
 
 const MyBookings = () => {
 
@@ -12,7 +13,6 @@ const MyBookings = () => {
 
 
     // fetch all the bookings for this logged in user data
-
     const {
         data: bookings = [],
         isLoading,
@@ -28,6 +28,50 @@ const MyBookings = () => {
         },
     });
     console.log("Bookings Data:", bookings)
+
+
+
+    // // Define mutation for delete booking data
+    // const { mutateAsync } = useMutation({
+    //     mutationFn: async (id) => {
+    //         const { data } = await axiosSecure.delete(`http://localhost:8000/booking/${id}`);
+    //         return data;
+    //     },
+    //     onSuccess:async (data) => {
+    //         toast.success(" Booking Vehicle canceled successfully!");
+    //         refetch(); // refresh the list
+
+    //         // 3. Change room status to booked in db
+    //         await axiosSecure.patch(`/vehicle/status/${booking?.vehicleId}`, { status: false })
+
+    //     },
+    //     onError: () => {
+    //         toast.error("Failed to delete booking vehicle");
+    //     },
+    // });
+
+    // // ✅ 3️⃣ Handle booking Delete
+    // const handleDelete = async (id) => {
+    //         try {
+    //             await mutateAsync(id);
+    //         } catch (error) {
+    //             console.error(error.message);
+    //             toast.error("Something went wrong!");
+    //         }
+    // };
+
+    // ✅ 4️⃣ Conditional UI after hooks
+    if (isLoading)
+        return (
+            <p className="text-center text-gray-500 mt-10">Loading vehicles...</p>
+        );
+
+    if (isError)
+        return (
+            <p className="text-center text-red-500 mt-10">
+                Failed to load vehicles. Please try again later.
+            </p>
+        );
     return (
         <>
             

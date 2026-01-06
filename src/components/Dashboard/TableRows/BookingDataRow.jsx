@@ -3,14 +3,49 @@ import PropTypes from 'prop-types'
 import { useState, Fragment } from 'react';
 import { Pencil, Trash2 } from "lucide-react";
 import { Dialog, Transition } from "@headlessui/react";
+import { useMutation } from '@tanstack/react-query';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { toast } from 'react-toastify';
 
 
-const BookingDataRow = ({ booking, handleDelete, refetch }) => {
+const BookingDataRow = ({ booking, refetch }) => {
+
+    const axiosSecure = useAxiosSecure()
 
     const [isOpen, setIsOpen] = useState(false);
     
         const closeModal = () => setIsOpen(false);
-        const openModal = () => setIsOpen(true);
+    const openModal = () => setIsOpen(true);
+    
+    // Define mutation for delete booking data
+    const { mutateAsync } = useMutation({
+        mutationFn: async (id) => {
+            const { data } = await axiosSecure.delete(`http://localhost:8000/booking/${id}`);
+            return data;
+        },
+        onSuccess: async (data) => {
+            toast.success(" Booking Vehicle canceled successfully!");
+            refetch(); // refresh the list
+
+            // 3. Change room status to booked in db
+            await axiosSecure.patch(`/vehicle/status/${booking?.vehicleId}`, { status: false })
+
+        },
+        onError: () => {
+            toast.error("Failed to delete booking vehicle");
+        },
+    });
+
+    // ✅ 3️⃣ Handle booking Delete
+    const handleDelete = async (id) => {
+        try {
+            await mutateAsync(id);
+        } catch (error) {
+            console.error(error.message);
+            toast.error("Something went wrong!");
+        }
+    };
+
     return (
         <tr>
             <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
