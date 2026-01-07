@@ -1,5 +1,43 @@
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageBookings = () => {
+
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
+
+    // fetch all the bookings for this logged in user data
+    const {
+        data: manageBookings = [],
+        isLoading,
+        isError,
+        refetch,
+    } = useQuery({
+        queryKey: ["manage_bookings", user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(
+                `http://localhost:8000/manage_bookings/${user.email}`
+            );
+            return data;
+        },
+    });
+    console.log("Manage Data:", manageBookings)
+
+
+    // ✅ 4️⃣ Conditional UI after hooks
+    if (isLoading)
+        return (
+            <p className="text-center text-gray-500 mt-10">Loading manage bookings vehicles...</p>
+        );
+
+    if (isError)
+        return (
+            <p className="text-center text-red-500 mt-10">
+                Failed to load manage bookings vehicles. Please try again later.
+            </p>
+        );
+
     return (
         <>
             {/* <Helmet>

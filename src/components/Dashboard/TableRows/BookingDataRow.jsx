@@ -27,8 +27,10 @@ const BookingDataRow = ({ booking, refetch }) => {
             toast.success(" Booking Vehicle canceled successfully!");
             refetch(); // refresh the list
 
-            // 3. Change room status to booked in db
-            await axiosSecure.patch(`/vehicle/status/${booking?.vehicleId}`, { status: false })
+            //  Change room status to booked in db
+            await axiosSecure.patch(`/vehicle/status/${booking?.vehicleId}`, {
+                status: false
+            })
 
         },
         onError: () => {

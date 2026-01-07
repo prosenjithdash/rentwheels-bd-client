@@ -2,12 +2,12 @@ import React, { useState, Fragment } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import { Dialog, Transition } from "@headlessui/react";
 
-// // ✅ helper to shorten title
-// const shortenTitle = (title = "", wordLimit = 4) => {
-//     const words = title.trim().split(/\s+/);
-//     if (words.length <= wordLimit) return title;
-//     return words.slice(0, wordLimit).join(" ") + "...";
-// };
+// ✅ helper to shorten title
+const shortenTitle = (title = "", wordLimit = 4) => {
+    const words = title.trim().split(/\s+/);
+    if (words.length <= wordLimit) return title;
+    return words.slice(0, wordLimit).join(" ") + "...";
+};
 
 const My_List_Card = ({ vehicle, handleDelete  }) => {
     const [isOpen, setIsOpen] = useState(false);
