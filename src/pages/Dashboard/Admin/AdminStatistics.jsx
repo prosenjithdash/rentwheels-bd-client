@@ -2,24 +2,43 @@ import { Calendar } from 'react-date-range'
 import { FaUserAlt, FaDollarSign } from 'react-icons/fa'
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
 import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
+import { useQuery } from '@tanstack/react-query'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import useAuth from '../../../hooks/useAuth'
 
 const AdminStatistics = () => {
+
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure()
+
     // Fetch Admin Stat Data here with tankStack query
     const {
-        data: bookings = [],
+        data: statData = [],
         isLoading,
         isError,
         refetch,
     } = useQuery({
-        queryKey: ["my_bookings", user?.email],
+        queryKey: ["statData"],
         queryFn: async () => {
             const { data } = await axiosSecure.get(
-                `http://localhost:8000/my_bookings/${user.email}`
-            );
+                'http://localhost:8000/admin_stat');
             return data;
         },
     });
-    console.log("Bookings Data:", bookings)
+    console.log("Admin Statistic Data:", statData)
+
+
+    if (isLoading)
+        return (
+            <p className="text-center text-gray-500 mt-10">Loading Admin Statistic Data...</p>
+        );
+
+    if (isError)
+        return (
+            <p className="text-center text-red-500 mt-10">
+                Failed to load Admin Statistic Data. Please try again later.
+            </p>
+        );
 
 
 
@@ -40,7 +59,7 @@ const AdminStatistics = () => {
                                 Total Sales
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                $345
+                                ${statData?.totalSales}
                             </h4>
                         </div>
                     </div>
@@ -56,7 +75,7 @@ const AdminStatistics = () => {
                                 Total User
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                23
+                                {statData?.totalUsers}
                             </h4>
                         </div>
                     </div>
@@ -72,7 +91,7 @@ const AdminStatistics = () => {
                                 Total Bookings
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                345
+                                {statData?.totalBookings}
                             </h4>
                         </div>
                     </div>
@@ -88,7 +107,7 @@ const AdminStatistics = () => {
                                 Total Rooms
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                454
+                                {statData?.totalRooms}
                             </h4>
                         </div>
                     </div>
@@ -98,7 +117,7 @@ const AdminStatistics = () => {
                     {/* Total Sales Graph */}
                     <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
                         {/* Render Chart Here */}
-                        <SalesLineChart/>
+                        <SalesLineChart data={statData?.chartData } />
                     </div>
                     {/* Calender */}
                     <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
