@@ -4,7 +4,25 @@ import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
 import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
 
 const AdminStatistics = () => {
-    // Fetch Admin Stat Data here
+    // Fetch Admin Stat Data here with tankStack query
+    const {
+        data: bookings = [],
+        isLoading,
+        isError,
+        refetch,
+    } = useQuery({
+        queryKey: ["my_bookings", user?.email],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(
+                `http://localhost:8000/my_bookings/${user.email}`
+            );
+            return data;
+        },
+    });
+    console.log("Bookings Data:", bookings)
+
+
+
     return (
         <div>
             <div className='mt-12'>

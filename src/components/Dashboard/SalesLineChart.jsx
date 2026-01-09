@@ -1,6 +1,6 @@
 import { Chart } from 'react-google-charts'
 
-export const data = [
+ const data = [
     ['Day', 'Sales'],
     ['9', 1000],
     ['10', 1170],
@@ -8,7 +8,7 @@ export const data = [
     ['12', 1030],
 ]
 
-export const options = {
+ const options = {
     title: 'Sales Over Time',
     curveType: 'function',
     legend: { position: 'bottom' },
