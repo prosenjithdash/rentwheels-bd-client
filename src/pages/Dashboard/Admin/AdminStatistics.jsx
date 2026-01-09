@@ -4,11 +4,9 @@ import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
 import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
 import { useQuery } from '@tanstack/react-query'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
-import useAuth from '../../../hooks/useAuth'
 
 const AdminStatistics = () => {
 
-    const { user } = useAuth();
     const axiosSecure = useAxiosSecure()
 
     // Fetch Admin Stat Data here with tankStack query

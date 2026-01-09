@@ -2,8 +2,45 @@ import { Calendar } from 'react-date-range'
 import { FaDollarSign } from 'react-icons/fa'
 import { BsFillCartPlusFill, BsFillHouseDoorFill } from 'react-icons/bs'
 import { GiPlayerTime } from 'react-icons/gi'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import { useQuery } from '@tanstack/react-query'
+import SalesLineChart from '../../../components/Dashboard/SalesLineChart'
+import { formatDistanceToNow } from 'date-fns'
+
 
 const HostStatistics = () => {
+
+    const axiosSecure = useAxiosSecure()
+
+    // Fetch Host Stat Data here with tankStack query
+    const {
+        data: statData = [],
+        isLoading,
+        isError,
+        refetch,
+    } = useQuery({
+        queryKey: ["statData"],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(
+                'http://localhost:8000/host_stat');
+            return data;
+        },
+    });
+    console.log("Host Statistic Data:", statData)
+
+
+    if (isLoading)
+        return (
+            <p className="text-center text-gray-500 mt-10">Loading Host Statistic Data...</p>
+        );
+
+    if (isError)
+        return (
+            <p className="text-center text-red-500 mt-10">
+                Failed to load Host Statistic Data. Please try again later.
+            </p>
+        );
+
     return (
         <div>
             <div className='mt-12'>
@@ -21,7 +58,7 @@ const HostStatistics = () => {
                                 Total Sales
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                $4500000
+                                ${statData?.totalSales}
                             </h4>
                         </div>
                     </div>
@@ -38,7 +75,7 @@ const HostStatistics = () => {
                                 Total Bookings
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                56
+                                {statData?.totalBookings}
                             </h4>
                         </div>
                     </div>
@@ -51,10 +88,10 @@ const HostStatistics = () => {
                         </div>
                         <div className='p-4 text-right'>
                             <p className='block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600'>
-                                Total Rooms
+                                Total Vehicles
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                435
+                                {statData?.totalVehicles}
                             </h4>
                         </div>
                     </div>
@@ -71,7 +108,7 @@ const HostStatistics = () => {
                                 Host Since...
                             </p>
                             <h4 className='block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900'>
-                                3 Days
+                                {statData?.hostSince && formatDistanceToNow (new Date(statData?.hostSince))}  
                             </h4>
                         </div>
                     </div>
@@ -81,6 +118,7 @@ const HostStatistics = () => {
                     {/* Total Sales Graph */}
                     <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden xl:col-span-2'>
                         {/* Render Chart Here */}
+                        <SalesLineChart data={statData?.chartData} />
                     </div>
                     {/* Calender */}
                     <div className='relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md overflow-hidden'>
