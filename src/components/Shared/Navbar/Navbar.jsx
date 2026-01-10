@@ -151,7 +151,7 @@ const Navbar = () => {
                             >
                                 <div className="w-10 rounded-full">
                                     <img
-                                        className="rounded-full"
+                                        className="rounded-full "
                                         referrerPolicy="no-referrer"
                                         src={user?.photoURL || ""}
                                         alt="profile"

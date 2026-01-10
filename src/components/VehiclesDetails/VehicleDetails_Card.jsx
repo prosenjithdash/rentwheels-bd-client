@@ -125,6 +125,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                     {/* Host Details */}
                     <div className="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
                         <img
+                            referrerPolicy="no-referrer"
                             src={host?.image}
                             alt="Host"
                             className="w-14 h-14 rounded-full object-cover"
