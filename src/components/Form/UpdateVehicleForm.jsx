@@ -1,4 +1,6 @@
-import { categories } from'../Categories/CategoriesData'
+import { categories } from '../Categories/CategoriesData'
+import { DateRange } from "react-date-range";
+
 const UpdateVehicleForm = (
     {   handleSubmit,
         dates,
@@ -68,7 +70,15 @@ const UpdateVehicleForm = (
                         <label htmlFor='location' className='block text-gray-600'>
                             Select Availability Range
                         </label>
-                        <div className='flex justify-center pt-2'>{/* Calender */}</div>
+                        <div className='flex justify-center pt-2'>{/* Calender */}
+                            <DateRange
+                                                        rangeColors={['#16A34A']}
+                                                        editableDateInputs={true}
+                                                        onChange={item => handleDates(item)}
+                                                        moveRangeOnFirstSelection={false}
+                                                        ranges={[dates]}
+                                                    />
+                        </div>
                     </div>
 
                     {/* Image with image server */}
