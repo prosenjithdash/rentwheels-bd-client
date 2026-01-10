@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import {
     Dialog,
     Transition,
@@ -6,10 +5,37 @@ import {
     DialogPanel,
     DialogTitle,
 } from '@headlessui/react'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import UpdateVehicleForm from '../../Form/UpdateVehicleForm'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
 
-const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen }) => {
+const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) => {
+    const axiosSecure = useAxiosSecure()
+
+    const [loading, setLoading] = useState(false)
+    const[vehicleData, setVehicleData] = useState(vehicle)
+    
+    const [dates, setDates] = useState({
+        startDate: new Date(vehicle?.from),
+        endDate: new Date(vehicle?.to),
+        key: "selection",
+    })
+
+    // handle image update
+
+
+    // Date range handler
+    const handleDates = item => {
+        console.log(item.selection.startDate)
+        setDates(item.selection)
+
+    }
+    const handleSubmit = () => {
+        e.preventDefault()
+    }
+
+   
+
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog
@@ -49,7 +75,14 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen }) => {
                                 </DialogTitle>
                                 <div className='mt-2 w-full'>
                                     {/* Update Vehicle form */}
-                                    <UpdateVehicleForm/>
+                                    <UpdateVehicleForm
+                                        handleSubmit={handleSubmit}
+                                        dates={dates}
+                                        handleDates={handleDates}
+                                        vehicleData={vehicleData}
+                                        setVehicleData={setVehicleData}
+                                        loading={loading}
+                                    />
                                 </div>
                                 <hr className='mt-8 ' />
                                 <div className='mt-2 '>

@@ -1,9 +1,20 @@
-import { categories } from '../Categories/categoriesData'
-const UpdateVehicleForm = () => {
+import { categories } from'../Categories/CategoriesData'
+const UpdateVehicleForm = (
+    {   handleSubmit,
+        dates,
+        handleDates,
+        vehicleData,
+        setVehicleData,
+        loading
+    }) => {
+
+      
     return (
         <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className='grid grid-cols-1 gap-10'>
+
+                    {/* Location */}
                     <div className='space-y-1 text-sm'>
                         <label htmlFor='location' className='block text-gray-600'>
                             Location
@@ -13,10 +24,14 @@ const UpdateVehicleForm = () => {
                             name='location'
                             id='location'
                             type='text'
+                            value={vehicleData?.location}
+                            onChange={(e)=>setVehicleData({...vehicleData, location: e.target.value})}
                             placeholder='Location'
                             required
                         />
                     </div>
+
+                    {/* Title */}
                     <div className='space-y-1 text-sm'>
                         <label htmlFor='title' className='block text-gray-600'>
                             Title
@@ -26,28 +41,29 @@ const UpdateVehicleForm = () => {
                             name='title'
                             id='title'
                             type='text'
+                            value={vehicleData?.title}
+                            onChange={(e) => setVehicleData({ ...vehicleData, title: e.target.value })}
                             placeholder='Title'
                             required
                         />
                     </div>
 
-                    <div className='space-y-1 text-sm'>
-                        <label htmlFor='category' className='block text-write-600'>
-                            Category
+                    {/* Image URL */}
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2">
+                            Image URL
                         </label>
-                        <select
-                            required
-                            className='w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md'
-                            name='category'
-                        >
-                            {categories.map(category => (
-                                <option value={category.label} key={category.label}>
-                                    {category.label}
-                                </option>
-                            ))}
-                        </select>
+                        <input
+                            name="imageURL"
+                            type="text"
+                            value={vehicleData?.imageURL}
+                            onChange={(e) => setVehicleData({ ...vehicleData, imageURL: e.target.value })}
+                            placeholder="https://your-image-host.com/image.jpg"
+                            className="w-full border border-gray-300 rounded-lg p-3"
+                        />
                     </div>
 
+                    {/* Calender */}
                     <div className='space-y-1'>
                         <label htmlFor='location' className='block text-gray-600'>
                             Select Availability Range
@@ -55,7 +71,8 @@ const UpdateVehicleForm = () => {
                         <div className='flex justify-center pt-2'>{/* Calender */}</div>
                     </div>
 
-                    <div className=' p-4 bg-white w-full  m-auto rounded-lg'>
+                    {/* Image with image server */}
+                    {/* <div className=' p-4 bg-white w-full  m-auto rounded-lg'>
                         <div className='file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg'>
                             <div className='flex flex-col w-max mx-auto text-center'>
                                 <label>
@@ -73,8 +90,31 @@ const UpdateVehicleForm = () => {
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
+
                     <div className='flex justify-between gap-2'>
+
+                        {/* {Category} */}
+                        <div className='space-y-1 text-sm'>
+                            <label htmlFor='category' className=' text-write-600'>
+                                Category
+                            </label>
+                            <select
+                                required
+                                value={vehicleData?.category}
+                                onChange={(e) => setVehicleData({ ...vehicleData, category: e.target.value })}
+                                className='w-full px-4 py-3 border-rose-300 focus:outline-rose-500 rounded-md'
+                                name='category'
+                            >
+                                {categories.map(category => (
+                                    <option value={category.name} key={category.name}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Price */}
                         <div className='space-y-1 text-sm'>
                             <label htmlFor='price' className='block text-gray-600'>
                                 Price
@@ -84,52 +124,69 @@ const UpdateVehicleForm = () => {
                                 name='price'
                                 id='price'
                                 type='number'
+                                value={vehicleData?.price}
+                                onChange={(e) => setVehicleData({ ...vehicleData, price: e.target.value })}
                                 placeholder='Price'
                                 required
                             />
                         </div>
 
-                        <div className='space-y-1 text-sm'>
-                            <label htmlFor='guest' className='block text-gray-600'>
-                                Total guest
+                    </div>
+
+                    {/* Type */}
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2">
+                            Type
+                        </label>
+                        <div className="flex items-center justify-between border border-gray-300 rounded-lg p-3">
+                            <label className="flex items-center space-x-2">
+                                <input type="radio" name="type"
+                                    // value="Automatic"
+                                    value={vehicleData?.type}
+                                    onChange={(e) => setVehicleData({ ...vehicleData, type: e.target.value })}
+                                />
+                                <span>Automatic</span>
                             </label>
-                            <input
-                                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                                name='total_guest'
-                                id='guest'
-                                type='number'
-                                placeholder='Total guest'
-                                required
-                            />
+                            <label className="flex items-center space-x-2">
+                                <input type="radio" name="type"
+                                    // value="Manual"
+                                    value={vehicleData?.type}
+                                    onChange={(e) => setVehicleData({ ...vehicleData, type: e.target.value })}
+                                />
+                                <span>Manual</span>
+                            </label>
                         </div>
                     </div>
 
                     <div className='flex justify-between gap-2'>
-                        <div className='space-y-1 text-sm'>
-                            <label htmlFor='bedrooms' className='block text-gray-600'>
-                                Bedrooms
+
+                        {/* Engine CC */}
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-2">
+                                Engine CC
                             </label>
                             <input
-                                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                                name='bedrooms'
-                                id='bedrooms'
-                                type='number'
-                                placeholder='Bedrooms'
-                                required
+                                name="engineCC"
+                                type="text"
+                                value={vehicleData?.engineCC}
+                                onChange={(e) => setVehicleData({ ...vehicleData, engineCC: e.target.value })}
+                                placeholder="1500"
+                                className="w-full border border-gray-300 rounded-lg p-3"
                             />
                         </div>
 
-                        <div className='space-y-1 text-sm'>
-                            <label htmlFor='bathrooms' className='block text-gray-600'>
-                                Bathrooms
+                        {/* Mileage */}
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-2">
+                                Mileage (km/l)
                             </label>
                             <input
-                                className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                                name='bathrooms'
-                                id='bathrooms'
-                                type='number'
-                                placeholder='Bathrooms'
-                                required
+                                name="mileage"
+                                type="text"
+                                value={vehicleData?.mileage}
+                                onChange={(e) => setVehicleData({ ...vehicleData, mileage: e.target.value })}
+                                placeholder="20 km/l"
+                                className="w-full border border-gray-300 rounded-lg p-3"
                             />
                         </div>
                     </div>
@@ -141,6 +198,8 @@ const UpdateVehicleForm = () => {
 
                         <textarea
                             id='description'
+                            value={vehicleData?.description}
+                            onChange={(e) => setVehicleData({ ...vehicleData, description: e.target.value })}
                             className='block rounded-md focus:rose-300 w-full h-32 px-4 py-3 text-gray-800  border border-rose-300 focus:outline-rose-500 '
                             name='description'
                         ></textarea>

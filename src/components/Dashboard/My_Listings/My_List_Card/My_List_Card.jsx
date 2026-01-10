@@ -10,7 +10,7 @@ const shortenTitle = (title = "", wordLimit = 4) => {
     return words.slice(0, wordLimit).join(" ") + "...";
 };
 
-const My_List_Card = ({ vehicle, handleDelete  }) => {
+const My_List_Card = ({ vehicle, handleDelete ,refetch }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
@@ -60,6 +60,8 @@ const My_List_Card = ({ vehicle, handleDelete  }) => {
             <UpdateVehicleModal
                 isOpen={isUpdateModalOpen}
                 setIsUpdateModalOpen={setIsUpdateModalOpen}
+                vehicle={vehicle}
+                refetch={refetch}
             />
 
             {/* Delete Button */}
