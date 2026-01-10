@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import { Dialog, Transition } from "@headlessui/react";
+import UpdateVehicleModal from "../../Modal/UpdateVehicleModal";
 
 // ✅ helper to shorten title
 const shortenTitle = (title = "", wordLimit = 4) => {
@@ -11,6 +12,8 @@ const shortenTitle = (title = "", wordLimit = 4) => {
 
 const My_List_Card = ({ vehicle, handleDelete  }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
 
     const closeModal = () => setIsOpen(false);
     const openModal = () => setIsOpen(true);
@@ -47,12 +50,17 @@ const My_List_Card = ({ vehicle, handleDelete  }) => {
                 {new Date(vehicle.to).toLocaleString() || "—"}
             </p>
 
-            {/* Edit Button */}
+            {/* Update Button */}
             <div className="flex justify-center">
-                <button className="bg-green-50 hover:bg-green-100 p-2 rounded-xl transition">
+                <button onClick={() => setIsUpdateModalOpen(true)} className="bg-green-50 hover:bg-green-100 p-2 rounded-xl transition">
                     <Pencil className="text-green-600 w-4 h-4" />
                 </button>
             </div>
+            {/* Update Modal */}
+            <UpdateVehicleModal
+                isOpen={isUpdateModalOpen}
+                setIsUpdateModalOpen={setIsUpdateModalOpen}
+            />
 
             {/* Delete Button */}
             <div className="flex justify-center">
