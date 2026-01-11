@@ -32,6 +32,9 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
     }
     const handleSubmit = () => {
         e.preventDefault()
+        const updatedVehicleData = object.assign({}, vehicleData)
+        delete updatedVehicleData._id 
+        console.log(updatedVehicleData)
     }
 
    
