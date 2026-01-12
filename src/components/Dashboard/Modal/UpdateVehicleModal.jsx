@@ -8,6 +8,7 @@ import {
 import { Fragment, useState } from 'react'
 import UpdateVehicleForm from '../../Form/UpdateVehicleForm'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import { toast } from 'react-toastify'
 
 const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) => {
     const axiosSecure = useAxiosSecure()
@@ -30,11 +31,26 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
         setDates(item.selection)
 
     }
-    const handleSubmit = () => {
+    const handleSubmit = async (e) => {
+        setLoading(true)
         e.preventDefault()
         const updatedVehicleData = object.assign({}, vehicleData)
         delete updatedVehicleData._id 
         console.log(updatedVehicleData)
+        try {
+            const { data } = await axiosSecure.put(`/vehicle/update/${vehicle?._id}`, updatedVehicleData)
+
+            console.log(data)
+            refetch()
+            setLoading(false)
+            toast.success('Vehicle Update successfully done.')
+
+        } catch (error) {
+            console.log(error)
+            setLoading(false)
+            toast.error('Try again...', error.message)
+
+        }
     }
 
    
