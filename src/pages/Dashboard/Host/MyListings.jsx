@@ -87,6 +87,7 @@ const My_Listings = () => {
                         key={vehicle._id || idx}
                         vehicle={vehicle}
                         handleDelete={handleDelete}
+                        refetch={refetch}
                     />
                 ))}
             </div>

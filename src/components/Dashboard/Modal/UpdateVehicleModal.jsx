@@ -34,21 +34,21 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
     const handleSubmit = async (e) => {
         setLoading(true)
         e.preventDefault()
-        const updatedVehicleData = object.assign({}, vehicleData)
+        const updatedVehicleData = Object.assign({}, vehicleData)
         delete updatedVehicleData._id 
         console.log(updatedVehicleData)
         try {
             const { data } = await axiosSecure.put(`/vehicle/update/${vehicle?._id}`, updatedVehicleData)
 
             console.log(data)
-            refetch()
+            await refetch()
             setLoading(false)
             toast.success('Vehicle Update successfully done.')
 
         } catch (error) {
             console.log(error)
             setLoading(false)
-            toast.error('Try again...', error.message)
+            toast.error(error.message)
 
         }
     }
