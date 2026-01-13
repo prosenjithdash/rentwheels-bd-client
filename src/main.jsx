@@ -10,13 +10,6 @@ import { ToastContainer } from 'react-toastify';
 import AuthProvider from './providers/AuthProvider';
 const queryClient = new QueryClient()
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <div>Hello world!</div>,
-//   },
-// ]);
-
 createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
     <StrictMode>
