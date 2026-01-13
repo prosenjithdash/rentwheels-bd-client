@@ -1,28 +1,5 @@
-/**
- * firebase.config.js
- * --------------------------------------------------
- * 🔥 Purpose:
- * This file initializes and configures the Firebase app
- * using environment variables for secure and flexible setup.
- *
- * ✅ Handles:
- * - Firebase SDK initialization
- * - Reading environment variables (for different environments)
- *
- * 📦 Technologies:
- * - Firebase SDK (v9+)
- * - Vite environment variables (import.meta.env)
- */
-
 import { initializeApp } from "firebase/app";
 
-
-/**
- * ⚙️ Firebase Configuration Object
- * --------------------------------
- * All values are stored securely in Vite environment variables (.env.local file)
- * so no sensitive information (like API keys) is exposed in the source code.
- */
 const firebaseConfig = {
 
   // 🔐 Firebase API key
@@ -44,12 +21,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_appId 
 };
 
-/**
- * 🚀 Initialize Firebase App
- * --------------------------
- * This function sets up the connection between your project
- * and Firebase services (Auth, FireStore, Storage, etc.)
- */
 const app = initializeApp(firebaseConfig);
 
 export default app;

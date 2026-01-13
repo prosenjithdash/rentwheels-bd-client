@@ -1,6 +1,5 @@
 
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-
 import './CheckoutForm.css';
 import { BookKey, CheckCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
