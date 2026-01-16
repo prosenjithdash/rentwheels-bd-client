@@ -39,7 +39,6 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
         console.log(updatedVehicleData)
         try {
             const { data } = await axiosSecure.put(`/vehicle/update/${vehicle?._id}`, updatedVehicleData)
-
             console.log(data)
             await refetch()
             setLoading(false)
