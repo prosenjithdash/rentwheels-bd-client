@@ -46,6 +46,7 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
 
         } catch (error) {
             console.log(error)
+            
             setLoading(false)
             toast.error(error.message)
 
