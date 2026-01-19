@@ -40,13 +40,14 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
         try {
             const { data } = await axiosSecure.put(`/vehicle/update/${vehicle?._id}`, updatedVehicleData)
             console.log(data)
+            
             await refetch()
             setLoading(false)
             toast.success('Vehicle Update successfully done.')
 
         } catch (error) {
             console.log(error)
-            
+
             setLoading(false)
             toast.error(error.message)
 
