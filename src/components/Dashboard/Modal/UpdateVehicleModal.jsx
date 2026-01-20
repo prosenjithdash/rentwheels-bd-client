@@ -29,6 +29,11 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
     const handleDates = item => {
         console.log(item.selection.startDate)
         setDates(item.selection)
+        setVehicleData({
+            ...vehicleData,
+            to: item.selection.endDate,
+            from: item.selection.startDate
+        })
 
     }
     const handleSubmit = async (e) => {
@@ -37,12 +42,15 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
         const updatedVehicleData = Object.assign({}, vehicleData)
         delete updatedVehicleData._id 
         console.log(updatedVehicleData)
+
+        // Try to apply tangStack query
         try {
             const { data } = await axiosSecure.put(`/vehicle/update/${vehicle?._id}`, updatedVehicleData)
             console.log(data)
-            
+
             await refetch()
             setLoading(false)
+            setIsUpdateModalOpen(false)
             toast.success('Vehicle Update successfully done.')
 
         } catch (error) {
