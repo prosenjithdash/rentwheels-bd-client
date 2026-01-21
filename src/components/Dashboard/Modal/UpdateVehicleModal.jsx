@@ -29,6 +29,7 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
     const handleDates = item => {
         console.log(item.selection.startDate)
         setDates(item.selection)
+        
         setVehicleData({
             ...vehicleData,
             to: item.selection.endDate,
