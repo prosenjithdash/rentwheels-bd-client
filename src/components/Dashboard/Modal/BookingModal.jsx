@@ -16,9 +16,10 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const BookingModal = ({ closeModal, isOpen, bookingInfo,refetch }) => {
     const totalDays = Math.max(
-        
+
         1,
         differenceInCalendarDays(
+            
             new Date(bookingInfo.to),
             new Date(bookingInfo.from)
         ) + 1
