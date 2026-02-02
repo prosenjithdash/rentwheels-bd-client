@@ -16,14 +16,14 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
     const [loading, setLoading] = useState(false)
     const[vehicleData, setVehicleData] = useState(vehicle)
     
+    // Date state
     const [dates, setDates] = useState({
         startDate: new Date(vehicle?.from),
         endDate: new Date(vehicle?.to),
         key: "selection",
     })
 
-    // handle image update
-
+    // handle image update (pending)
 
     // Date range handler
     const handleDates = item => {
@@ -33,12 +33,13 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
 
         setVehicleData({
             ...vehicleData,
-            
+
             to: item.selection.endDate,
             from: item.selection.startDate
         })
 
     }
+    // Handle Submit
     const handleSubmit = async (e) => {
         setLoading(true)
         e.preventDefault()
@@ -64,8 +65,6 @@ const UpdateVehicleModal = ({ setIsUpdateModalOpen, isOpen, vehicle, refetch }) 
 
         }
     }
-
-   
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
