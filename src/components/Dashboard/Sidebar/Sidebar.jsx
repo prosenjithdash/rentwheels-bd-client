@@ -1,3 +1,131 @@
+// import { useState } from 'react'
+// import { GrLogout } from 'react-icons/gr'
+// import { FcSettings } from 'react-icons/fc'
+// import { AiOutlineBars } from 'react-icons/ai'
+// import { BsGraphUp } from 'react-icons/bs'
+// import { Link } from 'react-router-dom'
+// import useAuth from '../../../hooks/useAuth'
+// import ToggleBtn from '../../Shared/Button/ToggleBtn'
+// import useRole from '../../../hooks/useRole'
+// import MenuItem from './Menu/MenuItem'
+// import RenderMenu from './Menu/RenderMenu'
+// import HostMenu from './Menu/HostMenu'
+// import AdminMenu from './Menu/AdminMenu'
+// const Sidebar = () => {
+//     const { logOut } = useAuth()
+//     const [isActive, setActive] = useState(false)
+//     const [toggle, setToggle] = useState(true)
+//     const [role, isLoading] = useRole()
+//     console.log(role, isLoading)
+//     // Sidebar Responsive Handler
+//     const handleToggle = () => {
+//         setActive(!isActive)
+//     }
+
+//     const toggleHandler = event => {
+//         setToggle(event.target.checked)
+//     }
+//     return (
+//         <>
+//             {/* Small Screen Navbar */}
+//             <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+//                 <div>
+//                     <div className='block cursor-pointer p-4 font-bold'>
+//                         <Link to='/'>
+//                             <img
+//                                 // className='hidden md:block'
+//                                 src='https://i.ibb.co/4ZXzmq5/logo.png'
+//                                 alt='logo'
+//                                 width='100'
+//                                 height='100'
+//                             />
+//                         </Link>
+//                     </div>
+//                 </div>
+
+//                 <button
+//                     onClick={handleToggle}
+//                     className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+//                 >
+//                     <AiOutlineBars className='h-5 w-5' />
+//                 </button>
+//             </div>
+
+//             {/* Sidebar */}
+//             <div
+//                 className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
+//                     }  md:translate-x-0  transition duration-200 ease-in-out`}
+//             >
+//                 <div>
+//                     <div>
+//                         <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
+//                             <Link to='/'>
+//                                 <img
+//                                     // className='hidden md:block'
+//                                     src='https://i.ibb.co/4ZXzmq5/logo.png'
+//                                     alt='logo'
+//                                     width='100'
+//                                     height='100'
+//                                 />
+//                             </Link>
+//                         </div>
+//                     </div>
+
+//                     {/* Nav Items */}
+//                     <div className='flex flex-col justify-between flex-1 mt-6'>
+//                         {/* Conditional toggle button here.. */}
+//                         {role === 'host' && (
+//                             <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+//                         )}
+
+//                         {/*  Menu Items */}
+//                         <nav>
+//                             {/* Statistics */}
+//                             <MenuItem
+//                                 label='Statistics'
+//                                 address='/dashboard'
+//                                 icon={BsGraphUp}
+//                             />
+//                             {role === 'render' && <RenderMenu />}
+//                             {role === 'host' ? (
+//                                 toggle ? (
+//                                     <HostMenu />
+//                                 ) : (
+//                                     <RenderMenu />
+//                                 )
+//                             ) : undefined}
+//                             {role === 'admin' && <AdminMenu />}
+//                         </nav>
+//                     </div>
+//                 </div>
+
+//                 <div>
+//                     <hr />
+
+//                     {/* Profile Menu */}
+//                     <MenuItem
+//                         label='Profile'
+//                         address='/dashboard/profile'
+//                         icon={FcSettings}
+//                     />
+
+//                     <button
+//                         onClick={logOut}
+//                         className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
+//                     >
+//                         <GrLogout className='w-5 h-5' />
+
+//                         <span className='mx-4 font-medium'>Logout</span>
+//                     </button>
+//                 </div>
+//             </div>
+//         </>
+//     )
+// }
+
+// export default Sidebar
+
+
 import { useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
@@ -11,114 +139,99 @@ import MenuItem from './Menu/MenuItem'
 import RenderMenu from './Menu/RenderMenu'
 import HostMenu from './Menu/HostMenu'
 import AdminMenu from './Menu/AdminMenu'
+
 const Sidebar = () => {
     const { logOut } = useAuth()
-    const [isActive, setActive] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
     const [toggle, setToggle] = useState(true)
-    const [role, isLoading] = useRole()
-    console.log(role, isLoading)
-    // Sidebar Responsive Handler
-    const handleToggle = () => {
-        setActive(!isActive)
-    }
+    const [role] = useRole()
 
-    const toggleHandler = event => {
-        setToggle(event.target.checked)
-    }
+    const toggleHandler = e => setToggle(e.target.checked)
+
     return (
         <>
-            {/* Small Screen Navbar */}
-            <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
-                <div>
-                    <div className='block cursor-pointer p-4 font-bold'>
-                        <Link to='/'>
-                            <img
-                                // className='hidden md:block'
-                                src='https://i.ibb.co/4ZXzmq5/logo.png'
-                                alt='logo'
-                                width='100'
-                                height='100'
-                            />
-                        </Link>
-                    </div>
-                </div>
+            {/* ===== Mobile + Tablet Top Bar ===== */}
+            <header className="flex items-center justify-between bg-gray-100 px-4 py-3 md:hidden">
+                <Link to="/">
+                    <img
+                        src="https://i.ibb.co/4ZXzmq5/logo.png"
+                        alt="logo"
+                        className="w-24"
+                    />
+                </Link>
 
-                <button
-                    onClick={handleToggle}
-                    className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
-                >
-                    <AiOutlineBars className='h-5 w-5' />
+                <button onClick={() => setIsOpen(true)}>
+                    <AiOutlineBars className="w-6 h-6 text-gray-700" />
                 </button>
-            </div>
+            </header>
 
-            {/* Sidebar */}
-            <div
-                className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
-                    }  md:translate-x-0  transition duration-200 ease-in-out`}
+            {/* ===== Overlay (Mobile & Tablet) ===== */}
+            {isOpen && (
+                <div
+                    onClick={() => setIsOpen(false)}
+                    className="fixed inset-0 bg-black/40 z-20 md:hidden"
+                />
+            )}
+
+            {/* ===== Sidebar ===== */}
+            <aside
+                className={`
+          fixed top-0 left-0 z-30
+          h-full
+          w-64 sm:w-72
+          bg-gray-100
+          flex flex-col justify-between
+          px-3 py-4 space-y-6
+          transform transition-transform duration-300
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:translate-x-0 md:static
+        `}
             >
-                <div>
-                    <div>
-                        <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
-                            <Link to='/'>
-                                <img
-                                    // className='hidden md:block'
-                                    src='https://i.ibb.co/4ZXzmq5/logo.png'
-                                    alt='logo'
-                                    width='100'
-                                    height='100'
-                                />
-                            </Link>
-                        </div>
-                    </div>
-
-                    {/* Nav Items */}
-                    <div className='flex flex-col justify-between flex-1 mt-6'>
-                        {/* Conditional toggle button here.. */}
-                        {role === 'host' && (
-                            <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
-                        )}
-
-                        {/*  Menu Items */}
-                        <nav>
-                            {/* Statistics */}
-                            <MenuItem
-                                label='Statistics'
-                                address='/dashboard'
-                                icon={BsGraphUp}
-                            />
-                            {role === 'render' && <RenderMenu />}
-                            {role === 'host' ? (
-                                toggle ? (
-                                    <HostMenu />
-                                ) : (
-                                    <RenderMenu />
-                                )
-                            ) : undefined}
-                            {role === 'admin' && <AdminMenu />}
-                        </nav>
-                    </div>
+                {/* Logo (Laptop & Desktop) */}
+                <div className="hidden md:flex justify-center bg-rose-100 py-3 rounded-lg shadow">
+                    <Link to="/">
+                        <img
+                            src="https://i.ibb.co/4ZXzmq5/logo.png"
+                            alt="logo"
+                            className="w-28"
+                        />
+                    </Link>
                 </div>
 
+                {/* ===== Menu ===== */}
+                <div className="flex-1 mt-6">
+                    {role === 'host' && (
+                        <ToggleBtn toggleHandler={toggleHandler} toggle={toggle} />
+                    )}
+
+                    <nav onClick={() => setIsOpen(false)}>
+                        <MenuItem label="Statistics" address="/dashboard" icon={BsGraphUp} />
+
+                        {role === 'render' && <RenderMenu />}
+                        {role === 'host' && (toggle ? <HostMenu /> : <RenderMenu />)}
+                        {role === 'admin' && <AdminMenu />}
+                    </nav>
+                </div>
+
+                {/* ===== Bottom ===== */}
                 <div>
                     <hr />
 
-                    {/* Profile Menu */}
                     <MenuItem
-                        label='Profile'
-                        address='/dashboard/profile'
+                        label="Profile"
+                        address="/dashboard/profile"
                         icon={FcSettings}
                     />
 
                     <button
                         onClick={logOut}
-                        className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
+                        className="flex w-full items-center px-4 py-2 mt-4 text-gray-600 hover:bg-gray-300 transition"
                     >
-                        <GrLogout className='w-5 h-5' />
-
-                        <span className='mx-4 font-medium'>Logout</span>
+                        <GrLogout className="w-5 h-5" />
+                        <span className="ml-4 font-medium">Logout</span>
                     </button>
                 </div>
-            </div>
+            </aside>
         </>
     )
 }

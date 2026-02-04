@@ -2,21 +2,20 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Shared/Navbar/Navbar";
 import Footer from "../components/Shared/Footer/Footer";
 
-// It's a Main layout 
 const Main = () => {
     return (
-        <div>
+        <div className="bg-gray-100 min-h-screen flex flex-col">
 
-            {/* Navbar route */}
-            <Navbar/>
+            {/* Navbar */}
+            <Navbar />
 
-            {/* Outlet use for Showing all children routes. */}
-            <div className="min-h-[calc(100vh-68px)] max-w-[1250px] mx-auto">
+            {/* Outlet - main content */}
+            <main className="flex-1 max-w-[1250px] mx-auto w-full px-4 sm:px-6 py-12">
                 <Outlet />
-            </div>
+            </main>
 
-            {/* Footer route */}
-            <Footer/>
+            {/* Footer */}
+            <Footer />
 
         </div>
     );
