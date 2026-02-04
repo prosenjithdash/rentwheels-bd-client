@@ -6,7 +6,6 @@ const UpdateVehicleForm = (
         dates,
         handleDates,
         vehicleData,
-        
         setVehicleData,
         loading
     }) => {
