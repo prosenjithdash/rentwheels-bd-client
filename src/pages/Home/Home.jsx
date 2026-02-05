@@ -1,5 +1,8 @@
 import Categories from "../../components/Categories/Categories";
 import Vehicles from "../../components/Home/Vehicles";
+import About from "../About/About";
+import Contact from "../Contact/Contact";
+import Features from "../Features/Features";
 
 // It's a Home page, Have to here many components .
 const Home = () => {
@@ -24,7 +27,11 @@ const Home = () => {
             
             <Vehicles/>
              */}
-            <Vehicles/>
+            <Vehicles />
+            <Features/>
+            <About />
+            <Contact/>
+            
         </div>
     );
 };

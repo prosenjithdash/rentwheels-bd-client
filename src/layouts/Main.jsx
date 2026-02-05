@@ -10,7 +10,7 @@ const Main = () => {
             <Navbar />
 
             {/* Outlet - main content */}
-            <main className="flex-1 max-w-[1250px] mx-auto w-full px-4 sm:px-6 py-12">
+            <main className="flex-1 max-w-full mx-auto w-full ">
                 <Outlet />
             </main>
 

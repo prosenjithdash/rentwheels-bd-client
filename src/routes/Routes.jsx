@@ -18,6 +18,10 @@ import AdminRoute from "./AdminRoute";
 import HostRoute from "./HostRoute";
 import MyBookings from "../pages/Dashboard/Renter/MyBookings";
 import ManageBookings from "../pages/Dashboard/Host/ManageBookings";
+import Vehicles from "../components/Home/Vehicles";
+import Contact from "../pages/Contact/Contact";
+import Features from "../pages/Features/Features";
+import About from "../pages/About/About";
 
 export const router = createBrowserRouter([
 
@@ -28,12 +32,28 @@ export const router = createBrowserRouter([
         errorElement:<ErrorPage/>,
         children: [
             {
-                path: '/',
+                index:true,
                 element:<Home/>
             },
             {
-                path: '/vehicle/:id',
+                path: 'vehicles',
+                element: <Vehicles/>
+            },
+            {
+                path: 'vehicle/:id',
                 element: <PrivateRoutes><VehiclesDetails /></PrivateRoutes>
+            },
+            {
+                path: 'about',
+                element: <About/>
+            },
+            {
+                path: 'features',
+                element: <Features/>
+            },
+            {
+                path: 'contact',
+                element: <Contact />
             }
 
         ]
