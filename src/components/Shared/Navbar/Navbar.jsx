@@ -46,7 +46,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar mt-[50px] max-w-[1280px] mx-auto z-50 relative bg-[#2978FF]">
+        <div className="navbar mt-[50px] max-w-[1280px] mx-auto z-50 relative bg-blue-900 text-white rounded-md">
             {/* Navbar Start */}
             <div className="navbar-start">
                 <div className="dropdown">
@@ -86,7 +86,7 @@ const Navbar = () => {
                             alt=""
                         />
                         <p className="btn btn-ghost lg:text-[23px] text-[12px] font-extrabold">
-                            <span className="text-[#404040]">RentWheels</span>
+                            <span className="text-white">RentWheels</span>
                             <span className="text-green-500"> _BD</span>
                         </p>
                     </div>
