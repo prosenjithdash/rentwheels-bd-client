@@ -46,7 +46,7 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar mt-[50px] max-w-[1280px] mx-auto z-50 relative bg-blue-900 text-white rounded-md">
+        <div className="navbar mt-[50px] max-w-[1280px] mx-auto z-50 relative bg-blue-950 text-white rounded-md">
             {/* Navbar Start */}
             <div className="navbar-start">
                 <div className="dropdown">
@@ -176,7 +176,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                     ) : (
-                        <div className="bg-green-200 rounded-md px-7 py-2">
+                        <div className="bg-white text-blue-950 rounded-md px-7 py-2">
                             <li><NavLink to="/logIn">LogIn</NavLink></li>
                         </div>
                     )}
