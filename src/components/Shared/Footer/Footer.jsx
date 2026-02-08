@@ -23,10 +23,10 @@ const Footer = () => {
             <div className="h-10 bg-white" />
             <div className="h-16 bg-[#FF7A18]" />
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-12">
 
                 {/* Main Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14">
 
                     {/* Brand */}
                     <div>
@@ -43,12 +43,12 @@ const Footer = () => {
                                     <path d="M5 16h14" />
                                 </svg>
                             </div>
-                            <h2 className="text-white text-xl font-semibold">
+                            <h2 className="text-white text-2xl font-extrabold">
                                 RENT<span className="text-[#FF7A18]">WHEELS</span>_BD
                             </h2>
                         </div>
 
-                        <p className="text-sm leading-relaxed max-w-xs text-gray-400">
+                        <p className="text-md leading-relaxed max-w-xs text-gray-400">
                             Premium vehicle rental service for the modern traveler.
                             Experience the future of mobility with our tech-forward fleet.
                         </p>
@@ -73,10 +73,10 @@ const Footer = () => {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-white font-bold mb-5 tracking-wide">
+                        <h3 className="text-white text-lg font-bold mb-5 tracking-wide">
                             QUICK LINKS
                         </h3>
-                        <ul className="space-y-3 text-sm">
+                        <ul className="space-y-3 text-md">
                             {["Home", "Vehicles", "Features", "About", "Contact"].map((item, i) => (
                                 <li key={i}>
                                     <Link
@@ -91,11 +91,11 @@ const Footer = () => {
                     </div>
 
                     {/* Vehicles */}
-                    <div>
-                        <h3 className="text-white font-bold mb-5 tracking-wide">
+                    {/* <div>
+                        <h3 className="text-white text-lg font-bold mb-5 tracking-wide">
                             VEHICLES
                         </h3>
-                        <ul className="space-y-3 text-sm">
+                        <ul className="space-y-3 text-md">
                             {["Bike", "Scoter", "Car", "Bus", "Truck", "Jeep"].map((v, i) => (
                                 <li
                                     key={i}
@@ -105,14 +105,14 @@ const Footer = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div> */}
 
                     {/* Support */}
                     <div>
-                        <h3 className="text-white font-bold mb-5 tracking-wide">
+                        <h3 className="text-white text-lg font-bold mb-5 tracking-wide">
                             SUPPORT
                         </h3>
-                        <ul className="space-y-3 text-sm">
+                        <ul className="space-y-3 text-md">
                             {["Help Center", "Terms of Service", "Privacy Policy", "Cookie Policy"].map((s, i) => (
                                 <li
                                     key={i}
@@ -123,19 +123,27 @@ const Footer = () => {
                             ))}
                         </ul>
                     </div>
+                    {/* Support */}
+                    <div>
+                        <h3 className="text-white text-lg font-bold mb-5 tracking-wide">
+                            NEWSLETTER
+                        </h3>
+                        <p className="text-md space-y-3">Subscribe for latest offers and updates.</p>
+    
+                        <button className="my-4 button bg-gray-800 rounded-lg pl-4 pr-20 py-2 "> Your email address</button>
+                        <button className="button bg-orange-500 rounded-lg text-center px-20 py-2 text-white font-bold"> Subscribe</button>
+                    </div>
+                    {/* //mb-4 pl-4 pr-32 py-2 button bg-orange-500 text-white rounded-lg  text-center font-bold */}
                 </div>
 
                 {/* Bottom Divider */}
-                <div className="border-t border-[#1F2937] mt-16 pt-6 flex flex-col md:flex-row
-                items-center justify-between gap-4 text-sm">
+                <div className="border-t  border-[#1F2937] mt-16 pt-8  text-center gap-4 text-lg">
 
                     <p className="text-gray-500">
                         © 2024 RentWheels_BD. All rights reserved.
                     </p>
 
-                    <p className="text-gray-500">
-                        Designed with <span className="text-[#FF7A18]">♥</span> energy.
-                    </p>
+                    
                 </div>
             </div>
         </footer>
