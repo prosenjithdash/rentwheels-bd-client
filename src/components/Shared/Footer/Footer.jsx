@@ -17,7 +17,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#020617] text-gray-400">
+        <footer className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-black text-gray-400">
 
             {/* Top Orange Strip */}
             <div className="h-10 bg-white" />

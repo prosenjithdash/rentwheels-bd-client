@@ -46,9 +46,9 @@ const Navbar = () => {
     );
 
     return (
-        <div className="navbar mt-[50px] max-w-[1280px] mx-auto z-50 relative bg-blue-950 text-white rounded-md">
+        <div className="navbar mt-[50px] max-w-ful mx-auto z-50 relative bg-blue-950 text-white rounded-md">
             {/* Navbar Start */}
-            <div className="navbar-start">
+            <div className="navbar-start ">
                 <div className="dropdown">
                     <div
                         tabIndex={0}

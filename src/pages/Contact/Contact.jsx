@@ -2,10 +2,11 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
     return (
+        //bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#020617]
         // Main div 
-        <div className="bg-gradient-to-b from-[#020617] to-[#02040f]  text-gray-400 ">
+        <div className="bg-black text-gray-400 py-20">
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 bg-gray-900 rounded-lg">
                 {/* Main Flex */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start lg:items-center">
                     {/* Get in touch */}
@@ -82,7 +83,7 @@ const Contact = () => {
                     </div>
 
                     {/* Input form */}
-                    <div className=" w-full max-w-xl lg:max-w-none text-gray-300 px-6 sm:px-8 py-6 sm:py-8  border-2 rounded-2xl border-gray-700 bg-gray-950">
+                    <div className=" w-full max-w-xl lg:max-w-none text-gray-300 px-6 sm:px-8 py-6 sm:py-8  border-2 rounded-2xl border-gray-700 ">
                         <form className=" space-y-4">
 
                             {/* Full Name */}
