@@ -130,14 +130,14 @@ const Footer = () => {
                         </h3>
                         <p className="text-md space-y-3">Subscribe for latest offers and updates.</p>
     
-                        <button className="my-4 button bg-gray-800 rounded-lg pl-4 pr-20 py-2 "> Your email address</button>
-                        <button className="button bg-orange-500 rounded-lg text-center px-20 py-2 text-white font-bold"> Subscribe</button>
+                        <button className="my-4 button bg-gray-800 rounded-lg pl-3 pr-[112px] py-3 "> Your email address</button>
+                        <button className="button bg-orange-500 rounded-lg text-center px-[92px] py-3 text-white font-bold"> Subscribe</button>
                     </div>
                     {/* //mb-4 pl-4 pr-32 py-2 button bg-orange-500 text-white rounded-lg  text-center font-bold */}
                 </div>
 
                 {/* Bottom Divider */}
-                <div className="border-t  border-[#1F2937] mt-16 pt-8  text-center gap-4 text-lg">
+                <div className="border-t  border-[#1F2937] mt-16 pt-8  text-center gap-4 text-md">
 
                     <p className="text-gray-500">
                         © 2024 RentWheels_BD. All rights reserved.
