@@ -13,8 +13,9 @@ const AboutBanner = () => {
 
 
             {/* Content */}
-            <div className="relative z-10  items-center justify-center h-full text-white mx-w-3xl border border-red-700">
-                <div className="border-2 border-red-700 mx-w-3xl mx-auto">
+            <div className="relative z-10  items-center justify-center h-full text-white  border border-green-700">
+                <div className="border-2 border-red-700 items-center justify-center  max-w-[750px] mx-auto space-y-5">
+                    <h2 className="w-[300px] mx-auto border border-orange-600 font-extrabold text-orange-600 rounded-full text-center py-1 px-1 bg-gray-800">EST. 2020. DHAKA, BANGLADESH</h2>
                     <h1 className="text-7xl font-bold text-center">
                         Driving Bangladesh <br /> <span className="text-orange-600 ">Forward</span>
                     </h1>
