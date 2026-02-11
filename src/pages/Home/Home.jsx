@@ -1,4 +1,5 @@
 import Categories from "../../components/Categories/Categories";
+import AboutPreview from "../../components/Home/AboutPreview";
 import Vehicles from "../../components/Home/Vehicles";
 import About from "../About/About";
 import Contact from "../Contact/Contact";
@@ -29,7 +30,7 @@ const Home = () => {
              */}
             <Vehicles />
             <Features/>
-            <About />
+            <AboutPreview/>
             <Contact/>
             
         </div>
