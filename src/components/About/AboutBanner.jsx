@@ -2,7 +2,7 @@
 const AboutBanner = () => {
     return (
     
-        <div className="relative h-[350px] sm:h-[400px] md:h-[500px] lg:h-[450px] bg-[url('/assets/AboutImages/b.webp')] bg-cover bg-center">
+        <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[450px] bg-[url('/assets/AboutImages/b.webp')] bg-cover bg-center">
 
             {/* Blue overlay */}
             <div className="absolute inset-0 bg-gradient-to-b 

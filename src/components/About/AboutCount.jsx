@@ -7,7 +7,7 @@ const AboutCount = () => {
         <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] h-[800px] md:h-[300px] lg:h-[350px] border-t border-t-gray-800 border-b border-b-gray-800   flex items-center ">
             {/* Content */}
             {/* Main div */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full gap-16 lg:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full lg:w-[1250px] lg:mx-auto gap-16 lg:gap-6">
 
                 {/* Years of service */}
                 <div className="space-y-4 md:space-y-8 text-center">
@@ -21,13 +21,13 @@ const AboutCount = () => {
                         bg-yellow-950 rounded-full
                         ">
 
-                            <FiCalendar className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-orange-600" />
+                            <FiCalendar className="text-3xl text-orange-600" />
                         </div>
                     </div>
                     
                     <div className="text-center space-y-1 md:space-y-1">
                         {/* number of years */}
-                        <h2 className="text-md md:text-lg lg:text-4xl font-bold text-white">5+</h2>
+                        <h2 className="text-3xl lg:text-4xl font-bold text-white">5+</h2>
                         {/* Sentence */}
                         <p className="text-gray-400 ">YEARS OF SERVICE</p>
                     </div>
@@ -45,14 +45,14 @@ const AboutCount = () => {
                         lg:w-12 lg:h-12 
                         bg-yellow-950 rounded-full
                         ">
-                            <IoCarSportOutline className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-orange-600" />
+                            <IoCarSportOutline className="text-3xl text-orange-600" />
 
                         </div>
                     </div>
 
                     <div className="text-center space-y-1 md:space-y-1">
                         {/* number of years */}
-                        <h2 className="text-md md:text-lg lg:text-4xl font-bold text-white">500+</h2>
+                        <h2 className="text-3xl lg:text-4xl  font-bold text-white">500+</h2>
                         {/* Sentence */}
                         <p className="text-gray-400">VEHICLE IN FLEET</p>
                     </div>
@@ -71,14 +71,14 @@ const AboutCount = () => {
                         bg-yellow-950 rounded-full
                         ">
 
-                            <FiUsers className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-orange-600" />
+                            <FiUsers className="text-3xl text-orange-600" />
 
                         </div>
                     </div>
 
                     <div className="text-center space-y-1 md:space-y-1">
                         {/* number of years */}
-                        <h2 className="text-md md:text-lg lg:text-4xl font-bold text-white">1O,000+</h2>
+                        <h2 className="text-3xl lg:text-4xl  font-bold text-white">1O,000+</h2>
                         {/* Sentence */}
                         <p className="text-gray-400">HAPPY CUSTOMERS</p>
                     </div>
@@ -97,14 +97,14 @@ const AboutCount = () => {
                         bg-yellow-950 rounded-full
                         ">
 
-                        <IoLocationOutline className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-orange-600" />
+                        <IoLocationOutline className="text-3xl text-orange-600" />
 
                         </div>
                     </div>
 
                     <div className="text-center space-y-1 md:space-y-1">
                         {/* number of years */}
-                        <h2 className="text-md md:text-lg lg:text-4xl font-bold text-white">50+</h2>
+                        <h2 className="text-3xl lg:text-4xl  font-bold text-white">50+</h2>
                         {/* Sentence */}
                         <p className="text-gray-400">CITIES COVERED</p>
                     </div>
