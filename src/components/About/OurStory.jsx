@@ -5,16 +5,17 @@ import { SiComma } from "react-icons/si";
 const OurStory = () => {
     return (
         // Main div
-        <div className="border-2 border-yellow-600  bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] ">
+        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] py-8 sm:py-10  md:py-16 lg:py-24">
 
-            <div className="flex gap-6 justify-between items-center border-2 border-yellow-600 max-w-7xl mx-auto ">
+            <div className="px-4  md:flex lg:flex   md:gap-4 lg:gap-6 justify-between items-center max-w-7xl mx-auto ">
 
                 {/* Story Content */}
                 <div className="max-w-3xl mx-auto  space-y-3 lg:space-y-6">
-                    <h1 className="text-6xl font-bold text-gray-200">
+                    <h2 className="text-orange-500 font-bold text-md md:text-lg lg:text-xl">OUR STORY</h2>
+                    <h1 className="text-4xl md:text-4xl lg:text-6xl font-bold text-gray-200">
                         Redefining Mobility in Bangladesh
                     </h1>
-                    <p className="text-gray-300">
+                    <p className="text-gray-300 text-sm lg:text-xl">
                         It started with a simple observation: renting a vehicle in Dhaka was complicated, unreliable, and often unsafe. In 2020, we set out to change that with just 10 motorbikes and a commitment to transparency.
 
                         <br />
@@ -30,19 +31,20 @@ const OurStory = () => {
                 </div>
 
                 {/* CEO content */}
-                <div className="border border-gray-700 rounded-2xl p-10 space-y-4 bg-gray-900">
+                <div className="border border-gray-700 rounded-2xl
+                p-4 mt-5 sm:p-6 md:p-8 lg:p-10 space-y-3 md:space-y-4 bg-gray-900">
                     {/* Semicolon icon */}
                     <div className="flex">
-                        <SiComma className="text-4xl text-orange-500" />
-                        <SiComma className="text-4xl text-orange-500" />
+                        <SiComma className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-orange-500" />
+                        <SiComma className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-orange-500" />
                     </div>
-                    <h1 className="text-gray-200 text-2xl pb-5 border-b  border-b-gray-400">"We didn't just want to rent vehicles - We wanted to change how Bangladesh moves."</h1>
+                    <h1 className="text-gray-200 text-md sm:text-lg md:text-xl lg:text-2xl pb-5 border-b  border-b-gray-400">"We didn't just want to rent vehicles - We wanted to change how Bangladesh moves."</h1>
 
                     {/* CEO Info */}
                     <div className="flex gap-6 justify-between">
                         <div>
-                            <h3 className="font-bold text-white text-md">Arif Rahman</h3>
-                            <p className="text-orange-500 text-md">Founder & CEO</p>
+                            <h3 className="font-bold text-white text-sm md:text-lg lg:text-md">Arif Rahman</h3>
+                            <p className="text-orange-500 text-sm md:text-lg lg:text-md">Founder & CEO</p>
                         </div>
                         <div className="flex gap-8 items-center">
                             {/* calender */}

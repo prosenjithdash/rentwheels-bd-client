@@ -4,10 +4,10 @@ import { IoCarSportOutline, IoLocationOutline } from "react-icons/io5";
 
 const AboutCount = () => {
     return (
-        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] h-[200px] md:h-[300px] lg:h-[350px] border-t border-t-gray-800 border-b border-b-gray-800   flex items-center ">
+        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] h-[800px] md:h-[300px] lg:h-[350px] border-t border-t-gray-800 border-b border-b-gray-800   flex items-center ">
             {/* Content */}
             {/* Main div */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full gap-16 lg:gap-6">
 
                 {/* Years of service */}
                 <div className="space-y-4 md:space-y-8 text-center">
