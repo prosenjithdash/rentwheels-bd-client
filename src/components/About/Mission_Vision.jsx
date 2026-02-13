@@ -6,10 +6,10 @@ const Mission_Vision = () => {
         <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] py-8 sm:py-10 p-4  md:py-16 lg:py-24">
             
             {/* Main Mission & Vision part */}
-            <div className="lg:flex justify-between gap-6 max-w-7xl mx-auto ">
+            <div className="lg:flex justify-between  gap-6 max-w-7xl mx-auto ">
 
                 {/* Mission card */}
-                <div className="bg-gradient-to-b from-orange-500/15  to-orange-500/2  space-y-4 p-12  rounded-2xl border border-gray-700">
+                <div className="bg-gradient-to-b from-orange-500/10  to-orange-500/2  space-y-4 p-12  rounded-2xl border border-gray-700">
                                         {/* Icon */}
                     <div className="">
                         <div className="flex items-center justify-center
@@ -17,7 +17,7 @@ const Mission_Vision = () => {
                         sm:w-14 sm:h-14
                         md:w-16 md:h-16
                         lg:w-16 lg:h-16
-                      bg-orange-600/20 rounded-xl
+                      bg-orange-600/15 rounded-xl
                         ">                                        
 
                             <GrEmptyCircle className="text-4xl text-orange-500" />
@@ -29,28 +29,30 @@ const Mission_Vision = () => {
                         To provide accessible, Reliable, And premium transportation solutions to everyone in Bangladesh, Making every journey memorable and hassle-free through technology and superior service.
                     </p>
                 
-                    </div>
+                </div>
+
                 {/* Vision card */}
-                <div className="bg-slate-800/50  space-y-4 p-10 rounded-xl border-l-4 border-l-gray-500">
+                <div className="bg-gradient-to-b from-blue-500/10  to-blue-500/2  space-y-4 p-12  rounded-2xl border border-gray-700 ">
                     {/* Icon */}
                     <div className="">
                         <div className="flex items-center justify-center
-                        w-12 h-12        
-                        sm:w-14 sm:h-14 
-                        md:w-16 md:h-16 
-                        lg:w-12 lg:h-12 
-                      bg-yellow-950 rounded-full
+                        w-14 h-14
+                        sm:w-14 sm:h-14
+                        md:w-16 md:h-16
+                        lg:w-16 lg:h-16
+                      bg-blue-600/15 rounded-xl
                         ">
 
-                            <IoFlagOutline className="text-3xl text-orange-600" />
+                            <IoFlagOutline className="text-4xl text-blue-800 " />
                         </div>
                     </div>
 
+                    <h2 className="text-gray-200 text-3xl lg:text-4xl font-bold">Our Vision</h2>
+                    <p className="text-gray-400 text-md lg:text-lg">
+                        To become the leading mobility platform in South Asia, Setting the standard for quality, Safety, And Sustainability in the vehicle rental industry while empowering local communities.
+                    </p>
 
-                    <h2 className="text-gray-200 text-2xl font-bold">Innovation</h2>
-                    <p className="text-gray-400">From GPS tracking to digital payments, We embrace technology that makes your life easier.</p>
-
-                </div>                       
+                </div>                     
 
             </div>
 
