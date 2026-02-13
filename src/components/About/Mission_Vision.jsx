@@ -1,8 +1,59 @@
+import { GrEmptyCircle } from "react-icons/gr";
+import { IoFlagOutline } from "react-icons/io5";
 
 const Mission_Vision = () => {
     return (
-        <div>
-            <h2>Mission and Vision part</h2>
+        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] py-8 sm:py-10  md:py-16 lg:py-24">
+            
+            {/* Main Mission & Vision part */}
+            <div className="flex justify-between gap-6 max-w-7xl mx-auto ">
+
+                {/* Mission card */}
+                <div className="bg-gradient-to-b from-orange-500/15  to-orange-500/2  space-y-4 p-12  rounded-2xl border border-gray-700">
+                                        {/* Icon */}
+                    <div className="">
+                        <div className="flex items-center justify-center
+                        w-12 h-12
+                        sm:w-14 sm:h-14
+                        md:w-16 md:h-16
+                        lg:w-16 lg:h-16
+                      bg-orange-600/20 rounded-xl
+                        ">                                        
+
+                            <GrEmptyCircle className="text-4xl text-orange-500" />
+                        </div>
+                    </div>
+                                       
+                    <h2 className="text-gray-200 text-4xl font-bold">Our Mission</h2>
+                    <p className="text-gray-400 text-lg">
+                        To provide accessible, Reliable, And premium transportation solutions to everyone in Bangladesh, Making every journey memorable and hassle-free through technology and superior service.
+                    </p>
+                
+                    </div>
+                {/* Vision card */}
+                <div className="bg-slate-800/50  space-y-4 p-10 rounded-xl border-l-4 border-l-gray-500">
+                    {/* Icon */}
+                    <div className="">
+                        <div className="flex items-center justify-center
+                        w-12 h-12        
+                        sm:w-14 sm:h-14 
+                        md:w-16 md:h-16 
+                        lg:w-12 lg:h-12 
+                      bg-yellow-950 rounded-full
+                        ">
+
+                            <IoFlagOutline className="text-3xl text-orange-600" />
+                        </div>
+                    </div>
+
+
+                    <h2 className="text-gray-200 text-2xl font-bold">Innovation</h2>
+                    <p className="text-gray-400">From GPS tracking to digital payments, We embrace technology that makes your life easier.</p>
+
+                </div>                       
+
+            </div>
+
         </div>
     );
 };

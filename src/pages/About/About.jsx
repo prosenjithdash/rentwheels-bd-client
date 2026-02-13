@@ -1,5 +1,6 @@
 import AboutBanner from "../../components/About/AboutBanner";
 import AboutCount from "../../components/About/AboutCount";
+import Mission_Vision from "../../components/About/Mission_Vision";
 import OurStory from "../../components/About/OurStory";
 import WhatDrivesUs from "../../components/About/WhatDrivesUs";
 
@@ -10,7 +11,8 @@ const About = () => {
             <AboutBanner />
             <AboutCount />
             <OurStory />
-            <WhatDrivesUs/>
+            <WhatDrivesUs />
+            <Mission_Vision/>
         </div>
     );
 };
