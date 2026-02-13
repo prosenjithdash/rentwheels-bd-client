@@ -1,3 +1,4 @@
+import Mission_Vision from "../../components/About/Mission_Vision";
 import Categories from "../../components/Categories/Categories";
 import AboutPreview from "../../components/Home/AboutPreview";
 import Vehicles from "../../components/Home/Vehicles";
@@ -30,7 +31,8 @@ const Home = () => {
              */}
             <Vehicles />
             <Features/>
-            <AboutPreview/>
+            <AboutPreview />
+            <Mission_Vision/>
             <Contact/>
             
         </div>
