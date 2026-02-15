@@ -3,10 +3,13 @@ import { IoFlagOutline } from "react-icons/io5";
 
 const Mission_Vision = () => {
     return (
-        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] py-8 sm:py-10 p-4  md:py-16 lg:py-24">
+        <div className="bg-gradient-to-b from-[#0F172A]  via-[#0B1220] to-[#0F172A] py-8 sm:py-10 p-4  md:py-16 lg:py-24">
             
             {/* Main Mission & Vision part */}
-            <div className="lg:flex justify-between  gap-6 max-w-7xl mx-auto ">
+            <div className="
+                flex flex-col lg:flex-row 
+                gap-6 
+                max-w-7xl mx-auto">
 
                 {/* Mission card */}
                 <div className="bg-gradient-to-b from-orange-500/10  to-orange-500/2  space-y-4 p-12  rounded-2xl border border-gray-700">
