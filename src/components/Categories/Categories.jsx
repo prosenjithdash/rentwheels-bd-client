@@ -3,14 +3,16 @@ import CategoryBox from "./CategoryBox";
 // categories part
 const Categories = () => {
     return (
-        <div className=" grid grid-cols-8 gap-5 overflow-x-auto">
-            {
-                categories.map((category,idx) =>
-                    <CategoryBox
-                        key={idx} category={category}
-                    ></CategoryBox>
-                )
-            }
+        <div className="max-w-7xl mx-auto text-center">
+            <div className="text-center  grid grid-cols-8 gap-5 overflow-x-auto ">
+                {
+                    categories.map((category, idx) =>
+                        <CategoryBox
+                            key={idx} category={category}
+                        ></CategoryBox>
+                    )
+                }
+            </div>
         </div>
     );
 };
