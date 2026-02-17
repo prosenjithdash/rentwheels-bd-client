@@ -37,7 +37,7 @@ const Navbar = () => {
     const navLinks = (
         <>
             <li><NavLink className="text-white font-extrabold hover:text-orange-500" to="/">HOME</NavLink></li>
-            <li><NavLink className="text-white font-extrabold hover:text-orange-500" to="/vehicles">VEHICLES</NavLink></li>
+            <li><NavLink className="text-white font-extrabold hover:text-orange-500" to="/vehiclesPage">VEHICLES</NavLink></li>
             <li><NavLink className="text-white font-extrabold hover:text-orange-500" to="/about">ABOUT</NavLink></li>
             <li><NavLink className="text-white font-extrabold hover:text-orange-500" to="/contact">CONTACT</NavLink></li>
         </>

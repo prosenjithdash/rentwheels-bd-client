@@ -18,10 +18,10 @@ import AdminRoute from "./AdminRoute";
 import HostRoute from "./HostRoute";
 import MyBookings from "../pages/Dashboard/Renter/MyBookings";
 import ManageBookings from "../pages/Dashboard/Host/ManageBookings";
-import Vehicles from "../components/Home/Vehicles";
 import Contact from "../pages/Contact/Contact";
 import Features from "../pages/Features/Features";
 import About from "../pages/About/About";
+import VehiclesPage from "../pages/VehiclesPage/VehiclesPage";
 
 export const router = createBrowserRouter([
 
@@ -36,8 +36,8 @@ export const router = createBrowserRouter([
                 element:<Home/>
             },
             {
-                path: 'vehicles',
-                element: <Vehicles/>
+                path: 'vehiclesPage',
+                element: <VehiclesPage/>
             },
             {
                 path: 'vehicle/:id',
