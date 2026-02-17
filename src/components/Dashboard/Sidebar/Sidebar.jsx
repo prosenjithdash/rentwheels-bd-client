@@ -184,7 +184,7 @@ const Sidebar = () => {
           px-3 py-4 space-y-6
           transform transition-transform duration-300
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          md:translate-x-0 md:static
+          md:translate-x-0 md:fixed
         `}
             >
                 {/* Logo (Laptop & Desktop) */}
