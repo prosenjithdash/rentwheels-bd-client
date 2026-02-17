@@ -3,7 +3,15 @@ import CategoryBox from "./CategoryBox";
 // categories part
 const Categories = () => {
     return (
-        <section className="py-16 bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] px-4">
+        <section className="py-20 bg-[#0B1220] px-4 ">
+            {/* Category Title part */}
+            <div className="max-w-2xl mx-auto space-y-4 text-center mb-12">
+                <h2 className="inline-block mx-auto font-bold text-orange-500 rounded-full text-xs sm:text-sm md:text-base py-1 px-4 bg-gray-800 border border-orange-500">Browse by Category</h2>
+
+                <h1 className="text-4xl md:text-4xl lg:text-4xl text-gray-100 font-bold">Find Your Perfect <span className="text-orange-500">Ride</span></h1>
+                <p className="text-gray-400">From bikes to Buses, We have the right vehicle for every journey. Choose your category and start exploring.</p>
+            </div>
+
             <div className="max-w-7xl mx-auto ">
                 <div className=" 
                 grid 

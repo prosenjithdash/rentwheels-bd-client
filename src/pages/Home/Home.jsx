@@ -9,7 +9,7 @@ import Features from "../Features/Features";
 // It's a Home page, Have to here many components .
 const Home = () => {
     return (
-        <div className="mt-[50px]">
+        <div>
             {/* Should be add here helmet for dynamic title name. */}
             {/* 
             <Helmet>

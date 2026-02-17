@@ -36,7 +36,7 @@ const CategoryBox = ({ category }) => {
 
     const handleCategory = () => {
         const url = queryString.stringifyUrl({
-            url: "/",
+            url: "/vehiclesPage",
             query: { category: category.name },
         });
 
