@@ -36,7 +36,7 @@ const CategoryBox = ({ category }) => {
 
     const handleCategory = () => {
         const url = queryString.stringifyUrl({
-            url: "/vehicles",
+            url: "/",
             query: { category: category.name },
         });
 
@@ -46,7 +46,17 @@ const CategoryBox = ({ category }) => {
     return (
         <div
             onClick={handleCategory}
-            className="relative group cursor-pointer w-[260px] h-[300px] rounded-3xl overflow-hidden border border-[#1E293B] shadow-xl hover:shadow-blue-500/30 transition duration-300"
+            className="
+            relative group cursor-pointer 
+            w-full 
+            h-[170px]                 
+            sm:h-[190px] 
+            md:h-[210px] 
+            lg:h-[190px] 
+            rounded-3xl overflow-hidden border border-[#1E293B] 
+            shadow-xl hover:shadow-orange-500/30 
+            transition duration-300
+            "
         >
             {/* Background Image */}
             <img
@@ -59,22 +69,22 @@ const CategoryBox = ({ category }) => {
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-[#0F172A]"></div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white space-y-4">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white space-y-3">
 
                 {/* Icon Box */}
-                <div className="bg-[#1E293B]/80 backdrop-blur-md p-6 rounded-2xl shadow-lg group-hover:scale-110 transition duration-300">
-                    <span className="text-4xl text-blue-400">
+                <div className="bg-[#1E293B]/60 backdrop-blur-md p-3  rounded-xl shadow-lg group-hover:scale-110 transition duration-300">
+                    <span className="text-3xl  text-orange-500">
                         {iconMap[category.icon]}
                     </span>
                 </div>
 
                 {/* Title */}
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-2xl font-bold">
                     {category.name}
                 </h2>
 
                 {/* Description */}
-                <p className="text-gray-300 text-sm text-center px-4">
+                <p className="text-gray-400 text-xs text-center px-3">
                     {category.description}
                 </p>
             </div>
