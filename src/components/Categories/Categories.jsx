@@ -3,17 +3,27 @@ import CategoryBox from "./CategoryBox";
 // categories part
 const Categories = () => {
     return (
-        <div className="max-w-7xl mx-auto text-center">
-            <div className="text-center  grid grid-cols-8 gap-5 overflow-x-auto ">
-                {
-                    categories.map((category, idx) =>
-                        <CategoryBox
-                            key={idx} category={category}
-                        ></CategoryBox>
-                    )
-                }
+        <section className="py-16 bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className=" 
+                grid 
+                grid-cols-1 
+                sm:grid-cols-2 
+                md:grid-cols-3 
+                lg:grid-cols-4 
+                gap-6
+       ">
+                    {
+                        categories.map((category, idx) =>
+                            <CategoryBox
+                                key={idx} category={category}
+                            ></CategoryBox>
+                        )
+                    }
+                </div>
             </div>
-        </div>
+        </section>
+        
     );
 };
 
