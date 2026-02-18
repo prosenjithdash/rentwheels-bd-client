@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 import { categories } from "./CategoriesData";
 import CategoryBox from "./CategoryBox";
+import { FaArrowRight } from "react-icons/fa";
+
 // categories part
 const Categories = () => {
     return (
@@ -30,6 +33,15 @@ const Categories = () => {
                     }
                 </div>
             </div>
+
+            {/* All vehicle button */}
+            <Link to='/'>
+                <button className=" text-orange-500 font-bold text-center max-w-2xl mx-auto flex justify-center px-4   rounded-lg mt-10 items-center gap-2">
+                    <p>View All Vehicles </p>
+
+                    <FaArrowRight />
+                </button>
+            </Link>
         </section>
         
     );
