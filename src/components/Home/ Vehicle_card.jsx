@@ -12,7 +12,7 @@ const Vehicle_card = ({ vehicle }) => {
                 <div className="relative">
                     <img
                         src={imageURL}
-                        alt={title}
+                        alt={category}
                         className="w-full h-56 sm:h-60 md:h-64 lg:h-72 object-cover"
                     />
 
@@ -21,8 +21,39 @@ const Vehicle_card = ({ vehicle }) => {
 
                     {/* Badge */}
                     <span className="absolute top-4 left-4 text-sm sm:text-base bg-orange-500/20 text-orange-400 px-4 py-1.5 rounded-full backdrop-blur-md">
-                        {title}
+                        {category}
                     </span>
+
+                </div>
+
+                {/* Content part */}
+                <div className="p-5 sm:p-6 space-y-4">
+
+                    {/* Title part and rating*/}
+                    <div className="flex justify-center items-center">
+
+                        <div>
+                            {/* Title part */}
+                            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-400">
+                                {title}
+                            </h2>
+
+                            {/* Location */}
+                            <div className="flex items-center gap-2 mt-1 text-gray-400 text-sm sm:text-base">
+                                <IoLocationOutline />
+                                <span>Chittagong</span>
+                            </div>
+
+                        </div>
+
+                        {/* rating part */}
+                        <div className="flex items-center gap-1 text-yellow-400 text-sm sm:text-base">
+                            <FaStar />
+                            <span className="font-semibold text-white">4.9</span>
+                            <span className="text-gray-500 text-xs sm:text-sm">(89 trips)</span>
+                        </div>
+
+                    </div>
 
                 </div>
                 
