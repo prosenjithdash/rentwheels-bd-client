@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { FaHeart, FaStar } from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";
+import { MdSpeed } from "react-icons/md";
+import { BsPeople } from "react-icons/bs";
+import { GiGasPump } from "react-icons/gi";
 
 const Vehicle_card = ({ vehicle }) => {
     const { _id, category, title, price, imageURL } = vehicle;
@@ -6,31 +11,30 @@ const Vehicle_card = ({ vehicle }) => {
     // or card bg color => bg-[#111827]/80 backdrop-blur-lg
     return (
         <Link to={`/vehicle/${_id}`}>
-            <div className=" relative bg-[#0B1A2E] rounded-3xl border border-orange-500/40 overflow-hidden shadow-lg hover:shadow-orange-500/20 transition-all duration-300">
+            <div className=" relative bg-[#0B1A2E] rounded-3xl border border-orange-500/40 overflow-hidden shadow-lg hover:shadow-orange-500/20 hover:-translate-y-2 transform transition-all duration-300 flex flex-col h-full">
                 
                 {/* Image part */}
-                <div className="relative">
+                <div className="relative border-b border-gray-700/40">
                     <img
                         src={imageURL}
                         alt={category}
-                        className="w-full h-56 sm:h-60 md:h-64 lg:h-72 object-cover"
+                        className="w-full h-56 sm:h-60 md:h-64 lg:h-72 object-cover rounded-t-3xl"
                     />
 
                     {/* Dark Bottom Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B1A2E]/40 to-[#0B1A2E]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B1A2E]/40 to-[#0B1A2E] rounded-t-3xl"></div>
 
                     {/* Badge */}
                     <span className="absolute top-4 left-4 text-sm sm:text-base bg-orange-500/20 text-orange-400 px-4 py-1.5 rounded-full backdrop-blur-md">
                         {category}
                     </span>
-
                 </div>
 
                 {/* Content part */}
-                <div className="p-5 sm:p-6 space-y-4">
+                <div className="p-5 sm:p-6 space-y-4 flex flex-col flex-1">
 
                     {/* Title part and rating*/}
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-between items-center">
 
                         <div>
                             {/* Title part */}
@@ -55,11 +59,39 @@ const Vehicle_card = ({ vehicle }) => {
 
                     </div>
 
+                    {/* Features */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm sm:text-base">
+                        <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
+                            <MdSpeed />
+                            Manual
+                        </div>
+
+                        <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
+                            <BsPeople />
+                            2 Seats
+                        </div>
+
+                        <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
+                            <GiGasPump />
+                            Petrol
+                        </div>
+                    </div>
+                    <div className="border-t border-gray-700/40 pt-4 flex justify-between items-center mt-auto">
+
+                        {/* Price */}
+                        <div>
+                            <span className="text-2xl sm:text-3xl font-bold text-orange-500">
+                                ৳1200
+                            </span>
+                            <span className="text-gray-400 text-sm sm:text-base"> /day</span>
+                        </div>
+
+                        {/* Button */}
+                        <button className="bg-[#1E2F4A] text-gray-200 px-5 py-2.5 rounded-xl text-sm sm:text-base hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-md">
+                            Book Now
+                        </button>
+                    </div>
                 </div>
-                
-                <p className="text-sm text-gray-200 mt-2">{category}</p>
-                <h3 className="text-lg md:text-xl font-semibold text-gray-100">{title}</h3>
-                <p className="text-orange-500 font-bold">৳ {price} / day</p>
             </div>
         </Link>
     );

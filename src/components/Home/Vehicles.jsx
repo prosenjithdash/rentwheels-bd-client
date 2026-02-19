@@ -26,10 +26,11 @@ const Vehicles = () => {
 
     // ✅ Render all vehicle cards
     return (
-        <div className=' bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A]'>
+        <div className=' bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] px-4'>
             <h2 className="text-4xl font-extrabold text-white text-center  pt-20 pb-6">All Vehicles</h2>
             {vehicles && vehicles.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-[20px] max-w-7xl mx-auto">
+                // grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 py-[20px] max-w-7xl mx-auto.  
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-[20px] max-w-7xl mx-auto">
                     {vehicles.map(vehicle => (
                         <Vehicle_card key={vehicle._id} vehicle={vehicle} />
                     ))}
