@@ -6,7 +6,7 @@ import { BsPeople } from "react-icons/bs";
 import { GiGasPump } from "react-icons/gi";
 
 const Vehicle_card = ({ vehicle }) => {
-    const { _id, category, title, price, imageURL } = vehicle;
+    const { _id, category, title, price, imageURL ,location, type, mileage, engineCC} = vehicle;
 
     // or card bg color => bg-[#111827]/80 backdrop-blur-lg
     return (
@@ -22,7 +22,8 @@ const Vehicle_card = ({ vehicle }) => {
                     />
 
                     {/* Dark Bottom Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B1A2E]/40 to-[#0B1A2E] rounded-t-3xl"></div>
+                    {/* via-[#0B1A2E]/40 to-[#0B1A2E]  */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B1A2E]/20 to-[#0B1A2E] rounded-t-3xl"></div>
 
                     {/* Badge */}
                     <span className="absolute top-4 left-4 text-sm sm:text-base bg-orange-500/20 text-orange-400 px-4 py-1.5 rounded-full backdrop-blur-md">
@@ -45,17 +46,17 @@ const Vehicle_card = ({ vehicle }) => {
                             {/* Location */}
                             <div className="flex items-center gap-2 mt-1 text-gray-400 text-sm sm:text-base">
                                 <IoLocationOutline />
-                                <span>Chittagong</span>
+                                <span>{location}</span>
                             </div>
 
                         </div>
 
                         {/* rating part */}
-                        <div className="flex items-center gap-1 text-yellow-400 text-sm sm:text-base">
+                        {/* <div className="flex items-center gap-1 text-yellow-400 text-sm sm:text-base">
                             <FaStar />
                             <span className="font-semibold text-white">4.9</span>
                             <span className="text-gray-500 text-xs sm:text-sm">(89 trips)</span>
-                        </div>
+                        </div> */}
 
                     </div>
 
@@ -63,7 +64,7 @@ const Vehicle_card = ({ vehicle }) => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm sm:text-base">
                         <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
                             <MdSpeed />
-                            Manual
+                            {type}
                         </div>
 
                         <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
@@ -81,15 +82,17 @@ const Vehicle_card = ({ vehicle }) => {
                         {/* Price */}
                         <div>
                             <span className="text-2xl sm:text-3xl font-bold text-orange-500">
-                                ৳1200
+                                ৳{price}
                             </span>
                             <span className="text-gray-400 text-sm sm:text-base"> /day</span>
                         </div>
 
                         {/* Button */}
-                        <button className="bg-[#1E2F4A] text-gray-200 px-5 py-2.5 rounded-xl text-sm sm:text-base hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-md">
-                            Book Now
-                        </button>
+                        <Link to={`/vehicle/${_id}`}>
+                            <button className="bg-[#1E2F4A] text-gray-200 px-5 py-2.5 rounded-xl text-sm sm:text-base hover:bg-orange-500 hover:text-white transition-all duration-300 shadow-md">
+                                Book Now
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
