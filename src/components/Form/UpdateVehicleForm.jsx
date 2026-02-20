@@ -15,23 +15,6 @@ const UpdateVehicleForm = (
             <form onSubmit={handleSubmit}>
                 <div className='grid grid-cols-1 gap-10'>
 
-                    {/* Location */}
-                    <div className='space-y-1 text-sm'>
-                        <label htmlFor='location' className='block text-gray-600'>
-                            Location
-                        </label>
-                        <input
-                            className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
-                            name='location'
-                            id='location'
-                            type='text'
-                            value={vehicleData?.location}
-                            onChange={(e)=>setVehicleData({...vehicleData, location: e.target.value})}
-                            placeholder='Location'
-                            required
-                        />
-                    </div>
-
                     {/* Title */}
                     <div className='space-y-1 text-sm'>
                         <label htmlFor='title' className='block text-gray-600'>
@@ -45,6 +28,23 @@ const UpdateVehicleForm = (
                             value={vehicleData?.title}
                             onChange={(e) => setVehicleData({ ...vehicleData, title: e.target.value })}
                             placeholder='Title'
+                            required
+                        />
+                    </div>
+
+                    {/* Location */}
+                    <div className='space-y-1 text-sm'>
+                        <label htmlFor='location' className='block text-gray-600'>
+                            Location
+                        </label>
+                        <input
+                            className='w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md '
+                            name='location'
+                            id='location'
+                            type='text'
+                            value={vehicleData?.location}
+                            onChange={(e)=>setVehicleData({...vehicleData, location: e.target.value})}
+                            placeholder='Location'
                             required
                         />
                     </div>
@@ -101,6 +101,7 @@ const UpdateVehicleForm = (
                         </div>
                     </div> */}
 
+                    {/* Category & Price update*/}
                     <div className='flex justify-between gap-2'>
 
                         {/* {Category} */}
@@ -167,6 +168,7 @@ const UpdateVehicleForm = (
                         </div>
                     </div>
 
+                    {/* Engine cc  & Mileage update*/}
                     <div className='flex justify-between gap-2'>
 
                         {/* Engine CC */}
@@ -195,6 +197,40 @@ const UpdateVehicleForm = (
                                 value={vehicleData?.mileage}
                                 onChange={(e) => setVehicleData({ ...vehicleData, mileage: e.target.value })}
                                 placeholder="20 km/l"
+                                className="w-full border border-gray-300 rounded-lg p-3"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Seats & FuelType update*/}
+                    <div className='flex justify-between gap-2'>
+
+                        {/* Seats */}
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-2">
+                                Seats
+                            </label>
+                            <input
+                                name="seats"
+                                type="number"
+                                value={vehicleData?.seats}
+                                onChange={(e) => setVehicleData({ ...vehicleData, seats: e.target.value })}
+                                placeholder="02"
+                                className="w-full border border-gray-300 rounded-lg p-3"
+                            />
+                        </div>
+
+                        {/* FuelType */}
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-2">
+                                Fuel Type
+                            </label>
+                            <input
+                                name="fuelType"
+                                type="text"
+                                value={vehicleData?.fuelType}
+                                onChange={(e) => setVehicleData({ ...vehicleData, fuelType: e.target.value })}
+                                placeholder="Petrol"
                                 className="w-full border border-gray-300 rounded-lg p-3"
                             />
                         </div>

@@ -54,6 +54,9 @@ const AddVehicle = () => {
         const type = e.target.type.value;
         const engineCC = e.target.engineCC.value;
         const mileage = e.target.mileage.value;
+        const seats = e.target.seats.value;
+        const fuelType = e.target.fuelType.value;
+        
         const description = e.target.description.value;
         const to = dates.endDate
         const from = dates.startDate
@@ -74,6 +77,8 @@ const AddVehicle = () => {
                 type,
                 engineCC,
                 mileage,
+                seats,
+                fuelType,
                 description,
                 to,
                 from,
@@ -219,6 +224,33 @@ const AddVehicle = () => {
                                 name="mileage"
                                 type="text"
                                 placeholder="20 km/l"
+                                className="w-full border border-gray-300 rounded-lg p-3"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Seats  & FuelType */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-2">
+                                Seats
+                            </label>
+                            <input
+                                name="seats"
+                                type="number"
+                                placeholder="02"
+                                className="w-full border border-gray-300 rounded-lg p-3"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-gray-700 font-medium mb-2">
+                                Fuel Type
+                            </label>
+                            <input
+                                name="fuelType"
+                                type="text"
+                                placeholder="Petrol"
                                 className="w-full border border-gray-300 rounded-lg p-3"
                             />
                         </div>
