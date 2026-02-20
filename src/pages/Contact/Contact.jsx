@@ -31,7 +31,7 @@ const Contact = () => {
                             {/* Text */}
                             <div>
                                 <h3 className="text-sm text-gray-400">CALL US</h3>
-                                <p className="text-md sm:text-2xl font-extrabold text-white">
+                                <p className="text-md sm:text-lg font-extrabold text-white">
                                     +8801724154911
                                 </p>
                             </div>
@@ -52,7 +52,7 @@ const Contact = () => {
                             {/* Text */}
                             <div>
                                 <h3 className="text-sm text-gray-400">EMAIL US</h3>
-                                <p className="text-md sm:text-2xl font-extrabold text-white">
+                                <p className="text-md sm:text-lg font-extrabold text-white">
                                     support@rentwheels_bd.com
                                 </p>
                             </div>
@@ -72,7 +72,7 @@ const Contact = () => {
                             {/* Text */}
                             <div>
                                 <h3 className="text-sm text-gray-400">VISIT US</h3>
-                                <p className="text-md sm:text-2xl font-extrabold text-white">
+                                <p className="text-md sm:text-lg font-extrabold text-white">
                                     Dhaka, Bangladesh
                                 </p>
                             </div>
