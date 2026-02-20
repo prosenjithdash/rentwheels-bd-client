@@ -6,7 +6,7 @@ import { BsPeople } from "react-icons/bs";
 import { GiGasPump } from "react-icons/gi";
 
 const Vehicle_card = ({ vehicle }) => {
-    const { _id, category, title, price, imageURL ,location, type, mileage, engineCC} = vehicle;
+    const { _id, category, title, price, imageURL, location, type, mileage, engineCC, seats ,fuelType} = vehicle;
 
     // or card bg color => bg-[#111827]/80 backdrop-blur-lg
     return (
@@ -69,12 +69,12 @@ const Vehicle_card = ({ vehicle }) => {
 
                         <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
                             <BsPeople />
-                            2 Seats
+                            {seats} Seats
                         </div>
 
                         <div className="flex items-center justify-center gap-2 bg-[#12233A] text-gray-300 py-2 rounded-xl">
                             <GiGasPump />
-                            Petrol
+                            {fuelType}
                         </div>
                     </div>
                     <div className="border-t border-gray-700/40 pt-4 flex justify-between items-center mt-auto">
