@@ -71,25 +71,66 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
             </div>
 
             {/* Top Image Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-                <div className="md:col-span-2">
+            {/* Modern Premium Gallery */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+
+                {/* Main Image */}
+                <div className="lg:col-span-2 overflow-hidden rounded-3xl shadow-xl">
                     <img
                         src={imageURL}
-                        alt="Main Vehicle"
-                        className="hover:scale-105 transition-transform duration-500 rounded-xl w-full h-[400px] object-cover"
+                        alt="Main Bike"
+                        className="w-full h-[320px] sm:h-[420px] lg:h-[520px] object-cover transition duration-700 hover:scale-105"
                     />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                    {[...Array(4)].map((_, idx) => (
+
+                {/* Thumbnail Section */}
+                <div className="grid grid-cols-2 gap-5">
+
+                    {/* Thumb 1 */}
+                    <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition">
                         <img
-                            key={idx}
                             src={imageURL}
-                            alt={`Vehicle View ${idx + 1}`}
-                            className="rounded-xl h-[190px] w-full object-cover hover:scale-105 transition-transform duration-500"
+                            alt="Angle 1"
+                            className="w-full h-[150px] sm:h-[190px] lg:h-[250px] object-cover object-left scale-110"
                         />
-                    ))}
+                    </div>
+
+                    {/* Thumb 2 */}
+                    <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition">
+                        <img
+                            src={imageURL}
+                            alt="Angle 2"
+                            className="w-full h-[150px] sm:h-[190px] lg:h-[250px] object-cover object-right scale-110"
+                        />
+                    </div>
+
+                    {/* Thumb 3 */}
+                    <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition">
+                        <img
+                            src={imageURL}
+                            alt="Angle 3"
+                            className="w-full h-[150px] sm:h-[190px] lg:h-[250px] object-cover"
+                            style={{ objectPosition: "center top", transform: "scale(1.2)" }}
+                        />
+                    </div>
+
+                    {/* Thumb 4 */}
+                    <div className="overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition relative group cursor-pointer">
+                        <img
+                            src={imageURL}
+                            alt="More"
+                            className="w-full h-[150px] sm:h-[190px] lg:h-[250px] object-cover brightness-75 group-hover:brightness-50 transition"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center text-white text-xl font-semibold">
+                            View All
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+
+
 
             {/* Vehicle Specs + Booking Section */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
