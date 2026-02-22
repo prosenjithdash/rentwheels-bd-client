@@ -145,9 +145,6 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                     </div>
                 </div>
 
-
-
-
                 {/* Vehicle Specs + Booking Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left side content */}
@@ -185,6 +182,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                             </div>
                         </div>
 
+                        {/* Specifications */}
                         <div>
 
                             {/* Title */}
@@ -261,16 +259,15 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                             
 
                         </div>
-                       
-                            
-                       
 
+                        {/* Vehicle Details */}
+                        <div>
+                            <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 my-10 
+                         transition duration-300 hover:border-orange-500/40 space-y-2">
+                                <h3 className="text-xl font-semibold text-gray-200">About this Vehicle</h3>
+                                <p className="text-gray-400">{description}</p>
 
-
-                        {/* Description */}
-                        <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6">
-                            <h2 className="text-xl font-semibold mb-3">Description</h2>
-                            <p className="text-gray-700 leading-relaxed">{description}</p>
+                            </div>
                         </div>
 
                         {/* Host Details */}
