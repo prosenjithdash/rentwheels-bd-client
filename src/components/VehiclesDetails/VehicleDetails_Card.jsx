@@ -76,19 +76,12 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
         state[0].startDate <= state[0].endDate;
 
     return (
-        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] px-4 ">
-            <div className="max-w-7xl mx-auto px-4 py-10 ">
-                {/* Title & Subtitle */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-extrabold text-gray-900">{title}</h1>
-                    {/* <p className="text-gray-600">
-                        Happy ride or driving. Make sure to have a safe journey!
-                    </p> */}
-                </div>
-
+        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] px-4 py-10">
+            <div className="max-w-7xl mx-auto px-4 ">
+                
                 {/* Top Image Grid */}
                 {/* Modern Premium Gallery */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 bg-[#0B1A2E] p-4 rounded-2xl shadow-2xl hover:shadow-orange-500/30 border border-gray-700/30">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 bg-[#0B1A2E] p-4 rounded-2xl shadow-xl hover:shadow-orange-500/30 border border-gray-700/30  shadow-transparent">
 
                     {/* Main Image */}
                     <div className="lg:col-span-2 overflow-hidden rounded-3xl shadow-xl">
@@ -270,22 +263,35 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                             </div>
                         </div>
 
+                        {/* Host Details*/}
                         {/* Host Details */}
-                        <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6 flex items-center gap-4">
+                        <div className="flex items-center gap-4 
+                    bg-[#0f1c2e] border border-white/10 
+                    rounded-xl p-5
+                    transition duration-300 hover:border-orange-500/40">
+
+                            {/* Image */}
                             <img
                                 referrerPolicy="no-referrer"
                                 src={host?.image}
                                 alt="Host"
-                                className="w-14 h-14 rounded-full object-cover"
+                                className="w-16 h-16 rounded-full object-cover"
                             />
-                            <div>
-                                <h3 className="font-semibold text-gray-900">{host?.name}</h3>
-                                <p className="text-gray-600 text-sm">Joined in 2025</p>
-                                <p className="text-sm text-yellow-500 font-medium">
-                                    ★ 4.9 (530 reviews)
+
+                            {/* Content */}
+                            <div className="flex flex-col justify-center">
+                                <h3 className="font-semibold text-white text-lg">
+                                    {host?.name}
+                                </h3>
+
+                                <p className="text-gray-400 text-sm">
+                                    {host?.email}
                                 </p>
+
                             </div>
+
                         </div>
+
                     </div>
 
                     {/* Booking Section */}
