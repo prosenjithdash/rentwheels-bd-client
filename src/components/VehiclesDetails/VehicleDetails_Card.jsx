@@ -32,6 +32,8 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
         type,
         engineCC,
         mileage,
+        seats,
+        fuelType,
         from,
         to,
         host,
@@ -190,6 +192,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
 
                             {/* Specification cards */}
                             <div>
+
                                 {/* Engine */}
                                 <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
                          flex flex-col items-center text-center 
@@ -197,11 +200,6 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     <Gauge className="text-orange-500 mb-6"/>
                                     <p className="text-gray-400 tracking-widest text-sm mb-3">ENGINE</p>
                                     <p className="text-white text-2xl font-semibold">{engineCC} CC</p>
-                                    {/* <Fuel/>
-                                    <Droplet/>
-                                    <Users/>
-                                    <SlidersHorizontal/>
-                                    <Tag/> */}
 
                                 </div>
 
@@ -212,8 +210,25 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     <Fuel className="text-orange-500 mb-6" />
                                     <p className="text-gray-400 tracking-widest text-sm mb-3">MILEAGE</p>
                                     <p className="text-white text-2xl font-semibold">{mileage} km/l</p>
+
                                     {/* 
                                     <Droplet/>
+                                    <Users/>
+                                    <SlidersHorizontal/>
+                                    <Tag/> */}
+
+                                </div>
+
+                                {/* Fuel Type */}
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                         flex flex-col items-center text-center 
+                         transition duration-300 hover:border-orange-500/40">
+                                    <Droplet className="text-orange-500 mb-6" />
+                                    <p className="text-gray-400 tracking-widest text-sm mb-3">FUEL TYPE</p>
+                                    <p className="text-white text-2xl font-semibold">{fuelType}</p>
+
+                                    {/* 
+                                    </>
                                     <Users/>
                                     <SlidersHorizontal/>
                                     <Tag/> */}
