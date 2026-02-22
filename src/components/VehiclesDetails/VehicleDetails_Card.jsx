@@ -235,6 +235,22 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
 
                                 </div>
 
+                                {/* Seats */}
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                         flex flex-col items-center text-center 
+                         transition duration-300 hover:border-orange-500/40">
+                                    <Users className="text-orange-500 mb-6" />
+                                    <p className="text-gray-400 tracking-widest text-sm mb-3">SEATS</p>
+                                    <p className="text-white text-2xl font-semibold">{seats}</p>
+
+                                    {/* 
+                                    </>
+                                    </>
+                                    <SlidersHorizontal/>
+                                    <Tag/> */}
+
+                                </div>
+
                             </div>
 
                             
