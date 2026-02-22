@@ -6,7 +6,14 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import BookingModal from "../Dashboard/Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
 import { Divide } from "lucide-react";
-
+import {
+    Gauge,
+    Fuel,
+    Droplet,
+    Users,
+    SlidersHorizontal,
+    Tag
+} from "lucide-react";
 import { IoLocationOutline } from "react-icons/io5";
 
 const VehicleDetails_Card = ({ vehicle, refetch }) => {
@@ -151,9 +158,8 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                 <p className="border border-orange-500 px-2 text-orange-500 rounded-2xl text-[12px]  ml-6
                                 ">{category}</p>
                             </div>
-
-
                         </div>
+
                         {/* Vehicle Specs */}
                         {/* <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6">
                             <h2 className="text-xl font-semibold mb-4">
@@ -174,6 +180,56 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                 </div>
                             </div>
                         </div> */}
+
+                        <div className="">
+
+                            {/* Title */}
+                            <h2 className="text-white text-4xl font-bold mb-12">
+                                Specifications
+                            </h2>
+
+                            {/* Specification cards */}
+                            <div>
+                                {/* Engine */}
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                         flex flex-col items-center text-center 
+                         transition duration-300 hover:border-orange-500/40">
+                                    <Gauge className="text-orange-500 mb-6"/>
+                                    <p className="text-gray-400 tracking-widest text-sm mb-3">ENGINE</p>
+                                    <p className="text-white text-2xl font-semibold">{engineCC} CC</p>
+                                    {/* <Fuel/>
+                                    <Droplet/>
+                                    <Users/>
+                                    <SlidersHorizontal/>
+                                    <Tag/> */}
+
+                                </div>
+
+                                {/* Mileage */}
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                         flex flex-col items-center text-center 
+                         transition duration-300 hover:border-orange-500/40">
+                                    <Fuel className="text-orange-500 mb-6" />
+                                    <p className="text-gray-400 tracking-widest text-sm mb-3">MILEAGE</p>
+                                    <p className="text-white text-2xl font-semibold">{mileage} km/l</p>
+                                    {/* 
+                                    <Droplet/>
+                                    <Users/>
+                                    <SlidersHorizontal/>
+                                    <Tag/> */}
+
+                                </div>
+
+                            </div>
+
+                            
+
+                        </div>
+                       
+                            
+                       
+
+
 
                         {/* Description */}
                         <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6">
