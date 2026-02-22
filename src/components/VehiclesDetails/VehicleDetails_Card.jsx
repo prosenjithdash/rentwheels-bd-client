@@ -7,6 +7,8 @@ import BookingModal from "../Dashboard/Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
 import { Divide } from "lucide-react";
 
+import { IoLocationOutline } from "react-icons/io5";
+
 const VehicleDetails_Card = ({ vehicle, refetch }) => {
     const{user}= useAuth()
 
@@ -62,7 +64,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
         state[0].startDate <= state[0].endDate;
 
     return (
-        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] px-4">
+        <div className="bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] px-4 ">
             <div className="max-w-7xl mx-auto px-4 py-10 ">
                 {/* Title & Subtitle */}
                 <div className="mb-8">
@@ -74,7 +76,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
 
                 {/* Top Image Grid */}
                 {/* Modern Premium Gallery */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 bg-[#0B1A2E] p-4 rounded-2xl shadow-2xl hover:shadow-orange-500/30 border border-gray-700/30">
 
                     {/* Main Image */}
                     <div className="lg:col-span-2 overflow-hidden rounded-3xl shadow-xl">
@@ -138,8 +140,22 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left side content */}
                     <div className="lg:col-span-2 space-y-6">
+                        <div className="">
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-50 font-bold">{title}</h2>
+
+                            {/* Location icon and name */}
+                            <div className="flex gap-2 justify-start items-center space-y-2">
+                                {/* location icon */}
+                                <IoLocationOutline className="text-orange-500 text-[18px]"/>
+                                <p className="text-gray-400 text-[18px]">{location}</p>
+                                <p className="border border-orange-500 px-2 text-orange-500 rounded-2xl  text-[12px] ml-10
+                                ">{category}</p>
+                            </div>
+
+
+                        </div>
                         {/* Vehicle Specs */}
-                        <div className="bg-white shadow-md rounded-xl p-6">
+                        {/* <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6">
                             <h2 className="text-xl font-semibold mb-4">
                                 Vehicle Specifications
                             </h2>
@@ -157,16 +173,16 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     <p>{type}</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Description */}
-                        <div className="bg-white shadow-md rounded-xl p-6">
+                        <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6">
                             <h2 className="text-xl font-semibold mb-3">Description</h2>
                             <p className="text-gray-700 leading-relaxed">{description}</p>
                         </div>
 
                         {/* Host Details */}
-                        <div className="bg-white shadow-md rounded-xl p-6 flex items-center gap-4">
+                        <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6 flex items-center gap-4">
                             <img
                                 referrerPolicy="no-referrer"
                                 src={host?.image}
@@ -184,7 +200,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                     </div>
 
                     {/* Booking Section */}
-                    <div className="bg-white shadow-md rounded-xl p-6 h-fit">
+                    <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6 h-fit">
                         <h2 className="text-lg font-semibold mb-4">Book This Vehicle</h2>
                         <div className="space-y-4">
                             <p className="text-sm text-gray-500">
