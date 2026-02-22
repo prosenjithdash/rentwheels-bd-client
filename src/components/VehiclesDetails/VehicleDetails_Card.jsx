@@ -227,12 +227,6 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     <p className="text-gray-400 tracking-widest text-sm mb-3">FUEL TYPE</p>
                                     <p className="text-white text-2xl font-semibold">{fuelType}</p>
 
-                                    {/* 
-                                    </>
-                                    <Users/>
-                                    <SlidersHorizontal/>
-                                    <Tag/> */}
-
                                 </div>
 
                                 {/* Seats */}
@@ -243,13 +237,34 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     <p className="text-gray-400 tracking-widest text-sm mb-3">SEATS</p>
                                     <p className="text-white text-2xl font-semibold">{seats}</p>
 
+                                </div>
+
+                                {/* TYPE */}
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                         flex flex-col items-center text-center 
+                         transition duration-300 hover:border-orange-500/40">
+                                    <SlidersHorizontal className="text-orange-500 mb-6" />
+                                    <p className="text-gray-400 tracking-widest text-sm mb-3">TYPE</p>
+                                    <p className="text-white text-2xl font-semibold">{type}</p>
+
                                     {/* 
                                     </>
                                     </>
-                                    <SlidersHorizontal/>
+                                    </>
                                     <Tag/> */}
 
                                 </div>
+
+                                {/* CATEGORY */}
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                         flex flex-col items-center text-center 
+                         transition duration-300 hover:border-orange-500/40">
+                                    <Tag className="text-orange-500 mb-6" />
+                                    <p className="text-gray-400 tracking-widest text-sm mb-3">CATEGORY</p>
+                                    <p className="text-white text-2xl font-semibold">{category}</p>
+
+                                </div>
+
 
                             </div>
 
