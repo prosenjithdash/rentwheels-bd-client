@@ -140,15 +140,15 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Left side content */}
                     <div className="lg:col-span-2 space-y-6">
-                        <div className="">
+                        <div className="space-y-2">
                             <h2 className="text-2xl md:text-3xl lg:text-4xl text-gray-50 font-bold">{title}</h2>
 
                             {/* Location icon and name */}
-                            <div className="flex gap-2 justify-start items-center space-y-2">
+                            <div className="flex gap-1 justify-start items-center ">
                                 {/* location icon */}
-                                <IoLocationOutline className="text-orange-500 text-[18px]"/>
-                                <p className="text-gray-400 text-[18px]">{location}</p>
-                                <p className="border border-orange-500 px-2 text-orange-500 rounded-2xl  text-[12px] ml-10
+                                <IoLocationOutline className="text-orange-500 text-md"/>
+                                <p className="text-gray-400 text-md">{location}</p>
+                                <p className="border border-orange-500 px-2 text-orange-500 rounded-2xl text-[12px]  ml-6
                                 ">{category}</p>
                             </div>
 
