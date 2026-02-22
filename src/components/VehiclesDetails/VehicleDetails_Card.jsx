@@ -6,6 +6,9 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import BookingModal from "../Dashboard/Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
 import { Divide } from "lucide-react";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaLongArrowAltRight } from "react-icons/fa";
+
 import {
     Gauge,
     Fuel,
@@ -162,106 +165,93 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                             </div>
                         </div>
 
-                        {/* Vehicle Specs */}
-                        {/* <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6">
-                            <h2 className="text-xl font-semibold mb-4">
-                                Vehicle Specifications
-                            </h2>
-                            <div className="grid grid-cols-3 gap-4 text-gray-700">
-                                <div>
-                                    <p className="font-semibold">Engine</p>
-                                    <p>{engineCC}</p>
+                        {/* Available dates */}
+                        <div>
+                            <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 my-10 
+                         transition duration-300 hover:border-orange-500/40 ">
+                                <div className=" flex gap-3 items-center">
+                                    {/* Calender icon */}
+                                    <div className="bg-gray-800 transform p-3 w-10 rounded-xl">
+                                        <FaCalendarAlt className="text-orange-500 " />
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-500 text-sm">AVAILABILITY</p>
+                                        <p className="text-gray-200 flex items-center gap-3">{from} <FaLongArrowAltRight/> { to}</p>
+                                    </div>
+                                    
+                                    
                                 </div>
-                                <div>
-                                    <p className="font-semibold">Mileage</p>
-                                    <p>{mileage}</p>
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Type</p>
-                                    <p>{type}</p>
-                                </div>
-                            </div>
-                        </div> */}
 
-                        <div className="">
+                            </div>
+                        </div>
+
+                        <div>
 
                             {/* Title */}
-                            <h2 className="text-white text-4xl font-bold mb-12">
+                            <h2 className="text-white text-xl font-bold mb-4">
                                 Specifications
                             </h2>
-
+        
                             {/* Specification cards */}
-                            <div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
                                 {/* Engine */}
-                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 
                          flex flex-col items-center text-center 
-                         transition duration-300 hover:border-orange-500/40">
-                                    <Gauge className="text-orange-500 mb-6"/>
-                                    <p className="text-gray-400 tracking-widest text-sm mb-3">ENGINE</p>
-                                    <p className="text-white text-2xl font-semibold">{engineCC} CC</p>
+                         transition duration-300 hover:border-orange-500/40 ">
+                                    <Gauge className="text-orange-500 mb-4"/>
+                                    <p className="text-gray-500 tracking-widest text-sm mb-2">ENGINE</p>
+                                    <p className="text-white text-sm font-semibold">{engineCC} CC</p>
 
                                 </div>
 
                                 {/* Mileage */}
-                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 
                          flex flex-col items-center text-center 
                          transition duration-300 hover:border-orange-500/40">
-                                    <Fuel className="text-orange-500 mb-6" />
-                                    <p className="text-gray-400 tracking-widest text-sm mb-3">MILEAGE</p>
-                                    <p className="text-white text-2xl font-semibold">{mileage} km/l</p>
-
-                                    {/* 
-                                    <Droplet/>
-                                    <Users/>
-                                    <SlidersHorizontal/>
-                                    <Tag/> */}
+                                    <Fuel className="text-orange-500 mb-4" />
+                                    <p className="text-gray-500 tracking-widest text-sm mb-2">MILEAGE</p>
+                                    <p className="text-white text-sm font-semibold">{mileage} km/l</p>
 
                                 </div>
 
                                 {/* Fuel Type */}
-                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 
                          flex flex-col items-center text-center 
                          transition duration-300 hover:border-orange-500/40">
-                                    <Droplet className="text-orange-500 mb-6" />
-                                    <p className="text-gray-400 tracking-widest text-sm mb-3">FUEL TYPE</p>
-                                    <p className="text-white text-2xl font-semibold">{fuelType}</p>
+                                    <Droplet className="text-orange-500 mb-4" />
+                                    <p className="text-gray-500 tracking-widest text-sm mb-2">FUEL TYPE</p>
+                                    <p className="text-white text-sm font-semibold">{fuelType}</p>
 
                                 </div>
 
                                 {/* Seats */}
-                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 
                          flex flex-col items-center text-center 
                          transition duration-300 hover:border-orange-500/40">
-                                    <Users className="text-orange-500 mb-6" />
-                                    <p className="text-gray-400 tracking-widest text-sm mb-3">SEATS</p>
-                                    <p className="text-white text-2xl font-semibold">{seats}</p>
+                                    <Users className="text-orange-500 mb-4" />
+                                    <p className="text-gray-500 tracking-widest text-sm mb-2">SEATS</p>
+                                    <p className="text-white text-sm font-semibold">{seats}</p>
 
                                 </div>
 
                                 {/* TYPE */}
-                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 
                          flex flex-col items-center text-center 
                          transition duration-300 hover:border-orange-500/40">
-                                    <SlidersHorizontal className="text-orange-500 mb-6" />
-                                    <p className="text-gray-400 tracking-widest text-sm mb-3">TYPE</p>
-                                    <p className="text-white text-2xl font-semibold">{type}</p>
-
-                                    {/* 
-                                    </>
-                                    </>
-                                    </>
-                                    <Tag/> */}
+                                    <SlidersHorizontal className="text-orange-500 mb-4" />
+                                    <p className="text-gray-500 tracking-widest text-sm mb-2">TYPE</p>
+                                    <p className="text-white text-sm font-semibold">{type}</p>
 
                                 </div>
 
                                 {/* CATEGORY */}
-                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-10 
+                                <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 
                          flex flex-col items-center text-center 
                          transition duration-300 hover:border-orange-500/40">
-                                    <Tag className="text-orange-500 mb-6" />
-                                    <p className="text-gray-400 tracking-widest text-sm mb-3">CATEGORY</p>
-                                    <p className="text-white text-2xl font-semibold">{category}</p>
+                                    <Tag className="text-orange-500 mb-4" />
+                                    <p className="text-gray-500 tracking-widest text-sm mb-2">CATEGORY</p>
+                                    <p className="text-white text-sm font-semibold">{category}</p>
 
                                 </div>
 
