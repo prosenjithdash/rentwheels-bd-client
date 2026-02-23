@@ -195,7 +195,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                          transition duration-300 hover:border-orange-500/40 ">
                                     <Gauge className="text-orange-500 mb-4"/>
                                     <p className="text-gray-500 tracking-widest text-sm mb-2">ENGINE</p>
-                                    <p className="text-white text-sm font-semibold">{engineCC} CC</p>
+                                    <p className="text-white text-sm font-semibold">{engineCC || "None"} CC</p>
 
                                 </div>
 
@@ -205,7 +205,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                          transition duration-300 hover:border-orange-500/40">
                                     <Fuel className="text-orange-500 mb-4" />
                                     <p className="text-gray-500 tracking-widest text-sm mb-2">MILEAGE</p>
-                                    <p className="text-white text-sm font-semibold">{mileage} km/l</p>
+                                    <p className="text-white text-sm font-semibold">{mileage || "None"} km/l</p>
 
                                 </div>
 
@@ -215,7 +215,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                          transition duration-300 hover:border-orange-500/40">
                                     <Droplet className="text-orange-500 mb-4" />
                                     <p className="text-gray-500 tracking-widest text-sm mb-2">FUEL TYPE</p>
-                                    <p className="text-white text-sm font-semibold">{fuelType}</p>
+                                    <p className="text-white text-sm font-semibold ">{fuelType || "None"}</p>
 
                                 </div>
 
@@ -225,7 +225,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                          transition duration-300 hover:border-orange-500/40">
                                     <Users className="text-orange-500 mb-4" />
                                     <p className="text-gray-500 tracking-widest text-sm mb-2">SEATS</p>
-                                    <p className="text-white text-sm font-semibold">{seats}</p>
+                                    <p className="text-white text-sm font-semibold">{seats || "None"}</p>
 
                                 </div>
 
@@ -235,7 +235,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                          transition duration-300 hover:border-orange-500/40">
                                     <SlidersHorizontal className="text-orange-500 mb-4" />
                                     <p className="text-gray-500 tracking-widest text-sm mb-2">TYPE</p>
-                                    <p className="text-white text-sm font-semibold">{type}</p>
+                                    <p className="text-white text-sm font-semibold">{type || "None"}</p>
 
                                 </div>
 
@@ -245,7 +245,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                          transition duration-300 hover:border-orange-500/40">
                                     <Tag className="text-orange-500 mb-4" />
                                     <p className="text-gray-500 tracking-widest text-sm mb-2">CATEGORY</p>
-                                    <p className="text-white text-sm font-semibold">{category}</p>
+                                    <p className="text-white text-sm font-semibold">{category || "None"}</p>
 
                                 </div>
 
@@ -298,7 +298,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                     </div>
 
                     {/* Booking Section */}
-                    <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 h-fit
+                    <div className=" bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 h-fit
                          transition duration-300 hover:border-orange-500/40 ">
                         <div className="space-y-1 mb-5">
                             <h2 className="text-xl text-gray-200 font-bold ">Book This Vehicle</h2>
