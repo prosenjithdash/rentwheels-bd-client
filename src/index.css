@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ===== FULL DARK CALENDAR ===== */
+
+.custom-dark-calendar .rdrCalendarWrapper,
+.custom-dark-calendar .rdrMonth,
+.custom-dark-calendar .rdrMonthAndYearWrapper,
+.custom-dark-calendar .rdrMonths,
+.custom-dark-calendar .rdrDateDisplayWrapper,
+.custom-dark-calendar .rdrDefinedRangesWrapper,
+.custom-dark-calendar .rdrDateDisplay,
+.custom-dark-calendar .rdrMonthPicker,
+.custom-dark-calendar .rdrYearPicker {
+    background-color: #0f1c2e !important;
+    color: white !important;
+}
+
+/* Remove white day background */
+.custom-dark-calendar .rdrDay {
+    background: transparent !important;
+}
+
+/* Day text */
+.custom-dark-calendar .rdrDayNumber span {
+    color: white !important;
+}
+
+/* Disabled days */
+.custom-dark-calendar .rdrDayPassive span {
+    color: #6b7280 !important;
+}
+
+/* Selected range */
+.custom-dark-calendar .rdrDaySelected,
+.custom-dark-calendar .rdrDayStartEdge,
+.custom-dark-calendar .rdrDayEndEdge,
+.custom-dark-calendar .rdrInRange {
+    background: #f97316 !important;
+    color: white !important;
+}
+
+/* Navigation arrows */
+.custom-dark-calendar .rdrNextPrevButton {
+    background: transparent !important;
+}

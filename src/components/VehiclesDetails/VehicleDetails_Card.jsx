@@ -1,8 +1,11 @@
 import { differenceInCalendarDays } from "date-fns";
 import { useState, useEffect } from "react";
 import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main css file
-import "react-date-range/dist/theme/default.css"; // theme css file
+import "react-date-range/dist/styles.css";
+import "react-date-range/dist/theme/default.css";
+import "../../index.css";
+  // 👈 MUST be AFTER
+
 import BookingModal from "../Dashboard/Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
 import { Divide } from "lucide-react";
@@ -139,7 +142,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                 </div>
 
                 {/* Vehicle Specs + Booking Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                     {/* Left side content */}
                     <div className="lg:col-span-2 space-y-6">
                         <div className="space-y-2">
@@ -257,7 +260,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                         <div>
                             <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 my-10 
                          transition duration-300 hover:border-orange-500/40 space-y-2">
-                                <h3 className="text-xl font-semibold text-gray-200">About this Vehicle</h3>
+                                <h3 className="text-xl font-semibold text-gray-200">Description</h3>
                                 <p className="text-gray-400">{description}</p>
 
                             </div>
@@ -295,32 +298,40 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                     </div>
 
                     {/* Booking Section */}
-                    <div className="bg-[#0B1A2E] shadow-md rounded-xl p-6 h-fit">
-                        <h2 className="text-lg font-semibold mb-4">Book This Vehicle</h2>
-                        <div className="space-y-4">
-                            <p className="text-sm text-gray-500">
+                    <div className="bg-[#0f1c2e] border border-white/10 rounded-2xl p-4 h-fit
+                         transition duration-300 hover:border-orange-500/40 ">
+                        <div className="space-y-1 mb-5">
+                            <h2 className="text-xl text-gray-200 font-bold ">Book This Vehicle</h2>
+                            <p className="text-[14px] text-gray-500">
                                 Please select pickup and return dates within the available range:
                             </p>
+                        </div>
 
+                        <div className="space-y-4">
+                
                             {/* Date Picker */}
-                            <DateRange
-                                rangeColors={["#16A34A"]}
-                                editableDateInputs={true}
-                                onChange={(item) => setState([item.selection])}
-                                moveRangeOnFirstSelection={false}
-                                minDate={new Date(from)} // Earliest host-available date
-                                maxDate={new Date(to)} // Latest host-available date
-                                ranges={state}
-                            />
+                            <div className="custom-dark-calendar rounded-xl overflow-hidden">
+                                <DateRange
+                                    rangeColors={["#f97316"]}
+                                    editableDateInputs={true}
+                                    onChange={(item) => setState([item.selection])}
+                                    moveRangeOnFirstSelection={false}
+                                    minDate={new Date(from)}
+                                    maxDate={new Date(to)}
+                                    ranges={state}
+                                />
+                            </div>
+
+
 
                             {/* Price Calculation */}
                             <div className="flex justify-between mt-3">
-                                <p className="font-semibold text-gray-700">Total Price</p>
-                                <p className="font-bold text-green-600">{formatCurrency(totalPrice)}</p>
+                                <p className="font-semibold text-gray-300">Total Price</p>
+                                <p className="font-bold text-orange-500">{formatCurrency(totalPrice)}</p>
                             </div>
 
                             {!isSelectionValid && (
-                                <p className="text-sm text-red-500">
+                                <p className="text-sm text-orange-500">
                                     Selected dates must be inside the host's available range.
                                 </p>
                             )}
@@ -338,7 +349,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     onClick={() => setIsOpen(true)}
                                     disabled={!isSelectionValid}
                                     className={`w-full text-white font-semibold py-2 rounded-lg transition-all ${isSelectionValid
-                                        ? "bg-green-500 hover:bg-green-600"
+                                        ? "bg-orange-500 hover:bg-orange-600"
                                         : "bg-gray-300 cursor-not-allowed"
                                         }`}
                                 >

@@ -151,7 +151,7 @@ const CheckoutForm = ({ closeModal, bookingInfo, refetch }) => {
                         disabled={!stripe || !clientSecret || processing}
                         onClick={(e) => e.stopPropagation()}   // prevent modal from closing
                         type='submit'
-                        className="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
+                        className="flex-1 bg-orange-500 hover:bg-orange-500 text-white py-2 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"
                     >
                         {processing ? (
                             <ImSpinner9 className="animate-spin m-auto" size={24} />
