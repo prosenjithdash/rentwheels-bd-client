@@ -169,7 +169,7 @@ const VehicleDetails_Card = ({ vehicle, refetch }) => {
                                     </div>
                                     <div>
                                         <p className="text-gray-500 text-sm">AVAILABILITY</p>
-                                        <p className="text-gray-200 flex items-center gap-3">{from} <FaLongArrowAltRight/> { to}</p>
+                                        <p className="text-gray-200 lg:flex items-center gap-3">{from} <FaLongArrowAltRight/> { to}</p>
                                     </div>
                                     
                                     

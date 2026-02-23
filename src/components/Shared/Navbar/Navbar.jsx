@@ -45,7 +45,7 @@ const Navbar = () => {
 
     return (
         /* 🔵 FULL WIDTH BACKGROUND */
-        <div className=" w-full bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A]">
+        <div className=" w-full bg-gradient-to-b from-[#0F172A] via-[#0B1220] to-[#0F172A] ">
 
             {/* 🔒 CONTENT WIDTH LIMITED */}
             <div className="navbar max-w-7xl mx-auto px-4 lg:px-6 relative z-50">
@@ -166,6 +166,9 @@ const Navbar = () => {
                         </NavLink>
                     )}
                 </div>
+            </div>
+
+            <div className="max-w-7xl mx-auto border-b border-gray-800">
             </div>
         </div>
     );
