@@ -4,12 +4,12 @@ import Sidebar from '../components/Dashboard/Sidebar/Sidebar'
 
 const DashboardLayout = () => {
     return (
-        <div className="min-h-screen bg-gray-50 border-2 border-red-700">
-            <Sidebar className='border-2 border-red-700'/>
+        <div className="min-h-screen ">
+            <Sidebar className=''/>
 
             <main
                 className="
-                min-h-screen bg-gray-50 border-2 border-red-700
+                min-h-screen bg-gray-50 
                     
                     ml-0
                     sm:ml-0
